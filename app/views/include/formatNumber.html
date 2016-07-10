@@ -1,0 +1,149 @@
+<script type="text/javascript" src="/public/autoNumeric/autoNumeric-2.0.js"></script>
+<script type="text/javascript">
+	function applyNumberFormat() {
+		if ($('.formatNumberi').length > 0) {
+			$('.formatNumberi').each(function() {
+					if( $.isNumeric($(this).val())){		
+					var str = $(this).val();
+					str = str.trim();
+						$(this).autoNumeric("init");
+					var nb = 0;
+					if (str.toLowerCase().indexOf("e") >= 0) {
+						nb = new Number(str);
+						$(this).autoNumeric("init");
+					} else {
+						if(str.indexOf(",") >= 0) {
+							$(this).autoNumeric("init");
+							str = $(this).autoNumeric("get");
+						} else {
+							$(this).autoNumeric("init");
+						}
+						nb = parseFloat(str);
+					}
+					$(this).autoNumeric("set", nb);
+					}
+ 
+			});
+
+			if ($('#adheneForm').length > 0) {
+				$('#adheneForm').on(
+						'submit',
+						function() {
+							var bootstrapValidatorTest = $('#adheneForm').data(
+									'bootstrapValidator');
+							if (bootstrapValidatorTest.isValid()) {
+								$('.formatNumberi').autoNumeric("unSet");
+							}
+						});
+			} else {
+				if ($('.AdheneFormValidation').length > 0) {
+					$('.AdheneFormValidation').on('submit', function() {
+						$('.formatNumberi').autoNumeric("unSet");
+					});
+				}
+				if ($('.AdheneSecondFormValidation').length > 0) {
+					$('.AdheneSecondFormValidation').on('submit', function() {
+						$('.formatNumberi').autoNumeric("unSet");
+					});
+				}
+				if ($('.AdheneThirdFormValidation').length > 0) {
+					$('.AdheneThirdFormValidation').on('submit', function() {
+						$('.formatNumberi').autoNumeric("unSet");
+					});
+				}
+				if ($('.AdheneFourthFormValidation').length > 0) {
+					$('.AdheneFourthFormValidation').on('submit', function() {
+						$('.formatNumberi').autoNumeric("unSet");
+					});
+				}
+			}
+		}
+	}
+
+	function applyNumberFormatLabel() {		
+		$('.formatNumber').each(function() {
+		console.log(getNumber(this));
+			$(this).autoNumeric("init");
+		//	try {				
+				var str = $(this).text();
+				str = str.trim().toLowerCase();
+				if( $.isNumeric($(this).text())){		
+				var nb = 0;
+				if (str.indexOf("e") >= 0) {
+					nb = new Number(str);				
+					$(this).autoNumeric("init");
+				} else {
+					if(str.indexOf(",") >= 0) {
+						$(this).autoNumeric("init");
+						str = $(this).autoNumeric("get");
+					} else {
+						$(this).autoNumeric("init");
+					}
+				}
+				nb = parseFloat(str);
+				$(this).autoNumeric("set", nb);
+				}
+		//	} catch (err) {
+		//		console.log(err);
+		//	}
+		});
+		return true;
+	}
+
+	function getNumber(selector) {
+	
+	
+		try {
+			if ($(selector).length > 0) {
+			var str = $(selector).text().trim().toLowerCase();	
+			if (str.indexOf("e") >= 0) {
+					nb = new Number(str);		
+					$(selector).autoNumeric("init");
+					$(selector).autoNumeric("set", nb);
+					return nb;
+			}else{
+				$(selector).autoNumeric("init");
+				return $(selector).autoNumeric("get");
+			}			
+			}
+			return 0;
+		} catch (err) {
+			console.log(err);
+			return 0;
+		}
+	}
+
+	function setNumber(selector, number) {
+		if ( $.isNumeric(number) && $(selector).length > 0) {
+			var str = number;
+			str = str.trim().toLowerCase();
+			try {
+				var nb = 0;
+// 				if (str.toLowerCase().indexOf("e") >= 0) {
+// 					nb = new Number(str);
+// 					$(selector).autoNumeric("init");
+// 				} else {
+// 					$(selector).autoNumeric("init");
+// 					nb = parseFloat(str);
+// 				}
+				if (str.indexOf("e") >= 0) {
+					nb = new Number(str);
+					$(selector).autoNumeric("init");
+				} else {
+					if(str.indexOf(",") >= 0) {
+						$(selector).autoNumeric("init");
+						str = $(selector).autoNumeric("get");
+					} else {
+						$(selector).autoNumeric("init");
+					}
+					nb = parseFloat(str);
+				}
+				return $(selector).autoNumeric("set", nb);
+			} catch (err) {
+				console.log(err);
+				return 0;
+			}
+		}
+		return 0;
+	}
+</script>

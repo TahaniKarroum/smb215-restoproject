@@ -9,27 +9,27 @@
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\framework\play-1.2.5.6.jar" sourcepath="C:/play-1.2.5.6/framework/src" />
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-beanutils-core-1.7.0.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-betwixt-0.8.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-dbcp-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-dbcp-1.2.1.jar" sourcepath="C:\Users\pc\.ivy2\cache\commons-dbcp\commons-dbcp\sources\commons-dbcp-1.2.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-digester-1.7.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\commons-pool-1.2.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\isorelax-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\msv-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\oro-2.0.8.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\relaxngDatatype-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\saxpath-1.0-FCS.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\isorelax-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\isorelax\isorelax\sources\isorelax-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\msv-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\msv\msv\sources\msv-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\oro-2.0.8.jar" sourcepath="C:\Users\pc\.ivy2\cache\oro\oro\sources\oro-2.0.8-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\relaxngDatatype-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\relaxngDatatype\relaxngDatatype\sources\relaxngDatatype-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\saxpath-1.0-FCS.jar" sourcepath="C:\Users\pc\.ivy2\cache\saxpath\saxpath\sources\saxpath-1.0-FCS-sources.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\lib\stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-beanutils-core-1.7.0.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-betwixt-0.8.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-dbcp-1.2.1.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-dbcp-1.2.1.jar" sourcepath="C:\Users\pc\.ivy2\cache\commons-dbcp\commons-dbcp\sources\commons-dbcp-1.2.1-sources.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-digester-1.7.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\commons-pool-1.2.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\DdlUtils-1.0-siena-patched.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\isorelax-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\msv-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\oro-2.0.8.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\isorelax-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\isorelax\isorelax\sources\isorelax-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\msv-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\msv\msv\sources\msv-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\oro-2.0.8.jar" sourcepath="C:\Users\pc\.ivy2\cache\oro\oro\sources\oro-2.0.8-sources.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\play-siena.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\relaxngDatatype-20020414.jar"/>
-	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\saxpath-1.0-FCS.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\relaxngDatatype-20020414.jar" sourcepath="C:\Users\pc\.ivy2\cache\relaxngDatatype\relaxngDatatype\sources\relaxngDatatype-20020414-sources.jar"/>
+	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\saxpath-1.0-FCS.jar" sourcepath="C:\Users\pc\.ivy2\cache\saxpath\saxpath\sources\saxpath-1.0-FCS-sources.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\siena-1.0.0-b6.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\siena-2.0.7\lib\stax-api-1.0.1.jar"/>
 	<classpathentry kind="lib" path="C:\play-1.2.5.6\smb215-restoproject\modules\crudsiena-2.0.1\lib\play-crudsiena.jar"/>

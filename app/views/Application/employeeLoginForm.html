@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Login</title>
+		<link rel="stylesheet" href="/public/stylesheets/framework/bootstrap.min.css" type="text/css" />
+		<script src="/public/javascripts/framework/jquery.min.js"></script>
+		<script src="/public/javascripts/framework/bootstrap.min.js"></script>
+		<script src="/public/javascripts/login.js"></script>
+		<link rel="stylesheet" href="/public/stylesheets/login.css" type="text/css" />
+	</head>
+	<body>
+		<div class="container">
+			<div class="login-container">
+				<div id="output"></div>
+				<div ><img src="/public/images/logo.png"  width="60%"></div>
+				<div class="form-box">
+					<form class="adheneFormValidation" role="form" action="@{employeeLogin()}" method="post">
+						<input name="username" type="text" placeholder="&{'username'}" class="required" />
+						<input type="password" name="password" placeholder="&{'password'}" class="required" />
+						<input type="submit" value="&{'Login'}" class="btn btn-info btn-block login" />
+						#{if msg} &{msg} #{/if}
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+#{include 'include/formHead.html' /}
+#{include 'include/formValidation.html' /}

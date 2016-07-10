@@ -1,0 +1,91 @@
+<script>
+#{if session.get("lang").equals("ar")}
+var metrics = [
+		[ '.required', 'presence', 'حقل إلزامي' ],
+		[ '.email', 'email', 'يجب أن يكون عنوان بريد إلكتروني صحيح' ],
+		[ '.max4', 'max-length:4', 'No longer than 4 characters please' ],
+		[ '.min4', 'min-length:4', 'At least 4 characters please' ],
+		[ '.integer', 'integer', 'Must be a whole number' ],
+		[ '.float', 'float', 'يجب إدخال رقم' ],
+		[ '.positive', 'min-num:0','يجب إدخال رقم أكبر من صفر' ],
+		[ '.maxVal17', 'max-num:17', 'جب إدخال رقم أصغر او يساوي 17' ],
+		[ '.maxVal4', 'max-num:4', 'جب إدخال رقم أصغر او يساوي 4' ],
+		[ '.regularExp', /Hello/, 'String must contain the word "Hello"' ],
+		[ '.not0', 'not:0', 'يجب إدخال رقم أكبر من صفر' ],
+		[ '.notfloat0', 'not:0.0', 'يجب إدخال رقم أكبر من صفر' ],
+		[ '.notfloat00', 'not:0.00', 'يجب إدخال رقم أكبر من صفر' ],
+		[ '.minValue0', 'min-num:0', 'يجب إدخال رقم أكبر من صفر' ],
+		[ '.maxValueDiscount', 'max-num:100', 'يجب إدخال رقم أصغر او يساوي 100' ],
+		[ '.atLeastOneRequired', "one-of", 'ادخل على الأقل إحد ى المعلومات' ],
+		[ '.atLeastOneRequired_1, .atLeastOneRequired_2', 'one-of', 'أدخل حقل واحد على الأقل' ],
+		[ '.isPDF', /(.pdf|.PDF|)/, 'File must be a pdf document' ],
+		[ '.isImage', /(.png|.PNG|.jpg|>.JPG|)/, 'File must be an Image' ],
+		[ '#date1, #date2', (function() {
+			return checkDates("date1", "date2");
+		}), 'Dates are invalid' ]
+
+];
+#{/if}
+#{else}
+var metrics = [
+   			[ '.required', 'presence', 'Required' ],
+   			[ '.email', 'email', 'Must be a valid email' ],
+   			[ '.max4', 'max-length:4', 'No longer than 4 characters please' ],
+   			[ '.min4', 'min-length:4', 'At least 4 characters please' ],
+   			[ '.integer', 'integer', 'Must be a whole number' ],
+   			[ '.float', 'float', 'Must be a number (decimals are fine)' ],
+   			[ '.positive', 'min-num:0',
+   					'Type in a number that is greater than 0' ],
+   			[ '.regularExp', /Hello/, 'String must contain the word "Hello"' ],
+   			[ '.not0', 'not:0', 'Must be greater than 0' ],
+   			[ '.notfloat0', 'not:0.0', 'Must be greater than 0.0' ],
+   			[ '.notfloat00', 'not:0.00', 'Must be greater than 0.0' ],
+   			[ '.minValue0', 'min-num:0', 'Type in a number that is bigger than 0' ],
+   			[ '.maxValueDiscount', 'max-num:100', 'Type in a number that is less or equal 100' ],
+   			[ '.atLeastOneRequired', "one-of", 'Fill one at least' ],
+   			[ '.atLeastOneRequired_1, .atLeastOneRequired_2', 'one-of', 'at least one Required' ],
+   			[ '.isPDF', /(.pdf|.PDF|)/, 'File must be a pdf document' ],
+   			[ '.isImage', /(.png|.PNG|.jpg|>.JPG|)/, 'File must be an Image' ],
+   			[ '#date1, #date2', (function() {
+   				return checkDates("date1", "date2");
+   			}), 'Dates are invalid' ]
+   			];
+#{/else}
+	function checkDates(date1, date2) {
+		var date1 = document.getElementById(date1);
+		var jDate1 = convertDate(date1);
+
+		var date2 = document.getElementById(date2);
+		var jDate2 = convertDate(date2);
+
+		if (!isNaN(Date.parse(jDate1)) && !isNaN(Date.parse(jDate2))
+				&& (Date.parse(jDate1) > Date.parse(jDate2)))
+			return false;
+		return true;
+	}
+
+	if ($(".AdheneFormValidation").length > 0)
+		$(".AdheneFormValidation").nod(metrics);
+
+	if ($(".AdheneSecondFormValidation").length > 0)
+		$(".AdheneSecondFormValidation").nod(metrics);
+
+	if ($(".AdheneThirdFormValidation").length > 0)
+		$(".AdheneThirdFormValidation").nod(metrics);
+
+	if ($(".AdheneFourthFormValidation").length > 0)
+		$(".AdheneFourthFormValidation").nod(metrics);
+
+	function convertDate(e1) {
+		if (e1) {
+			var date = e1.value;
+			//	alert(date);
+			var output = date.substring(0, 2);
+			var output1 = date.substring(3, 5);
+			var output2 = date.substring(6, 10);
+			var newDate1 = output1 + "/" + output + "/" + output2;
+			return (newDate1);
+		}
+		return "";
+	}
+</script>
