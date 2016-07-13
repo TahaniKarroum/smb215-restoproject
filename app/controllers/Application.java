@@ -4,6 +4,8 @@ import play.*;
 import play.mvc.*;
 import siena.Model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.*;
 
@@ -11,10 +13,8 @@ import models.*;
 
 public class Application extends Controller {
 	public static boolean onEachController(){
-		
 		Employee employee = checkEmployeeLogin();
 		renderArgs.put("loggedInEmpName", session.get("loggedInEmpName"));
-		session.put("from", "Inbox");
 
 		return true;
 	}
@@ -33,14 +33,26 @@ public class Application extends Controller {
 			Application.employeeLoginForm();
 		return employee;
 	}
-    public static void employeeLogin(boolean isFromLogout, boolean isFirst) throws ParseException {
+    public static void employeeLogin(boolean isFromLogout, boolean isFirst) throws ParseException, NoSuchAlgorithmException {
 		Employee employee = null;
 		String username = params.get("username");
 		String password = params.get("password");
+    	
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(password.getBytes());
+        
+        byte byteData[] = md.digest();
+ 
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+     String hashpass=sb.toString();
 		String msg = "";
 		if (isFromLogout == false && isFirst == false)
 			msg = "loginError";
-		employee = Model.all(Employee.class).filter("username", username).filter("password", password).filter("isActive", true).get();
+		employee = Model.all(Employee.class).filter("username", username).filter("password", hashpass).filter("isActive", true).get();
 		// renderText(employee);
 		if (employee == null) {
 			renderTemplate("Application/employeeLoginForm.html", msg);
