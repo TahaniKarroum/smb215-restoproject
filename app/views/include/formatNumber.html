@@ -25,34 +25,34 @@
  
 			});
 
-			if ($('#adheneForm').length > 0) {
-				$('#adheneForm').on(
+			if ($('#restoForm').length > 0) {
+				$('#restoForm').on(
 						'submit',
 						function() {
-							var bootstrapValidatorTest = $('#adheneForm').data(
+							var bootstrapValidatorTest = $('#restoForm').data(
 									'bootstrapValidator');
 							if (bootstrapValidatorTest.isValid()) {
 								$('.formatNumberi').autoNumeric("unSet");
 							}
 						});
 			} else {
-				if ($('.AdheneFormValidation').length > 0) {
-					$('.AdheneFormValidation').on('submit', function() {
+				if ($('.RestoFormValidation').length > 0) {
+					$('.RestoFormValidation').on('submit', function() {
 						$('.formatNumberi').autoNumeric("unSet");
 					});
 				}
-				if ($('.AdheneSecondFormValidation').length > 0) {
-					$('.AdheneSecondFormValidation').on('submit', function() {
+				if ($('.RestoSecondFormValidation').length > 0) {
+					$('.RestoSecondFormValidation').on('submit', function() {
 						$('.formatNumberi').autoNumeric("unSet");
 					});
 				}
-				if ($('.AdheneThirdFormValidation').length > 0) {
-					$('.AdheneThirdFormValidation').on('submit', function() {
+				if ($('.RestoThirdFormValidation').length > 0) {
+					$('.RestoThirdFormValidation').on('submit', function() {
 						$('.formatNumberi').autoNumeric("unSet");
 					});
 				}
-				if ($('.AdheneFourthFormValidation').length > 0) {
-					$('.AdheneFourthFormValidation').on('submit', function() {
+				if ($('.RestoForthFormValidation').length > 0) {
+					$('.RestoForthFormValidation').on('submit', function() {
 						$('.formatNumberi').autoNumeric("unSet");
 					});
 				}

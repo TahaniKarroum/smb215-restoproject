@@ -1,0 +1,87 @@
+#{extends 'main.html' /} #{set title:'Manage Categories' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+
+<div class="form-group">
+	<a href="@{Categories.categoryForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddCategory'}</a>
+	<h3>&{'Categories'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (categoriesList==null || categoriesList?.size()==0) && isFilteringMode==null}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'Categories'}</h3>
+		</div>
+		<div class="panel-body">&{'listIsEmpty'}</div>
+	</div>
+#{/if}
+#{else}
+<div class="row form-group">
+	<form class="form-inline RestoFormValidation" method="post" action="@{searchByName()}" id="filter2" name="categoryName">
+		<div class="col-xs-9 col-sm-2 group-error">
+		<select data-placeholder="&{'FilterbyCategory'}"
+				class="chosen-select-deselect required" tabindex="5" name="category_id" value="" onchange="document.categoryName.submit();">
+				<option value=""></option> 
+				#{list items : allCategories, as:'category'}
+				<option value="${category?.ID}"%{if(categoryID.equals(category?.ID)) out.print('selected')}% >${category?.name}</option> #{/list}
+			</select><span class="input-append"></span>
+		</div>
+	</form>
+	#{if isFilteringMode}
+		<div class="row form-group">
+		<div class="col-xs-2">
+			<a href="@{manage()}" class="btn btn-primary"><span> &{'ShowAll'}</span></a>
+		</div>
+		</div>
+		#{/if}
+	</div>
+#{if (categoriesList==null || categoriesList?.size()==0) && isFilteringMode == true}
+<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'Products'}</h3>
+		</div>
+		<div class="panel-body">&{'NoResultsFound'}</div>
+	</div>
+#{/if}
+#{else}
+
+	<div class="panel panel-primary filterable">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'CategoriesList'}</h3>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr class="filters">
+					<th>&{'Name'}</th>
+					<th width="12%">&{'Action'}</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list categoriesList, as:'category'} 
+				<tr>
+					<td>${category.name}</td>
+					<td>
+						<a href="@{categoryForm(category?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+						<a href="@{deleteCategory(category?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+					</td>
+				</tr>
+				#{/list}
+			</tbody>
+		</table>
+	</div>
+	#{include 'include/deleteConfirmDialog.html' /}
+#{/else}
+#{/else}
+<script>
+var nbc = $('.chosen-select').length;
+	if (nbc > 0) {
+		$('.chosen-select').chosen();
+	}
+	var nbc1 = $('.chosen-select-deselect').length;
+	if (nbc1 > 0) {
+		$('.chosen-select-deselect').chosen({
+			allow_single_deselect : true
+		});
+	}
+	
+</script>

@@ -1,0 +1,11 @@
+<link href="/public/stylesheets/tableWithFilter.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/public/javascripts/tableWithFilter.js"></script>
+<link href="/public/stylesheets/pagination_style.css" rel="stylesheet" media="screen">
+<script src="/public/javascripts/jquery.paginate.js" type="text/javascript"></script>
+#{if flash['deleteMessage']}
+	<div class="alert alert-danger">
+		<span class="fa fa-exclamation-triangle"></span>
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+		${flash['deleteMessage']}!
+	</div>
+#{/if}

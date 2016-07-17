@@ -48,7 +48,9 @@ public class Application extends Controller {
         for (int i = 0; i < byteData.length; i++) {
          sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
         }
+       
      String hashpass=sb.toString();
+     System.out.println("mmmmm "+password+"  "+hashpass);
 		String msg = "";
 		if (isFromLogout == false && isFirst == false)
 			msg = "loginError";

@@ -1,0 +1,21 @@
+<link href="/public/stylesheets/modal.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/public/javascripts/jquery.confirm.min.js"></script>
+<script>$(".confirmDelete1").confirm();
+            $(".confirmDelete").confirm({
+                title:"Delete confirmation",
+                text: "Are you sure you want to permanently delete this item?",
+                		confirm: function(button) {
+                    button.fadeOut(2000).fadeIn(2000);
+                   // alert("You just confirmed.");
+                   var link = button.attr('href');
+                   window.location.href = link;
+                },
+                cancel: function(button) {
+                    button.fadeOut(2000).fadeIn(2000);
+                },
+               
+                    confirmButton: "Yes I am",
+                    cancelButton: "No"
+                
+            });
+</script>

@@ -1,32 +1,4 @@
 <script>
-#{if session.get("lang").equals("ar")}
-var metrics = [
-		[ '.required', 'presence', 'حقل إلزامي' ],
-		[ '.email', 'email', 'يجب أن يكون عنوان بريد إلكتروني صحيح' ],
-		[ '.max4', 'max-length:4', 'No longer than 4 characters please' ],
-		[ '.min4', 'min-length:4', 'At least 4 characters please' ],
-		[ '.integer', 'integer', 'Must be a whole number' ],
-		[ '.float', 'float', 'يجب إدخال رقم' ],
-		[ '.positive', 'min-num:0','يجب إدخال رقم أكبر من صفر' ],
-		[ '.maxVal17', 'max-num:17', 'جب إدخال رقم أصغر او يساوي 17' ],
-		[ '.maxVal4', 'max-num:4', 'جب إدخال رقم أصغر او يساوي 4' ],
-		[ '.regularExp', /Hello/, 'String must contain the word "Hello"' ],
-		[ '.not0', 'not:0', 'يجب إدخال رقم أكبر من صفر' ],
-		[ '.notfloat0', 'not:0.0', 'يجب إدخال رقم أكبر من صفر' ],
-		[ '.notfloat00', 'not:0.00', 'يجب إدخال رقم أكبر من صفر' ],
-		[ '.minValue0', 'min-num:0', 'يجب إدخال رقم أكبر من صفر' ],
-		[ '.maxValueDiscount', 'max-num:100', 'يجب إدخال رقم أصغر او يساوي 100' ],
-		[ '.atLeastOneRequired', "one-of", 'ادخل على الأقل إحد ى المعلومات' ],
-		[ '.atLeastOneRequired_1, .atLeastOneRequired_2', 'one-of', 'أدخل حقل واحد على الأقل' ],
-		[ '.isPDF', /(.pdf|.PDF|)/, 'File must be a pdf document' ],
-		[ '.isImage', /(.png|.PNG|.jpg|>.JPG|)/, 'File must be an Image' ],
-		[ '#date1, #date2', (function() {
-			return checkDates("date1", "date2");
-		}), 'Dates are invalid' ]
-
-];
-#{/if}
-#{else}
 var metrics = [
    			[ '.required', 'presence', 'Required' ],
    			[ '.email', 'email', 'Must be a valid email' ],
@@ -50,7 +22,6 @@ var metrics = [
    				return checkDates("date1", "date2");
    			}), 'Dates are invalid' ]
    			];
-#{/else}
 	function checkDates(date1, date2) {
 		var date1 = document.getElementById(date1);
 		var jDate1 = convertDate(date1);
