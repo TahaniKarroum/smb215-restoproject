@@ -1,0 +1,29 @@
+#{if pagination} %{currentPage = pagination?.getCurrentPage()}%
+<div class="row text-center">
+	<ul class="pagination">
+		<!-- 	#{if pagination?.hasPrevious()} -->
+		<li><a href="@{getPage(currentPage-1)}">&{'Prev'}</a></li>
+		<!-- 	#{/if} -->
+		<!-- 	#{else} -->
+		<li class="disabled"><a href="#">&{'Prev'}</a></li>
+		<!-- 	#{/else} -->
+		<!-- 	#{if currentPage > 1} -->
+		<!-- 		#{list items:pagination?.getMinPage(currentPage)..currentPage-1, as:'i'} -->
+		<li><a href="@{getPage(i)}">${i}</a></li>
+		<!-- 		#{/list} -->
+		<!-- 	#{/if} -->
+		<li class="active"><a href="#">${currentPage}</a></li>
+		<!-- 	#{if currentPage < pagination.getPagesCount()} -->
+		<!-- 		#{list items : currentPage+1..pagination?.getMaxPage(currentPage), as:'j'} -->
+		<li><a href="@{getPage(j)}">${j}</a></li>
+		<!-- 		#{/list} -->
+		<!-- 	#{/if} -->
+		<!-- 	#{if pagination?.hasNext()} -->
+		<li><a href="@{getPage(currentPage+1)}">&{'Next'}</a></li>
+		<!-- 	#{/if} -->
+		<!-- 	#{else} -->
+		<li class="disabled"><a href="#">&{'Next'}</a></li>
+		<!-- 	#{/else} -->
+	</ul>
+</div>
+#{/if}
