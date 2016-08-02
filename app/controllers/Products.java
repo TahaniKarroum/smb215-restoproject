@@ -1,76 +1,64 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
 import models.Category;
+import models.MeasureUnit;
 import models.Product;
+import models.Product_MeasureUnit;
 import play.Play;
 import play.mvc.Before;
 import siena.Model;
 import siena.Query;
 import utils.Enums;
 import utils.Pagination;
+import utils.Enums.ProductType;
+import utils.Enums.categoryType;
 
 public class Products extends controllers.CRUD {
 	@Before
 	public static void addDefaults() {
 		Application.onEachController();
-		session.put("currentPage", "products");
 	}
 	public static boolean setArgsList() {
 		List<Product> productsList = Product.all().fetch();
 		renderArgs.put("productsList", productsList);
 		return true;
 	}
+	public static boolean currentPage(String currentPage) {
+		session.put("currentPage", currentPage);
+		return true;
+	}
 
-	public static void productForm(String ID) {
-		Product product = Product.getByID(ID);
-		if (product == null)
+	public static void menuProductForm(String ID) {
+		currentPage("productsmenu");
+		Product product = null;
+		if (ID == null)
 			product = new Product();
-		render(product);
+		else
+			product = Product.getByID(ID);
+		List<Category> menuCategoriesList = Model.all(Category.class).filter("categoryType_ID", categoryType.menu.ordinal()).fetch();
+		List<Product> stockProductsList = Product.allStockProducts().fetch();
+		render(product, menuCategoriesList, stockProductsList);
+
 	}
 
-	public static void saveProduct(Product product) throws IOException {
+	public static void saveMenuProductForm(Product product, File uploadImage) throws IOException {
+
+		product.productType_ID = Enums.ProductType.menu.ordinal();
+		product.isAllowAlarm = false;
 		product.saveProduct();
-		manage();
+		menuManage();
 	}
 
-	public static void manage() {
-		String pageNbFromSession = session.get("currentProductsPage");
-		int itemsCount = Product.all().count();
-		Pagination pagination = null;
-		List<Product> productsList = null;
-		if (itemsCount > 0) {
-			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
-			session.put("currentProductsPage", pagination.getCurrentPage());
-			productsList = Product.all().fetch(pagination.getPageSize(),
-					pagination.getPageStartIndex());
-		}
-		List<Product> allProducts = Product.all().fetch();
-		render(productsList, pagination, allProducts);
-
+	public static void menuManage() {
+		currentPage("productsmenu");
+		List<Product> productsList = Model.all(Product.class).filter("productType_ID", ProductType.menu.ordinal()).fetch();
+		List<Product> allProducts = Model.all(Product.class).fetch();
+		List<Category> categoriesList = Model.all(Category.class).filter("categoryType_ID", Enums.categoryType.menu.ordinal()).fetch();
+		render(productsList, allProducts, categoriesList);
 	}
 
-	public static void searchByName() throws IOException {
-		String productID = params.get("product_id");
-		List<Product> productsList = Product.all().filter("ID", productID).fetch();
-		boolean isFilteringMode = true;
-		List<Product> allProducts = Product.all().fetch();
-		renderTemplate("Categories/manage.html", productID, productsList, allProducts, isFilteringMode);
-	}
-
-	public static void getPage(int page) throws IOException {
-		session.put("currentProductsPage", page);
-		manage();
-	}
-
-	public static void deleteProduct(String ID) {
-		Product product = Product.getByID(ID);
-		if (product != null) {
-			product.delete();
-			flash.put("deleteMessage", "The product is deleted successfully");
-		}
-		manage();
-	}
 }

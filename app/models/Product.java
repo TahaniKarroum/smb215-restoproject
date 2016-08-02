@@ -83,6 +83,12 @@ public class Product extends Model {
 	public static Query<Product> allMenuProducts() {
 		return Model.all(Product.class).filter("productType_ID", Enums.ProductType.menu.ordinal()).order("name");
 	}
+	public String getCategoryName() {
+		Category category = Category.getByID(category_ID);
+		if (category == null)
+			return "NoCategory";
+		return category.name;
+	}
 
 	public void saveProduct() {
 		if (ID == null || ID.equals("") == true) {

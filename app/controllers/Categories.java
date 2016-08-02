@@ -22,7 +22,6 @@ public class Categories extends controllers.CRUD {
 	public static void addDefault() throws IOException, ParseException {
 		Application.checkEmployeeLogin();
 		Application.onEachController();
-		session.put("currentPage", "categories");
 	}
 
 	public static boolean setArgsList() {
@@ -30,8 +29,13 @@ public class Categories extends controllers.CRUD {
 		renderArgs.put("categoriesList", categoriesList);
 		return true;
 	}
+	public static boolean currentPage(String currentPage) {
+		session.put("currentPage", currentPage);
+		return true;
+	}
 
 	public static void categoryForm(String ID) {
+		currentPage("categories");
 		Category category = Category.getByID(ID);
 		if (category == null)
 			category = new Category();
@@ -39,12 +43,14 @@ public class Categories extends controllers.CRUD {
 	}
 
 	public static void saveCategory(Category category) throws IOException {
+		currentPage("categories");
 		category.categoryType_ID = Enums.categoryType.stock.ordinal();
 		category.saveCategory();
 		manage();
 	}
 
 	public static void manage() {
+		currentPage("categories");
 		String pageNbFromSession = session.get("currentCategoriesPage");
 		int itemsCount = Category.allStockCategories().count();
 		Pagination pagination = null;
@@ -64,7 +70,7 @@ public class Categories extends controllers.CRUD {
 		String categoryID = params.get("category_id");
 		List<Category> categoriesList = Category.all().filter("ID", categoryID).fetch();
 		boolean isFilteringMode = true;
-		List<Category> allCategories = Model.all(Category.class).fetch();
+		List<Category> allCategories = Category.allStockCategories().fetch();
 		renderTemplate("Categories/manage.html", categoryID, categoriesList, allCategories, isFilteringMode);
 	}
 
@@ -81,4 +87,62 @@ public class Categories extends controllers.CRUD {
 		}
 		manage();
 	}
+	
+	
+	public static void menuCategoryForm(String ID) {
+		currentPage("menuCategories");
+		Category category = Category.getByID(ID);
+		if (category == null)
+			category = new Category();
+		render(category);
+	}
+
+	public static void saveMenuCategory(Category category) throws IOException {
+		currentPage("menuCategories");
+		category.categoryType_ID = Enums.categoryType.menu.ordinal();
+		category.saveCategory();
+		menuManage();
+	}
+
+	public static void menuManage() {
+		currentPage("menuCategories");
+		String pageNbFromSession = session.get("currentMenuCategoriesPage");
+		int itemsCount = Category.allMenuCategories().count();
+		Pagination pagination = null;
+		List<Category> categoriesList = null;
+		if (itemsCount > 0) {
+			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
+			session.put("currentMenuCategoriesPage", pagination.getCurrentPage());
+			categoriesList = Category.allMenuCategories().fetch(pagination.getPageSize(),
+					pagination.getPageStartIndex());
+		}
+		List<Category> allCategories = Category.allMenuCategories().fetch();
+		render(categoriesList, pagination, allCategories);
+
+	}
+
+	public static void searchMenuByName() throws IOException {
+		String categoryID = params.get("category_id");
+		List<Category> categoriesList = Category.all().filter("ID", categoryID).fetch();
+		boolean isFilteringMode = true;
+		List<Category> allCategories = Category.allMenuCategories().fetch();
+		renderTemplate("Categories/menuManage.html", categoryID, categoriesList, allCategories, isFilteringMode);
+	}
+
+	public static void getMenuPage(int page) throws IOException {
+		session.put("currentMenuCategoriesPage", page);
+		menuManage();
+	}
+
+	public static void deleteMenuCategory(String ID) {
+		Category category = Category.getByID(ID);
+		if (category != null) {
+			category.delete();
+			flash.put("deleteMessage", "The Category is deleted successfully");
+		}
+		menuManage();
+	}
+	
+	
+	
 }

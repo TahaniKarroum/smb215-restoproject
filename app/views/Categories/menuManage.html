@@ -2,7 +2,7 @@
 #{include 'include/formHead.html' /}
 
 <div class="form-group">
-	<a href="@{Categories.categoryForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddCategory'}</a>
+	<a href="@{Categories.menuCategoryForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddCategory'}</a>
 	<h3>&{'Categories'}</h3>
 	<hr class="text-primary">
 </div>
@@ -17,7 +17,7 @@
 #{/if}
 #{else}
 <div class="row form-group">
-	<form class="form-inline RestoFormValidation" method="post" action="@{searchByName()}" id="filter2" name="categoryName">
+	<form class="form-inline RestoFormValidation" method="post" action="@{searchMenuByName()}" id="filter2" name="categoryName">
 		<div class="col-xs-9 col-sm-2 group-error">
 		<select data-placeholder="&{'FilterbyCategory'}"
 				class="chosen-select-deselect required" tabindex="5" name="category_id" value="" onchange="document.categoryName.submit();">
@@ -61,8 +61,8 @@
 				<tr>
 					<td>${category.name}</td>
 					<td>
-						<a href="@{categoryForm(category?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
-						<a href="@{deleteCategory(category?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+						<a href="@{menuCategoryForm(category?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+						<a href="@{deleteMenuCategory(category?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
 					</td>
 				</tr>
 				#{/list}
@@ -70,6 +70,6 @@
 		</table>
 	</div>
 	#{include 'include/deleteConfirmDialog.html' /}
-	#{include 'include/pagination.html' /}
+	#{include 'include/paginationmenu.html' /}
 #{/else}
 #{/else}

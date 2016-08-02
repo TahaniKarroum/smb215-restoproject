@@ -21,3 +21,16 @@
         </div>
     </body>
 </html>
+<script>
+var nbc = $('.chosen-select').length;
+	if (nbc > 0) {
+		$('.chosen-select').chosen();
+	}
+	var nbc1 = $('.chosen-select-deselect').length;
+	if (nbc1 > 0) {
+		$('.chosen-select-deselect').chosen({
+			allow_single_deselect : true
+		});
+	}
+	
+</script>
