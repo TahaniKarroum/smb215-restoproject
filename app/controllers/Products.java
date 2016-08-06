@@ -22,11 +22,13 @@ public class Products extends controllers.CRUD {
 	public static void addDefaults() {
 		Application.onEachController();
 	}
+
 	public static boolean setArgsList() {
 		List<Product> productsList = Product.all().fetch();
 		renderArgs.put("productsList", productsList);
 		return true;
 	}
+
 	public static boolean currentPage(String currentPage) {
 		session.put("currentPage", currentPage);
 		return true;
@@ -39,7 +41,8 @@ public class Products extends controllers.CRUD {
 			product = new Product();
 		else
 			product = Product.getByID(ID);
-		List<Category> menuCategoriesList = Model.all(Category.class).filter("categoryType_ID", categoryType.menu.ordinal()).fetch();
+		List<Category> menuCategoriesList = Model.all(Category.class)
+				.filter("categoryType_ID", categoryType.menu.ordinal()).fetch();
 		List<Product> stockProductsList = Product.allStockProducts().fetch();
 		render(product, menuCategoriesList, stockProductsList);
 
@@ -55,10 +58,15 @@ public class Products extends controllers.CRUD {
 
 	public static void menuManage() {
 		currentPage("productsmenu");
-		List<Product> productsList = Model.all(Product.class).filter("productType_ID", ProductType.menu.ordinal()).fetch();
+		List<Product> productsList = Model.all(Product.class).filter("productType_ID", ProductType.menu.ordinal())
+				.fetch();
 		List<Product> allProducts = Model.all(Product.class).fetch();
-		List<Category> categoriesList = Model.all(Category.class).filter("categoryType_ID", Enums.categoryType.menu.ordinal()).fetch();
+		List<Category> categoriesList = Model.all(Category.class)
+				.filter("categoryType_ID", Enums.categoryType.menu.ordinal()).fetch();
 		render(productsList, allProducts, categoriesList);
 	}
 
+	public static void deleteProduct(String ID) {
+
+	}
 }

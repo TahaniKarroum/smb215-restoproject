@@ -1,4 +1,4 @@
-#{extends 'main.html' /} #{set title:'menuManage.html' /}  #{set title:'Manage Plates' /} #{include
+#{extends 'productsMain.html' /} #{set title:'menuManage.html' /}  #{set title:'Manage Plates' /} #{include
 'include/tableWithFilterHead.html' /}
  #{include 'include/formHead.html' /}
 <div class="form-group">
@@ -44,7 +44,7 @@
 				<td>${product?.name}</td>
 				<td>${product?.getCategoryName()}</td>
 				<td><a href="@{Products.menuProductForm(product?.ID)}"
-					title="&{'Edit'}"><span class="glyphicon glyphicon-edit success bigBtn"></span></a>
+					title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success bigBtn"></span></a>
 				</td>
 			</tr>
 			<!--#{/list} -->

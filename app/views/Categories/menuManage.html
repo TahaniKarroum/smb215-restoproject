@@ -1,14 +1,14 @@
-#{extends 'main.html' /} #{set title:'Manage Categories' /} #{include 'include/tableWithFilterHead.html' /}
+#{extends 'productsMain.html' /} #{set title:'Manage Categories' /} #{include 'include/tableWithFilterHead.html' /}
 #{include 'include/formHead.html' /}
 
 <div class="form-group">
-	<a href="@{Categories.menuCategoryForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddCategory'}</a>
+	<a href="@{Categories.menuCategoryForm()}" class="btn btn-success pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddCategory'}</a>
 	<h3>&{'Categories'}</h3>
-	<hr class="text-primary">
+	<hr class="text-success">
 </div>
 
 #{if (categoriesList==null || categoriesList?.size()==0) && isFilteringMode==null}
-	<div class="panel panel-primary">
+	<div class="panel panel-success">
 		<div class="panel-heading">
 			<h3 class="panel-title">&{'Categories'}</h3>
 		</div>
@@ -30,7 +30,7 @@
 	#{if isFilteringMode}
 		<div class="row form-group">
 		<div class="col-xs-2">
-			<a href="@{manage()}" class="btn btn-primary"><span> &{'ShowAll'}</span></a>
+			<a href="@{menuManage()}" class="btn btn-success"><span> &{'ShowAll'}</span></a>
 		</div>
 		</div>
 		#{/if}
@@ -45,7 +45,7 @@
 #{/if}
 #{else}
 
-	<div class="panel panel-primary filterable">
+	<div class="panel panel-success filterable">
 		<div class="panel-heading">
 			<h3 class="panel-title">&{'CategoriesList'}</h3>
 		</div>
@@ -61,8 +61,8 @@
 				<tr>
 					<td>${category.name}</td>
 					<td>
-						<a href="@{menuCategoryForm(category?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
-						<a href="@{deleteMenuCategory(category?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+						<a href="@{menuCategoryForm(category?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success bigBtn"></span></a>
+						<a href="@{deleteMenuCategory(category?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-success bigBtn"></span></a>
 					</td>
 				</tr>
 				#{/list}
