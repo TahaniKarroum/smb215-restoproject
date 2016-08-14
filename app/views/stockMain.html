@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/public/stylesheets/framework/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<link rel="stylesheet" href="/public/stylesheets/style.css" type="text/css" />
+<link href="/public/stylesheets/modal.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="/public/stylesheets/sideMenu.css" type="text/css" />
+<link href="/public/stylesheets/adminFooter.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
+<script src="/public/javascripts/framework/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/framework/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/public/stylesheets/fonts/awesome/css/font-awesome.min.css" type="text/css" />
+#{include 'include/formatNumber.html' /}
+</head>
+<body>
+	%{currentPage = session.get('currentPage')}%
+	<div class="navbar btn-primary navbar-twitch %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="@{Application.index()}"> <span class="small-nav"> <span class="logo">
+							<img src="/public/images/logo.png" style="width: 33px;">
+					</span>
+				</span> <span class="full-nav"> <img src="/public/images/logo.png"
+						style="width: 95px; margin-top:-26px">
+				</span>
+				</a>
+			</div>
+			<div class="">
+				<ul class="nav navbar-nav">
+					
+					<li class="${currentPage?.equals('categories') ? 'active':''}"><a
+						href="@{Categories.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'FoodCategories'}"> <span
+								class="fa fa-sitemap"></span>
+						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'Categories'}
+						</span>
+					</a></li>
+					<li class="${currentPage?.equals('brands') ? 'active':''}"><a
+						href="@{Brands.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Brands'}"> <span
+								class="glyphicon glyphicon-bold"></span>
+						</span> <span class="full-nav"><span class="glyphicon glyphicon-bold"></span> &{'Brands'}
+						</span>
+					</a></li>
+						
+				</ul>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="btn btn-default btn-xs navbar-twitch-toggle navbar-twitch-toggle-%{if(session.get('lang')?.equals('ar')) out.print('right'); else out.print('left');}%">
+        <span class="glyphicon glyphicon-chevron-%{if(session.get('lang')?.equals('ar')) out.print('left'); else out.print('right');}% nav-open"></span> <span class="glyphicon glyphicon-chevron-%{if(session.get('lang')?.equals('ar')) out.print('right'); else out.print('left');}% nav-close"></span>
+    </button>
+	#{include 'include/topbarMenu.html' /}
+	<div class="container left">
+		<div class="row">#{doLayout /}</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$('.navbar-nav [data-toggle="tooltip"]').tooltip();
+					$('.navbar-twitch-toggle').on('click', function(event) {
+						event.preventDefault();
+						$('.navbar-twitch').toggleClass('open');
+					});
+
+					$('.nav-style-toggle').on(
+							'click',
+							function(event) {
+								event.preventDefault();
+								var $current = $('.nav-style-toggle.disabled');
+								$(this).addClass('disabled');
+								$current.removeClass('disabled');
+								$('.navbar-twitch').removeClass(
+										'navbar-' + $current.data('type'));
+								$('.navbar-twitch').addClass(
+										'navbar-' + $(this).data('type'));
+							});
+				});
+		$('.hasTooltip').tooltip();
+	</script>
+	<script>
+var nbc = $('.chosen-select').length;
+	if (nbc > 0) {
+		$('.chosen-select').chosen();
+	}
+	var nbc1 = $('.chosen-select-deselect').length;
+	if (nbc1 > 0) {
+		$('.chosen-select-deselect').chosen({
+			allow_single_deselect : true
+		});
+	}
+	
+</script>
+</body>
+</html>

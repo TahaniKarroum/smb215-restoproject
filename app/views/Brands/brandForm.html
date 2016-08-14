@@ -1,0 +1,51 @@
+#{extends 'stockMain.html' /} #{set title:'brandForm.html' /} #{include
+'include/formHead.html' /} #{if message!=null && message?.length()>0}
+<div class="alert alert-danger flashMsg" id="alertMessage">
+	<p>&{'BrandAlreadyExist'}</p>
+</div>
+#{/if}
+<form class="form-horizontal RestoFormValidation" role="form"
+	action="@{saveBrand()}" method="post">
+	<fieldset>
+		<legend>&{'brandForm'}</legend>
+		<input type="hidden" name="id" value="${brand?.ID}">
+		#{field 'brand.ID'} <input type="hidden" name="${field?.name}"
+			value="${field?.value}" /> #{/field}
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'brand.name'} <label for="${field?.id}"
+					class="form-label-en">&{'Name'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'brand.description'} <label class="form-label-en"
+					for="${field?.id}">&{'Description'}</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<textarea class="form-control counted1" id="${field?.id}"
+						name="${field?.name}" placeholder="" rows="3">${field?.value}</textarea>
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<div class="row">
+			<div class="form-button-en">
+				<button type="submit" class="btn btn-primary">&{'Save'}</button>
+				<a href="@{manage()}" class="btn btn-danger">&{'Cancel'}</a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+#{include 'include/formValidation.html' /}

@@ -1,0 +1,75 @@
+#{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+
+<div class="form-group">
+	<a href="@{Brands.brandForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddBrand'}</a>
+	<h3>&{'Brands'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (brandsList==null || brandsList?.size()==0)  && isFilteringMode == null}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'Brands'}</h3>
+		</div>
+		<div class="panel-body">&{'listIsEmpty'}</div>
+	</div>
+#{/if}
+#{else}
+<div class="row form-group">
+	<form class="form-inline RestoFormValidation" method="post" action="@{searchByBrand()}" id="filter2" name="brandName">
+		<div class="col-xs-9 col-sm-2 group-error">
+		<select data-placeholder="&{'SearchbyBrand'}"
+				class="chosen-select-deselect required %{if (session.get('lang')?.equals('ar')) out.print('chosen-rtl')}%" tabindex="5" name="brand_id" value="" onchange="document.brandName.submit();">
+				<option value=""></option> 
+				#{list items : allBrands, as:'brand'}
+				<option value="${brand?.ID}"%{if(brandID.equals(brand?.ID)) out.print('selected')}% >${brand?.name}</option> #{/list}
+			</select><span class="input-append"></span>
+		</div>
+	</form>
+	#{if isFilteringMode}
+		<div class="row form-group">
+		<div class="col-xs-2">
+			<a href="@{manage()}" class="btn btn-primary"><span> &{'ShowAll'}</span></a>
+		</div>
+		</div>
+		#{/if}
+	</div>
+#{if (brandsList==null || brandsList?.size()==0) && isFilteringMode == true}
+<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'Products'}</h3>
+		</div>
+		<div class="panel-body">&{'NoResultsFound'}</div>
+	</div>
+#{/if}
+#{else}
+
+	<div class="panel panel-primary filterable">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'BrandsList'}</h3>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr class="filters">
+					<th>&{'Name'}</th>
+					<th width="12%">&{'Action'}</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!--#{list brandsList, as:'brand'} -->
+				<tr>
+					<td>${brand.name}</td>
+					<td>
+						<a href="@{brandForm(brand?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+						<a href="@{deleteBrand(brand?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+					</td>
+				</tr>
+				<!--#{/list} -->
+			</tbody>
+		</table>
+	</div>
+	#{include 'include/deleteConfirmDialog.html' /}
+	#{include 'include/pagination.html' /}
+#{/else}
+#{/else}
