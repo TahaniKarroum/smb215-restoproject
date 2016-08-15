@@ -1,0 +1,48 @@
+#{extends 'main.html' /} #{set title:'Manage Categories' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+
+<div class="form-group">
+	<a class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddAccount'}</a>
+	<h3>&{'Accounts'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (accountsList==null || accountsList?.size()==0) && isFilteringMode == true}
+<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'Accounts'}</h3>
+		</div>
+		<div class="panel-body">&{'NoResultsFound'}</div>
+	</div>
+#{/if}
+#{else}
+
+	<div class="panel panel-primary filterable">
+		<div class="panel-heading">
+			<h3 class="panel-title">&{'AccountsList'}</h3>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr class="filters">
+					<th>&{'ID'}</th>
+					<th>&{'user_ID'}</th>
+					<th width="12%">&{'Action'}</th>
+				</tr>
+			</thead>
+			<tbody>
+				#{list accountsList, as:'account'} 
+				<tr>
+					<td>${account.ID}</td>
+					<td>${account.user_ID}</td>
+					<td>
+						<a title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+						<a class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+					</td>
+				</tr>
+				#{/list}
+			</tbody>
+		</table>
+	</div>
+	#{include 'include/pagination.html' /}
+#{/else}
+

@@ -35,7 +35,7 @@ public class Account extends Model {
 				+ ", created_by=" + created_by + ", updated_date=" + updated_date + ", updated_by=" + updated_by + "]";
 	}
 	
-	public static Query<Account> all() {
+	public static Query<Account> getAllAccounts() {
 		return Model.all(Account.class);
 	}
 

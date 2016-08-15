@@ -28,10 +28,26 @@ public class Accounts extends controllers.CRUD {
 		session.put("currentPage", currentPage);
 		return true;
 	}
-		
-	public static void allAccounts() {
+	
+	public static void displayAllAccounts() {
 		currentPage("listofaccounts");
-		//List<Account> accountsList = Account.all().fetch();
-		renderTemplate("Account/AccountManage.html");
+		String pageNbFromSession = session.get("currentAccountsPage");
+		int itemsCount = Account.getAllAccounts().count();
+		Pagination pagination = null;
+		List<Account> accountsList = null;
+		if (itemsCount > 0) {
+			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
+			session.put("currentAccountsPage", pagination.getCurrentPage());
+			accountsList = Account.getAllAccounts().fetch(pagination.getPageSize(),
+					pagination.getPageStartIndex());
+		}
+		List<Account> allAccounts = Account.getAllAccounts().fetch();
+		render(accountsList, pagination, allAccounts);
+
+	}
+
+	public static void getPage(int page) throws IOException {
+		session.put("currentAccountsPage", page);
+		displayAllAccounts();
 	}
 }
