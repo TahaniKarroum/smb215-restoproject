@@ -1,0 +1,21 @@
+ #{if pagination}
+<div class="row text-center">
+	<ul class="pagination">
+		<li %{if(pagination?.hasPrevious()== false) out.print("class='disabled'")}%><a href="@{previous(measureType_ID)}">&{'Prev'}</a>
+		</li>
+		#{if pagination?.getCurrentPage()>1}
+		#{list items:pagination?.getMinPage(pagination?.getCurrentPage())..pagination?.getCurrentPage()-1, as:'i'}
+		<li><a href="@{getPage(i,measureType_ID)}">${i}</a></li>
+		#{/list}
+		#{/if}
+		<li class="active"><a href="#">${pagination?.getCurrentPage()}</a></li>
+		#{if pagination?.getCurrentPage() < pagination.getPagesCount()}
+		#{list items:pagination?.getCurrentPage()+1..pagination?.getMaxPage(pagination?.getCurrentPage()), as:'j'}
+		<li><a href="@{getPage(j,measureType_ID)}">${j}</a></li>
+		#{/list}
+		#{/if}
+		<li %{if(pagination?.hasNext()== false) out.print("class='disabled''")}%><a href="@{next(measureType_ID)}">&{'Next'}</a>
+		</li>
+	</ul>
+</div>
+#{/if}

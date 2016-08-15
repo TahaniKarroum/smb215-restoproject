@@ -1,0 +1,41 @@
+#{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /} #{include 'include/formHead.html' /}
+<div class="form-group">
+	<a href="@{MeasureTypes.measureTypeForm()}" class="btn btn-primary pull-right btn-sm"> <span class="glyphicon glyphicon-plus-sign"></span> &{'AddMeasureType'}</a>
+	<h3>&{'MeasureType'}</h3>
+	<hr class="text-primary">
+</div>
+#{if (measureTypesList==null || measureTypesList?.size()==0)}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'MeasureType'}</h3>
+	</div>
+	<div class="panel-body">&{'listIsEmpty'}</div>
+</div>
+#{/if} #{else}
+<div class="panel panel-primary filterable">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'MeasureTypesList'}</h3>
+	</div>
+	<table class="table">
+		<thead>
+			<tr class="filters">
+				<th>&{'Name'}</th>
+				<th width="15%"><span class="hidden-xs">&{'Action'}</span></th>
+			</tr>
+		</thead>
+		<tbody>
+			#{list measureTypesList, as:'measureType'}
+			<tr>
+				<td>${measureType?.name}</td>
+				<td>
+				
+				<a href="@{measureTypeForm(measureType?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+				<a href="@{MeasureUnits.manage(measureType?.ID)}" title="&{'MeasureUnitsList'}"><span class="glyphicon glyphicon-list text-primary bigBtn"></span></a>
+				<a href="@{remove(measureType?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-primary bigBtn"></span></a>
+			</td>
+			<tr>#{/list}
+		</tbody>
+	</table>
+</div>
+#{/else} #{include 'include/pagination.html' /}
+#{include 'include/deleteConfirmDialog.html' /}
