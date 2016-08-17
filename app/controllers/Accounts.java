@@ -50,4 +50,18 @@ public class Accounts extends controllers.CRUD {
 		session.put("currentAccountsPage", page);
 		displayAllAccounts();
 	}
+	
+	public static void updateAccountForm(String ID) {
+		currentPage("listofaccounts");
+		Account account = Account.getByID(ID);
+		if (account == null)
+			account = new Account();
+		render(account);
+	}
+	
+	public static void saveAccountChanges(Account account) throws IOException {
+		currentPage("listofaccounts");
+		account.saveAccount();
+		displayAllAccounts();
+	}
 }

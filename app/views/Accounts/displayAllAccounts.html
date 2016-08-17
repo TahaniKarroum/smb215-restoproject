@@ -1,5 +1,4 @@
-#{extends 'accountMain.html' /} #{set title:'Manage Categories' /} #{include 'include/tableWithFilterHead.html' /}
-#{include 'include/formHead.html' /}
+#{extends 'accountMain.html' /} #{set title:'Accounts' /} 
 
 <div class="form-group">
 	<a class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'AddAccount'}</a>
@@ -47,7 +46,7 @@
 			<td>${account.updated_date}</td>
 			<td>${account.updated_by}</td>
 			<td>
-				<a title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
+				<a href="@{updateAccountForm(account?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
 				<a class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 			</td>
 		</tr>
