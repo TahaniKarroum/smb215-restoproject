@@ -1,7 +1,16 @@
 #{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /} #{include 'include/formHead.html' /}
 <div class="form-group">
 	<h3>&{'MeasureUnitsList'}</h3>
-	<a href="@{MeasureTypes.manage()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-arrow-right"></span> &{'Back'}</a>
+	<div class="pull-right">
+	<div class="col-md-2">
+	<a href="@{MeasureTypes.manage()}" class="btn btn-primary  btn-sm"><span class="glyphicon glyphicon-arrow-right"></span> &{'Back'}</a>
+	</div>
+<div class="col-md-2"></div>
+	<div class="col-md-2">
+	<a href="@{MeasureUnits.measureUnitForm(null,measureType_ID)}" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'Add'}</a>
+	</div>
+	</div>
+	
 	<hr class="text-primary">
 </div>
 #{if (measureUnitsList==null || measureUnitsList?.size()==0)}
@@ -29,7 +38,7 @@
 			<tr>
 			<td>${measureUnit?.label}</td>
 			<td>${measureUnit?.getMeasureType()?.name}</td>
-			<tr>
+			</tr>
 			#{/list}
 		</tbody>
 	</table>
