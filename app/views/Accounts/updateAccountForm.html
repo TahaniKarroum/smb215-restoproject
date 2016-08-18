@@ -10,6 +10,8 @@
 	#{field 'account.ID'} 
 	<input type="hidden" name="${field?.name}" value="${field?.value}" /> 
 	#{/field}
+	
+	
   <div class="form-group">
   	#{field 'account.user_ID'}
     <label for="acc_userID" class="col-sm-2 control-label">&{'User ID'}</label>
@@ -58,11 +60,14 @@
     </div>
     #{/field}
   </div>
+  
+  #{if account.ID != null && account.ID.equals("") == false}
+  
   <div class="form-group">
   	#{field 'account.created_date'}
     <label for="acc_createdDate" class="col-sm-2 control-label">Created date</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_createdDate" placeholder="Created date" name="${field?.name}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_createdDate" placeholder="Created date" name="${field?.name}" value="${field?.value}" readonly>
     </div>
     #{/field}
   </div>
@@ -70,15 +75,16 @@
   	#{field 'account.created_by'}
     <label for="acc_createdBy" class="col-sm-2 control-label">Created by</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_createdBy" placeholder="Created by" name="${field?.name}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_createdBy" placeholder="Created by" name="${field?.name}" value="${field?.value}" readonly>
     </div>
     #{/field}
   </div>
+    
   <div class="form-group">
   	#{field 'account.updated_date'}
     <label for="acc_updatedDate" class="col-sm-2 control-label">Updated date</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_updatedDate" placeholder="Updated date" name="${field?.name}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_updatedDate" placeholder="Updated date" name="${field?.name}" value="${field?.value}" readonly>
     </div>
     #{/field}
   </div>
@@ -86,10 +92,12 @@
   	#{field 'account.updated_date'}
     <label for="acc_updatedBy" class="col-sm-2 control-label">Updated by</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_updatedBy" placeholder="Updated by" name="${field?.name}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_updatedBy" placeholder="Updated by" name="${field?.name}" value="${field?.value}" readonly>
     </div>
     #{/field}
   </div>
+  
+  #{/if}
   
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">

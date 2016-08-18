@@ -8,6 +8,8 @@ import siena.Max;
 import siena.Model;
 import siena.Query;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
@@ -48,11 +50,18 @@ public class Account extends Model {
 		}
 	}
 	
-	public void saveAccount() {
+	public void saveAccount(String sessionID) {
+		Date date = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String strDate = dateFormat.format(date);
 		if (ID == null || ID.equals("") == true) {
-			this.ID = null;
+			this.ID = null;            
+			this.created_date = strDate;
+			this.created_by = sessionID;
 			Model.batch(Account.class).insert(this);
 		} else {
+			this.updated_date = strDate;
+			this.updated_by = sessionID;
 			Model.batch(Account.class).update(this);
 		}
 	}
