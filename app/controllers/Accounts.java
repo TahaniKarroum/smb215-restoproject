@@ -64,4 +64,13 @@ public class Accounts extends controllers.CRUD {
 		account.saveAccount();
 		displayAllAccounts();
 	}
+	
+	public static void deleteAccount(String ID) {
+		Account account = Account.getByID(ID);
+		if (account != null) {
+			account.delete();
+			flash.put("deleteMessage", "The account is deleted successfully");
+		}
+		displayAllAccounts();
+	}
 }

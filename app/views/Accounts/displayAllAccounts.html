@@ -47,7 +47,7 @@
 			<td>${account.updated_by}</td>
 			<td>
 				<a href="@{updateAccountForm(account?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
-				<a class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
+				<a href="@{deleteAccount(account?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 			</td>
 		</tr>
 		#{/list}
