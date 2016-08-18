@@ -6,12 +6,15 @@
 	<hr class="text-primary">
 </div>
 
-<form class="form-horizontal" role="form" method="post">
+<form class="form-horizontal" role="form" action="@{saveAccountChanges()}" method="post">
+	#{field 'account.ID'} 
+	<input type="hidden" name="${field?.name}" value="${field?.value}" /> 
+	#{/field}
   <div class="form-group">
   	#{field 'account.user_ID'}
     <label for="acc_userID" class="col-sm-2 control-label">&{'User ID'}</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_userID" placeholder="&{'User ID'}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_userID" placeholder="&{'User ID'}" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -19,7 +22,7 @@
   	#{field 'account.type'}
     <label for="acc_type" class="col-sm-2 control-label">&{'Type'}</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_type" placeholder="&{'Type'}" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_type" placeholder="&{'Type'}" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -27,7 +30,7 @@
   	#{field 'account.status'}
     <label for="acc_status" class="col-sm-2 control-label">Status</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_status" placeholder="Status" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_status" placeholder="Status" name="${field?.name}" value="${field?.value}">
     </div>
    #{/field} 
   </div>
@@ -35,7 +38,7 @@
   	#{field 'account.balance'}
     <label for="acc_balance" class="col-sm-2 control-label">Balance</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_balance" placeholder="Balance" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_balance" placeholder="Balance" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -43,7 +46,7 @@
   	#{field 'account.credit'}
     <label for="acc_credit" class="col-sm-2 control-label">Credit</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_credit" placeholder="Credit" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_credit" placeholder="Credit" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -51,7 +54,7 @@
   	#{field 'account.debit'}
     <label for="acc_debit" class="col-sm-2 control-label">Debit</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_debit" placeholder="Debit" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_debit" placeholder="Debit" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -59,7 +62,7 @@
   	#{field 'account.created_date'}
     <label for="acc_createdDate" class="col-sm-2 control-label">Created date</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_createdDate" placeholder="Created date" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_createdDate" placeholder="Created date" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -67,7 +70,7 @@
   	#{field 'account.created_by'}
     <label for="acc_createdBy" class="col-sm-2 control-label">Created by</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_createdBy" placeholder="Created by" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_createdBy" placeholder="Created by" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -75,7 +78,7 @@
   	#{field 'account.updated_date'}
     <label for="acc_updatedDate" class="col-sm-2 control-label">Updated date</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_updatedDate" placeholder="Updated date" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_updatedDate" placeholder="Updated date" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
@@ -83,7 +86,7 @@
   	#{field 'account.updated_date'}
     <label for="acc_updatedBy" class="col-sm-2 control-label">Updated by</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="acc_updatedBy" placeholder="Updated by" value="${field?.value}">
+      <input type="text" class="form-control" id="acc_updatedBy" placeholder="Updated by" name="${field?.name}" value="${field?.value}">
     </div>
     #{/field}
   </div>
