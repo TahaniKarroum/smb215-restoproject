@@ -16,14 +16,18 @@
 <link rel="stylesheet" href="/public/stylesheets/sideMenu.css" type="text/css" />
 <link href="/public/stylesheets/adminFooter.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
-<script src="/public/javascripts/framework/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/framework/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/datetimepicker/moment.min.js"></script>
 <script type="text/javascript" src="/public/javascripts/framework/bootstrap.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/datetimepicker/bootstrap-datetimepicker.min.js"></script>
 
 <!-- dataTable js files -->
 <script src="/public/javascripts/dataTable/jquery.dataTables.min.js"></script>
 <script src="/public/javascripts/dataTable/dataTables.bootstrap.min.js"></script>
 <script src="/public/javascripts/dataTable/dataTables.responsive.min.js"></script>
 <script src="/public/javascripts/dataTable/responsive.bootstrap.min.js"></script>
+
+<link href="/public/stylesheets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
 
 <link rel="stylesheet" href="/public/stylesheets/fonts/awesome/css/font-awesome.min.css" type="text/css" />
 #{include 'include/formatNumber.html' /}
@@ -52,8 +56,8 @@
 							<span class="full-nav"><span class="fa fa-users"></span> &{'Accounts'}</span>
 						</a>
 					</li>
-					<li>
-						<a> 
+					<li class="${currentPage?.equals('accountsreports') ? 'active':''}">
+						<a href="@{Accounts.accountsReports()}"> 
 							<span class="small-nav" data-toggle="tooltip" data-placement="right" title=" &{'Reports'}"> 
 								<span class="fa fa-file-text-o"></span>
 							</span> 

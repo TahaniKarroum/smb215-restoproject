@@ -73,4 +73,9 @@ public class Accounts extends controllers.CRUD {
 		}
 		displayAllAccounts();
 	}
+	
+	public static void accountsReports() {
+		currentPage("accountsreports");
+		render();
+	}
 }

@@ -1,0 +1,54 @@
+#{extends 'accountMain.html' /} #{set title:'accountsreports' /} 
+
+<div class="form-group">
+	<h3>&{'AccountsReports'}</h3>
+	<hr class="text-primary">
+</div>
+
+
+	<form class="form-inline">
+  		<div class="form-group">
+    		<label for="accountName">Account name</label>
+            <input type='text' id="accountName" class="form-control" placeholder="Account name" />
+        </div>
+        <div style="float:right;">
+        <div class="form-group">
+        	<label for="fromDate">From</label>
+            <div class='input-group date' id='reportFromDate'>
+                <input type='text' id="fromDate" class="form-control" placeholder="YYYY/MM/DD" />
+                <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                </span>
+            </div>
+        </div>
+        <div class="form-group">
+        <label for="toDate">To</label>
+            <div class='input-group date' id='reportToDate'>
+            	
+                <input type='text' id="toDate" class="form-control" placeholder="YYYY/MM/DD" />
+                <span class="input-group-addon">
+                    <span class="fa fa-calendar"></span>
+                </span>
+            </div>
+        </div> 
+  		<button type="submit" class="btn btn-default">Report</button>
+  		</div>
+	</form>
+
+<script type="text/javascript">
+    $(function () {
+        $('#reportFromDate').datetimepicker({
+        	format: 'YYYY/MM/DD'
+        });
+        $('#reportToDate').datetimepicker({
+        	format: 'YYYY/MM/DD',
+            useCurrent: false //Important! See issue #1075
+        });
+        $("#reportFromDate").on("dp.change", function (e) {
+            $('#reportToDate').data("DateTimePicker").minDate(e.date);
+        });
+        $("#reportToDate").on("dp.change", function (e) {
+            $('#reportFromDate').data("DateTimePicker").maxDate(e.date);
+        });
+    });
+</script>
