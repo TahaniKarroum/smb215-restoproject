@@ -5,17 +5,16 @@
 	<hr class="text-primary">
 </div>
 
-
-	<form class="form-inline">
+	<form class="form-inline" action="@{findAccountReports()}" method="post">
   		<div class="form-group">
     		<label for="accountName">Account name</label>
-            <input type='text' id="accountName" class="form-control" placeholder="Account name" />
+            <input type='text' name="account_name" id="accountName" class="form-control" placeholder="Account name" />
         </div>
         <div style="float:right;">
         <div class="form-group">
         	<label for="fromDate">From</label>
             <div class='input-group date' id='reportFromDate'>
-                <input type='text' id="fromDate" class="form-control" placeholder="YYYY/MM/DD" />
+                <input type='text' name="from_date" id="fromDate" class="form-control" placeholder="YYYY/MM/DD" />
                 <span class="input-group-addon">
                     <span class="fa fa-calendar"></span>
                 </span>
@@ -23,9 +22,8 @@
         </div>
         <div class="form-group">
         <label for="toDate">To</label>
-            <div class='input-group date' id='reportToDate'>
-            	
-                <input type='text' id="toDate" class="form-control" placeholder="YYYY/MM/DD" />
+            <div class='input-group date' id='reportToDate'>            	
+                <input type='text' name="to_date" id="toDate" class="form-control" placeholder="YYYY/MM/DD" />
                 <span class="input-group-addon">
                     <span class="fa fa-calendar"></span>
                 </span>
@@ -34,6 +32,53 @@
   		<button type="submit" class="btn btn-default">Report</button>
   		</div>
 	</form>
+	
+	#{list items : accounts, as:'account'}
+	<table id="accountsReports" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>User ID</th>
+			<th>User Name</th>
+			<th>Type</th>
+			<th>Status</th>
+			<th>Balance</th>
+			<th>Credit</th>
+			<th>Debit</th>
+			<th>Created date</th>
+			<th>Created by</th>
+			<th>Updated date</th>
+			<th>Updated by</th>
+			<th>Actions</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		
+		<tr>
+			<td>${account.ID}</td>
+			<td>${account.user_ID}</td>
+			#{list items : employeeList, as:'employee'}
+			<td>${employee.name}</td>
+			#{/list}
+			<td>${account.type}</td>
+			<td>${account.status}</td>
+			<td>${account.balance}</td>
+			<td>${account.credit}</td>
+			<td>${account.debit}</td>
+			<td>${account.created_date}</td>
+			<td>${account.created_by}</td>
+			<td>${account.updated_date}</td>
+			<td>${account.updated_by}</td>
+			<td>
+				<a title="&{'View'}"><span class="fa fa-eye mdbtn"></span></a>
+				<a title="&{'Report'}" ><span class="fa fa-file-text-o mdbtn"></span></a>
+			</td>
+		</tr>
+		#{/list}
+	</tbody>
+
+</table>
 
 <script type="text/javascript">
     $(function () {
@@ -51,4 +96,8 @@
             $('#reportFromDate').data("DateTimePicker").maxDate(e.date);
         });
     });
+    
+    $(document).ready(function() {
+        $('#accountsReports').DataTable();
+    } );
 </script>

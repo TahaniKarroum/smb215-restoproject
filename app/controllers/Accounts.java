@@ -2,10 +2,12 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Account;
 import models.Category;
+import models.Employee;
 import models.MeasureUnit;
 import models.Product;
 import models.Product_MeasureUnit;
@@ -77,5 +79,22 @@ public class Accounts extends controllers.CRUD {
 	public static void accountsReports() {
 		currentPage("accountsreports");
 		render();
+	}
+	
+	public static void findAccountReports(){
+		String accountName = params.get("account_name");
+		String fromDate = params.get("from_date");
+		String toDate = params.get("to_date");
+		
+		if(accountName != null && accountName.equals("") == false){
+			List<Account> accounts = new ArrayList<Account>();
+			List<Employee> employeeList = Employee.all().filter("name", accountName).fetch();
+			if(employeeList.size() > 0){
+				for(Employee item : employeeList){
+					 accounts = Account.getAllAccounts().filter("user_ID", item.ID).fetch();
+				}
+			}
+			renderTemplate("Accounts/accountsReports.html", accounts, employeeList);
+		}
 	}
 }
