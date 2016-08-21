@@ -11,9 +11,10 @@
 		<div class="collapse navbar-collapse">
 			<ul class="nav navbar-nav  navbar-right">
 				<li class="%{if(session.get('currentPage').equals('home')) out.print('active')}%"><a href="@{Application.index()}"><span class="glyphicon glyphicon-home"></span> &{'home'}</a></li>
-				<li class="%{if(session.get('currentPage').equals('listofaccounts')) out.print('active')}%"><a href="@{Accounts.displayAllAccounts()}"><span class="fa fa-users"></span> &{'Account'}</a></li>
-				<li class="%{if(session.get('currentPage').equals('categories')) out.print('active')}%"><a href="@{Categories.manage()}"><span class="fa fa-list"></span> &{'Catgories'}</a></li>
-				<li class="%{if(session.get('currentPage').equals('productsmenu')) out.print('active')}%"><a href="@{Products.menuManage()}"><span class="fa fa-list"></span> &{'Products'}</a></li>
+				<li class="%{if(session.get('currentPage').equals('listofaccounts')) out.print('active')}%"><a href="@{Accounts.displayAllAccounts()}"><span class="fa fa-cogs"></span> &{'Accounts'}</a></li>
+				<li class="%{if(session.get('currentPage').equals('listofaccounts')) out.print('active')}%"><a href="@{Employees.manage()}"><span class="fa fa-users"></span> &{'Employees'}</a></li>
+				<li class="%{if(session.get('currentPage').equals('categories')) out.print('active')}%"><a href="@{Categories.manage()}"><span class="fa fa-th-large"></span> &{'Catgories'}</a></li>
+				<li class="%{if(session.get('currentPage').equals('productsmenu')) out.print('active')}%"><a href="@{Products.menuManage()}"><span class="fa fa-cubes"></span> &{'Products'}</a></li>
 		
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">&{'MyAccount'} <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
