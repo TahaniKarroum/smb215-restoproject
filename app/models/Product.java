@@ -55,6 +55,7 @@ public class Product extends Model {
 	public int priceType_ID;
 	public int productType_ID;
 
+
 	@Override
 	public String toString() {
 		return "Product [ID=" + ID + ", name=" + name + ", barcode=" + barcode + ", imagePath=" + imagePath

@@ -4,10 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import models.Brand;
 import models.Category;
+import models.MeasureType;
 import models.MeasureUnit;
 import models.Product;
 import models.Product_MeasureUnit;
+import models.Unit;
 import play.Play;
 import play.mvc.Before;
 import siena.Model;
@@ -68,5 +71,38 @@ public class Products extends controllers.CRUD {
 
 	public static void deleteProduct(String ID) {
 
+	}
+	
+	public static void manage() {
+		currentPage("newProductStock");
+		String pageNbFromSession = session.get("currentProductsPage");
+		int itemsCount = Product.allStockProducts().count();
+		Pagination pagination = null;
+		List<Product> productsList = null;
+		if (itemsCount > 0) {
+			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
+			session.put("currentProductsPage", pagination.getCurrentPage());
+			productsList = Product.allStockProducts().order("-number").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
+		}
+		List<Product> allProducts = Product.allStockProducts().fetch();
+		List<Category> categoriesList = Category.allStockCategories().fetch();
+		render(productsList, itemsCount, categoriesList, pagination, allProducts);
+	}
+
+	public static void viewDetails(String ID) {
+		currentPage("newProductStock");
+		Product product = Product.getByID(ID);
+		if (product == null)
+			manage();
+		render(product);
+	}
+
+	public static void getPage(int page) {
+		session.put("currentProductsPage", page);
+		manage();
+	}
+	public static void productForm(String ID) {
+		currentPage("newProductStock");
+		Product product = Product.getByID(ID);
 	}
 }
