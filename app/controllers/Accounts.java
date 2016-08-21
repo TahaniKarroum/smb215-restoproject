@@ -83,18 +83,19 @@ public class Accounts extends controllers.CRUD {
 	
 	public static void findAccountReports(){
 		String accountName = params.get("account_name");
-		String fromDate = params.get("from_date");
-		String toDate = params.get("to_date");
+		//String fromDate = params.get("from_date");
+		//String toDate = params.get("to_date");
 		
 		if(accountName != null && accountName.equals("") == false){
-			List<Account> accounts = new ArrayList<Account>();
+			List<Account> accountsList = new ArrayList<Account>();
 			List<Employee> employeeList = Employee.all().filter("name", accountName).fetch();
-			if(employeeList.size() > 0){
+			int employeeCount = employeeList.size();
+			if(employeeCount > 0){
 				for(Employee item : employeeList){
-					 accounts = Account.getAllAccounts().filter("user_ID", item.ID).fetch();
+					accountsList = Account.getAllAccounts().filter("user_ID", item.ID).fetch();
 				}
 			}
-			renderTemplate("Accounts/accountsReports.html", accounts, employeeList);
+			renderTemplate("Accounts/accountsReports.html", employeeList, accountsList);
 		}
 	}
 }
