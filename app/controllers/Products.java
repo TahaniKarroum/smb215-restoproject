@@ -52,7 +52,6 @@ public class Products extends controllers.CRUD {
 	}
 
 	public static void saveMenuProductForm(Product product, File uploadImage) throws IOException {
-
 		product.productType_ID = Enums.ProductType.menu.ordinal();
 		product.isAllowAlarm = false;
 		product.saveProduct();
@@ -72,7 +71,7 @@ public class Products extends controllers.CRUD {
 	public static void deleteProduct(String ID) {
 
 	}
-	
+
 	public static void manage() {
 		currentPage("newProductStock");
 		String pageNbFromSession = session.get("currentProductsPage");
@@ -82,7 +81,8 @@ public class Products extends controllers.CRUD {
 		if (itemsCount > 0) {
 			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
 			session.put("currentProductsPage", pagination.getCurrentPage());
-			productsList = Product.allStockProducts().order("-number").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
+			productsList = Product.allStockProducts().order("-number").fetch(pagination.getPageSize(),
+					pagination.getPageStartIndex());
 		}
 		List<Product> allProducts = Product.allStockProducts().fetch();
 		List<Category> categoriesList = Category.allStockCategories().fetch();
@@ -101,8 +101,22 @@ public class Products extends controllers.CRUD {
 		session.put("currentProductsPage", page);
 		manage();
 	}
+
 	public static void productForm(String ID) {
 		currentPage("newProductStock");
-		Product product = Product.getByID(ID);
+		Product product = null;
+		if (ID == null)
+			product = new Product();
+		else
+			product = Product.getByID(ID);
+		List<Category> categoriesList = Category.allStockCategories().fetch();
+		render(product, ID, categoriesList);
+	}
+	
+	public static void saveProductForm(Product product) throws IOException {
+		product.productType_ID = Enums.ProductType.stock.ordinal();
+		product.isAllowAlarm = false;
+		product.saveProduct();
+		manage();
 	}
 }

@@ -1,0 +1,80 @@
+#{extends 'stockMain.html' /} #{include 'include/formHead.html' /}
+<link rel="stylesheet" href="/public/stylesheets/notification.css"
+	type="text/css" />
+#{if message!=null && message?.equals("")==false}
+<div class="alert-message danger flashMsg" id="alertMessage">
+	<p>&{'productExistMsg'}</p>
+</div>
+#{/if}
+<div class="form-group">
+	<h3>&{'NewProduct'}</h3>
+	<hr class="text-primary">
+</div>
+<form class="form-horizontal RestoFormValidation" role="form"
+	action="@{saveProductForm()}" method="post" id="productForm"
+	enctype="multipart/form-data">
+	<fieldset>
+		<div class="visible-xs visible-sm" style="height: 10px">&nbsp;</div>
+		<input type="hidden" name="vendorID" value="${vendorID}" /> #{field
+		'product.ID'} <input type="hidden" name="${field?.name}"
+			value="${field?.value}" /> #{/field} #{field 'product.number'} <input
+			type="hidden" name="${field?.name}" value="${field?.value}" />
+		#{/field} #{field 'product.isActive'} <input type="hidden"
+			name="${field?.name}" value="${field?.value}" /> #{/field}
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.name'} <label for="${field?.id}"
+					class="form-label-en">&{'Name'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Name'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.category_ID'} <label class="form-label-en" for="">&{'Category'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list categoriesList, as:'category'} -->
+						<option value="${category?.ID}" ${field.value==category?.ID?' selected':''}>${category?.name}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
+				</div>
+			</div>
+			#{/field}
+		</div>
+<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.description'} <label class="form-label-en"
+					for="${field?.id}">&{'Remarks'}</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<textarea class="form-control counted" id="${field?.id}"
+						name="${field?.name}" placeholder="&{'Remarks'}" rows="2">${field?.value}</textarea>
+				
+					</div>
+			</div>
+			#{/field}
+		</div>
+
+	<br>
+	<div class="row">
+			<button type="submit" class="btn btn-primary">&{'Save'}</button>
+			<a href="@{manage()}" class="btn btn-danger">&{'Cancel'}</a>
+		</div>
+		
+	</fieldset>
+</form>
+#{include 'include/formValidation.html' /}
