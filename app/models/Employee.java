@@ -1,5 +1,8 @@
 package models;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import siena.Entity;
@@ -66,7 +69,5 @@ public class Employee extends Model {
 	    profileNumber += lastEmployee.profileNumber;
 	return true;
     }
-
-
-  
+ 
 }

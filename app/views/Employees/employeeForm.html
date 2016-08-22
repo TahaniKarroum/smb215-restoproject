@@ -1,0 +1,110 @@
+#{extends 'accountMain.html' /} #{set title:'Update Account' /} 
+
+<div class="form-group">
+	<a class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> AddEmployee</a>
+	<h3>Employees</h3>
+	<hr class="text-primary">
+</div>
+
+<form class="form-horizontal" role="form" action="@{saveEmployeeChanges()}" method="post">
+	
+	<div class="form-group">
+  	#{field 'employee.ID'} 
+    <label for="emp_name" class="col-sm-2 control-label">&{'ID'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" name="${field?.name}" value="${field?.value}" readonly/> 
+    </div>
+    #{/field}
+  </div>
+	
+  <div class="form-group">
+  	#{field 'employee.name'}
+    <label for="emp_name" class="col-sm-2 control-label">&{'Name'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_name" placeholder="&{'Name'}" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.address'}
+    <label for="emp_address" class="col-sm-2 control-label">&{'Address'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_address" placeholder="&{'Address'}" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.username'}
+    <label for="emp_username" class="col-sm-2 control-label">&{'Username'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_username" placeholder="Username" name="${field?.name}" value="${field?.value}">
+    </div>
+   #{/field} 
+  </div>
+  <div class="form-group">
+  	#{field 'employee.email'}
+    <label for="emp_email" class="col-sm-2 control-label">&{'Email'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_email" placeholder="Email" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.phone'}
+    <label for="emp_phone" class="col-sm-2 control-label">&{'Phone'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_phone" placeholder="Phone" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.mobile'}
+    <label for="emp_mobile" class="col-sm-2 control-label">&{'Mobile'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_mobile" placeholder="Mobile" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+   
+  <div class="form-group">
+  	#{field 'employee.extensionNb'}
+    <label for="empl_extensionNb" class="col-sm-2 control-label">&{'ExtensionNb'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="empl_extensionNb" placeholder="ExtensionNb" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.profileNumber'}
+    <label for="emp_profileNumber" class="col-sm-2 control-label">&{'ProfileNumber'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_profileNumber" placeholder="ProfileNumber" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+    
+  <div class="form-group">
+  	#{field 'employee.isActive'}
+    <label for="emp_isActive" class="col-sm-2 control-label">&{'IsActive'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_isActive" placeholder="&{'IsActive'}" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+  <div class="form-group">
+  	#{field 'employee.isAdmin'}
+    <label for=""emp_isAdmin"" class="col-sm-2 control-label">&{'IsAdmin'}</label>
+    <div class="col-md-6 col-sm-10">
+      <input type="text" class="form-control" id="emp_isAdmin" placeholder="&{'IsAdmin'}" name="${field?.name}" value="${field?.value}">
+    </div>
+    #{/field}
+  </div>
+    
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary pull-right">Save</button>
+	  <a href="@{Employees.manage()}" class="btn btn-danger pull-right" style="margin-right:10px;">Cancel</a>
+    </div>
+  </div>
+
+</form>

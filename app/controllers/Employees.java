@@ -85,4 +85,19 @@ public class Employees extends controllers.CRUD {
 
 	}
 	
+	public static void employeeForm(String ID) {
+		currentPage("listofemployees");
+		Employee employee = Employee.getByID(ID);
+		if (employee == null)
+			employee = new Employee();
+		render(employee);
+	}
+	
+	public static void saveEmployeeChanges(Employee employee) throws IOException {
+		currentPage("listofemployees");
+		employee.saveEmployee();
+		manage();
+	}
+	
+	
 }
