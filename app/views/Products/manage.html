@@ -44,6 +44,8 @@
 				<td>${product?.name}</td>
 				<td>${product?.getCategoryName()}</td>
 				<td>
+				<a href="@{Products.productForm(product?.ID)}"
+					title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
 				</td>
 			</tr>
 			<!--#{/list} -->
