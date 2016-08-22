@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/public/stylesheets/framework/bootstrap.min.css" rel="stylesheet" media="screen">
+
+<!-- dataTable css files -->
+<link rel="stylesheet" href="/public/stylesheets/datatable/dataTables.bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="/public/stylesheets/datatable/responsive.bootstrap.min.css" type="text/css" />        
+
+<link rel="stylesheet" href="/public/stylesheets/style.css" type="text/css" />
+<link href="/public/stylesheets/modal.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="/public/stylesheets/sideMenu.css" type="text/css" />
+<link href="/public/stylesheets/adminFooter.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
+<script type="text/javascript" src="/public/javascripts/framework/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/datetimepicker/moment.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/framework/bootstrap.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
+<!-- dataTable js files -->
+<script src="/public/javascripts/dataTable/jquery.dataTables.min.js"></script>
+<script src="/public/javascripts/dataTable/dataTables.bootstrap.min.js"></script>
+<script src="/public/javascripts/dataTable/dataTables.responsive.min.js"></script>
+<script src="/public/javascripts/dataTable/responsive.bootstrap.min.js"></script>
+
+<link href="/public/stylesheets/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+<link rel="stylesheet" href="/public/stylesheets/fonts/awesome/css/font-awesome.min.css" type="text/css" />
+#{include 'include/formatNumber.html' /}
+</head>
+<body>
+	%{currentPage = session.get('currentPage')}%
+	#{include 'include/topbarMenu.html' /}
+	<div class="container left">
+		<div class="row">#{doLayout /}</div>
+	</div>
+
+	<script type="text/javascript">
+	var nbc = $('.chosen-select').length;
+	if (nbc > 0) {
+		$('.chosen-select').chosen();
+	}
+	var nbc1 = $('.chosen-select-deselect').length;
+	if (nbc1 > 0) {
+		$('.chosen-select-deselect').chosen({
+			allow_single_deselect : true
+		});
+	}
+	
+</script>
+</body>
+</html>
