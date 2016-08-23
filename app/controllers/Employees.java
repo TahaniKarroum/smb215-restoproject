@@ -102,7 +102,9 @@ public class Employees extends controllers.CRUD {
 	public static void deleteEmployee(String ID) {
 		Employee employee = Employee.getByID(ID);
 		if (employee != null) {
-			employee.delete();
+			//employee.delete();
+			employee.isActive = false;
+			employee.update();
 			flash.put("deleteMessage", "The employee is deleted successfully");
 		}
 		manage();
