@@ -43,7 +43,7 @@
 			<td>${employee.profileNumber}</td>
 			<td>
 				<a href="@{employeeForm(employee?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
-				<a class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
+				<a href="@{deleteEmployee(employee?.ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 			</td>
 		</tr>
 		#{/list}

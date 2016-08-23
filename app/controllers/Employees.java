@@ -99,5 +99,13 @@ public class Employees extends controllers.CRUD {
 		manage();
 	}
 	
+	public static void deleteEmployee(String ID) {
+		Employee employee = Employee.getByID(ID);
+		if (employee != null) {
+			employee.delete();
+			flash.put("deleteMessage", "The employee is deleted successfully");
+		}
+		manage();
+	}	
 	
 }
