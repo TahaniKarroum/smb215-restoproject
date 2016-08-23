@@ -105,6 +105,14 @@ public class Employees extends controllers.CRUD {
 			//employee.delete();
 			employee.isActive = false;
 			employee.update();
+			if(employee.ID.equals(session.get("loggedInEmpID"))){
+				try {
+					Application.employeeLogout();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			flash.put("deleteMessage", "The employee is deleted successfully");
 		}
 		manage();
