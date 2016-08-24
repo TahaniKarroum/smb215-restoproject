@@ -117,6 +117,13 @@ public class Product extends Model {
 			return "";
 		return unit.label;
 	}
+	
+	public MeasureUnit getMeasureUnit() {
+		MeasureUnit unit = MeasureUnit.getByID(mesureUnit_ID);
+		if (unit == null)
+			return null;
+		return unit;
+	}
 
 	public String getPurchasedUnitName() {
 		Unit unit = Unit.getByID(purchasedUnit_ID);
