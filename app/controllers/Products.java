@@ -110,7 +110,8 @@ public class Products extends controllers.CRUD {
 		else
 			product = Product.getByID(ID);
 		List<Category> categoriesList = Category.allStockCategories().fetch();
-		render(product, ID, categoriesList);
+		List<MeasureUnit> unitsList=MeasureUnit.all().fetch();
+		render(product, ID, categoriesList,unitsList);
 	}
 	
 	public static void saveProductForm(Product product) throws IOException {

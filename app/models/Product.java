@@ -28,6 +28,8 @@ public class Product extends Model {
 	public int maxLimitLevel;
 	public double qteInStock;
 	public double stockCostPerYear;
+	public double price;
+	public double cost;
 	@Max(256)
 	public String stockLocation;
 	public int nearLimit;
@@ -110,10 +112,10 @@ public class Product extends Model {
 	}
 
 	public String getUnitMeasureName() {
-		Unit unit = Unit.getByID(mesureUnit_ID);
+		MeasureUnit unit = MeasureUnit.getByID(mesureUnit_ID);
 		if (unit == null)
 			return "";
-		return unit.unit;
+		return unit.label;
 	}
 
 	public String getPurchasedUnitName() {

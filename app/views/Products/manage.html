@@ -34,15 +34,34 @@
 					placeholder="&{'Name'}" disabled></th>
 				<th><input type="text" class="form-control"
 					placeholder="&{'Category'}" disabled></th>
-	
+				<th><input type="text" class="form-control"
+					placeholder="&{'MeasureUnit'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'Price'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'Cost'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'QuantityInStock'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'MinQuantity'}" disabled></th>
 				<th>&{'Action'}</th>
 			</tr>
 		</thead>
 		<tbody>
 			<!--#{list productsList, as:'product'} -->
+			#{if product?.qteInStock < product?.limitLevel }
+			<tr class="danger">
+			#{/if}
+			#{else}
 			<tr>
+			#{/else}
 				<td>${product?.name}</td>
 				<td>${product?.getCategoryName()}</td>
+				<td>${product?.getUnitMeasureName()}</td>
+				<td>${product?.price}</td>
+				<td>${product?.cost}</td>
+				<td>${product?.qteInStock}</td>
+				<td>${product?.limitLevel}</td>
 				<td>
 				<a href="@{Products.productForm(product?.ID)}"
 					title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>

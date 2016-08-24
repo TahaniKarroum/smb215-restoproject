@@ -15,12 +15,14 @@
 	enctype="multipart/form-data">
 	<fieldset>
 		<div class="visible-xs visible-sm" style="height: 10px">&nbsp;</div>
-		<input type="hidden" name="vendorID" value="${vendorID}" /> #{field
-		'product.ID'} <input type="hidden" name="${field?.name}"
-			value="${field?.value}" /> #{/field} #{field 'product.number'} <input
-			type="hidden" name="${field?.name}" value="${field?.value}" />
-		#{/field} #{field 'product.isActive'} <input type="hidden"
-			name="${field?.name}" value="${field?.value}" /> #{/field}
+		<input type="hidden" name="vendorID" value="${vendorID}" /> 
+		#{field 'product.ID'}<input type="hidden" name="${field?.name}" value="${field?.value}" /> #{/field} 
+			#{field 'product.number'} 
+			<input type="hidden" name="${field?.name}" value="${field?.value}" />
+		#{/field} 
+		
+		#{field 'product.isActive'} <input type="hidden" name="${field?.name}" value="${field?.value}" /> #{/field}
+		
 		<div class="row">
 			<div class="col-md-2">
 				#{field 'product.name'} <label for="${field?.id}"
@@ -53,7 +55,87 @@
 			</div>
 			#{/field}
 		</div>
+		
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.mesureUnit_ID'} <label class="form-label-en" for="">&{'MeasureUnit'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list unitsList, as:'unit'} -->
+						<option value="${unit?.ID}" ${field.value==unit?.ID?' selected':''}>${unit?.label}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
+				</div>
+			</div>
+			#{/field}
+		</div>
 <br>
+
+<div class="row">
+			<div class="col-md-2">
+				#{field 'product.price'} <label for="${field?.id}"
+					class="form-label-en">&{'Price'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Price'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.cost'} <label for="${field?.id}"
+					class="form-label-en">&{'Cost'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Cost'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.qteInStock'} <label for="${field?.id}"
+					class="form-label-en">&{'Quantity'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Cost'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'product.limitLevel'} <label for="${field?.id}"
+					class="form-label-en">&{'MinQuantity'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Cost'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		<br>
 		<div class="row">
 			<div class="col-md-2">
 				#{field 'product.description'} <label class="form-label-en"
