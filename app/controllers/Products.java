@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import models.Brand;
@@ -10,6 +11,7 @@ import models.MeasureType;
 import models.MeasureUnit;
 import models.Product;
 import models.Product_MeasureUnit;
+import models.Product_product_Composition;
 import models.Unit;
 import play.Play;
 import play.mvc.Before;
@@ -120,4 +122,68 @@ public class Products extends controllers.CRUD {
 		product.saveProduct();
 		manage();
 	}
+	
+	public static void productComposition(String product_ID) {
+		Product product = Product.getByID(product_ID);
+		List<Product> productsList = Product.allStockProducts().fetch();
+		List<Product> selectedProductsList = product.getProductComposite();
+		List<String> productsIDs = null;
+		if (selectedProductsList != null && selectedProductsList.size() > 0) {
+			productsIDs = new ArrayList<String>();
+			for (Product p : selectedProductsList) {
+				if (p != null)
+					productsIDs.add(p.ID);
+			}
+		}
+		render(product, productsList, selectedProductsList, productsIDs);
+	}
+
+	public static void saveProductComposite() {
+		String product_ID = params.get("productID");
+		String[] productsToAdd = params.getAll("productsToAdd");
+		Product product = null;
+		if ((productsToAdd != null) && (productsToAdd.length > 0)) {
+			for (String productID : productsToAdd) {
+				product = Product.getByID(productID);
+				Product_product_Composition ppc = Model.all(Product_product_Composition.class).filter("principalProduct_ID", product_ID)
+						.filter("product_ID", productID).get();
+				if (ppc == null)
+					ppc = new Product_product_Composition();
+				ppc.product_ID = productID;
+				ppc.principalProduct_ID = product_ID;
+				ppc.measureUnit_ID = params.get("unit_" + productID);
+				String qty = params.get("qty_" + productID);
+				if (qty != null && qty.length() > 0)
+					ppc.quantity = Double.parseDouble(qty);
+				ppc.saveProductComposition();
+
+			}
+		} else {
+			product = Product.getByID(product_ID);
+			List<Product> productsCompositesList = product.getProductComposite();
+			if (productsCompositesList != null && productsCompositesList.size() > 0) {
+				for (Product pr : productsCompositesList) {
+					Product_product_Composition ppc = Model.all(Product_product_Composition.class).filter("principalProduct_ID", product_ID)
+							.filter("product_ID", pr.ID).get();
+					ppc.measureUnit_ID = params.get("unit_" + pr.ID);
+					String qty = params.get("qty_" + pr.ID);
+					if (qty != null && qty.length() > 0)
+						ppc.quantity = Double.parseDouble(qty);
+					ppc.saveProductComposition();
+				}
+			}
+		}
+		String submitType = params.get("submitTypeInput");
+		if (submitType != null && submitType.equals("finish"))
+			menuManage();
+		else {
+			productComposition(product_ID);
+		}
+	}
+
+	public static void deleteCompositeProduct(String productComposite_ID, String product_ID) {
+		Model.all(Product_product_Composition.class).filter("ID", productComposite_ID).delete();
+		productComposition(product_ID);
+	}
+
 }
