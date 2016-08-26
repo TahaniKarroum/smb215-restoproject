@@ -34,24 +34,6 @@ public class Products extends controllers.CRUD {
 		return true;
 	}
 
-	public static boolean currentPage(String currentPage) {
-		session.put("currentPage", currentPage);
-		return true;
-	}
-
-	public static void menuProductForm(String ID) {
-		currentPage("productsmenu");
-		Product product = null;
-		if (ID == null)
-			product = new Product();
-		else
-			product = Product.getByID(ID);
-		List<Category> menuCategoriesList = Model.all(Category.class)
-				.filter("categoryType_ID", categoryType.menu.ordinal()).fetch();
-		List<Product> stockProductsList = Product.allStockProducts().fetch();
-		render(product, menuCategoriesList, stockProductsList);
-
-	}
 
 	public static void saveMenuProductForm(Product product, File uploadImage) throws IOException {
 		product.productType_ID = Enums.ProductType.menu.ordinal();
@@ -136,6 +118,25 @@ public class Products extends controllers.CRUD {
 			}
 		}
 		render(product, productsList, selectedProductsList, productsIDs);
+	}
+	
+	public static boolean currentPage(String currentPage) {
+		session.put("currentPage", currentPage);
+		return true;
+	}
+
+	public static void menuProductForm(String ID) {
+		currentPage("productsmenu");
+		Product product = null;
+		if (ID == null)
+			product = new Product();
+		else
+			product = Product.getByID(ID);
+		List<Category> menuCategoriesList = Model.all(Category.class)
+				.filter("categoryType_ID", categoryType.menu.ordinal()).fetch();
+		List<Product> stockProductsList = Product.allStockProducts().fetch();
+		render(product, menuCategoriesList, stockProductsList);
+
 	}
 
 	public static void saveProductComposite() {
