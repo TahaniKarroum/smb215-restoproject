@@ -1,0 +1,7 @@
+        .hero-widget { text-align: center; padding-top: 20px; padding-bottom: 20px; }
+.hero-widget .icon { display: block; font-size: 50px; line-height: 90px; margin-bottom: 10px; text-align: center; }
+.hero-widget .icon2 { display: block; font-size: 72px; line-height: 90px; margin-bottom: 10px; text-align: center;}
+.hero-widget var { display: block; height: 35px; font-size: 35px; line-height: 35px; font-style: normal; }
+.hero-widget label { font-size: 17px; }
+.hero-widget .options { margin-top: 10px; }   
+.hero-widget .options2 { margin-top: -3px;font-size: 12px; }
