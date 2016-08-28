@@ -54,11 +54,24 @@ public class Enums {
 			return productStatusId;
 		}
 
-	    public enum DiscountType {
-		None, percentage, amount;
-	    }
+		public enum DiscountType {
+			None, percentage, amount;
+		}
+
 		public String getStatusName() {
 			return name;
 		}
+	}
+
+	public enum VendorType {
+		None, importer, distributor, wholesaler, industry;
+	}
+
+	public enum ShippingMethod {
+		None, RoadTransport, ShippingByShip, RiverTransport, AirTransport, InternalTransport, ExternalTransport;
+	}
+
+	public enum VendorPaymentType_ID {
+		None, Short_term, Medium_term, long_term;
 	}
 }

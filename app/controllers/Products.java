@@ -34,7 +34,6 @@ public class Products extends controllers.CRUD {
 		return true;
 	}
 
-
 	public static void saveMenuProductForm(Product product, File uploadImage) throws IOException {
 		product.productType_ID = Enums.ProductType.menu.ordinal();
 		product.isAllowAlarm = false;
@@ -94,17 +93,17 @@ public class Products extends controllers.CRUD {
 		else
 			product = Product.getByID(ID);
 		List<Category> categoriesList = Category.allStockCategories().fetch();
-		List<MeasureUnit> unitsList=MeasureUnit.all().fetch();
-		render(product, ID, categoriesList,unitsList);
+		List<MeasureUnit> unitsList = MeasureUnit.all().fetch();
+		render(product, ID, categoriesList, unitsList);
 	}
-	
+
 	public static void saveProductForm(Product product) throws IOException {
 		product.productType_ID = Enums.ProductType.stock.ordinal();
 		product.isAllowAlarm = false;
 		product.saveProduct();
 		manage();
 	}
-	
+
 	public static void productComposition(String product_ID) {
 		Product product = Product.getByID(product_ID);
 		List<Product> productsList = Product.allStockProducts().fetch();
@@ -119,7 +118,7 @@ public class Products extends controllers.CRUD {
 		}
 		render(product, productsList, selectedProductsList, productsIDs);
 	}
-	
+
 	public static boolean currentPage(String currentPage) {
 		session.put("currentPage", currentPage);
 		return true;
@@ -146,8 +145,8 @@ public class Products extends controllers.CRUD {
 		if ((productsToAdd != null) && (productsToAdd.length > 0)) {
 			for (String productID : productsToAdd) {
 				product = Product.getByID(productID);
-				Product_product_Composition ppc = Model.all(Product_product_Composition.class).filter("principalProduct_ID", product_ID)
-						.filter("product_ID", productID).get();
+				Product_product_Composition ppc = Model.all(Product_product_Composition.class)
+						.filter("principalProduct_ID", product_ID).filter("product_ID", productID).get();
 				if (ppc == null)
 					ppc = new Product_product_Composition();
 				ppc.product_ID = productID;
@@ -164,8 +163,8 @@ public class Products extends controllers.CRUD {
 			List<Product> productsCompositesList = product.getProductComposite();
 			if (productsCompositesList != null && productsCompositesList.size() > 0) {
 				for (Product pr : productsCompositesList) {
-					Product_product_Composition ppc = Model.all(Product_product_Composition.class).filter("principalProduct_ID", product_ID)
-							.filter("product_ID", pr.ID).get();
+					Product_product_Composition ppc = Model.all(Product_product_Composition.class)
+							.filter("principalProduct_ID", product_ID).filter("product_ID", pr.ID).get();
 					ppc.measureUnit_ID = params.get("unit_" + pr.ID);
 					String qty = params.get("qty_" + pr.ID);
 					if (qty != null && qty.length() > 0)
@@ -187,4 +186,13 @@ public class Products extends controllers.CRUD {
 		productComposition(product_ID);
 	}
 
+	public static List<Product> getProductsByCategory(String categoryID) {
+		List<Product> productsList = new ArrayList<Product>();
+		List<Product> allProducts = Product.allStockProducts().fetch();
+		for (Product product : allProducts) {
+			if (product.category_ID != null && product.category_ID.equals(categoryID))
+				productsList.add(product);
+		}
+		return productsList;
+	}
 }

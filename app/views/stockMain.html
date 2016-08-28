@@ -54,6 +54,11 @@
 						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'MeasureTypes'}
 						</span>
 					</a></li>
+					<li class="${currentPage?.equals('vendorsList') ? 'activeli':''}"><a
+						href="@{Vendors.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'VendorsList'}"> <span class="fa fa-group"></span>
+						</span> <span class="full-nav"><span class="fa fa-group"></span> &{'VendorsList'} </span>
+					</a></li>
 					<li class="${currentPage?.equals('newProductStock') ? 'activeli':''}"><a
 						href="@{Products.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title=" &{'Products'}"> <span

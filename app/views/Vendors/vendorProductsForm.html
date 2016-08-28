@@ -1,0 +1,203 @@
+#{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /} #{include
+'include/formHead.html' /}
+<link href="/public/stylesheets/panel.css" rel="stylesheet" media="screen">
+
+
+<div class="row">
+		<div class="col-md-9">
+			<h3>#{if vendor?.ID == null} &{'AddVendor'} #{/if} #{else} &{'EditVendor'} #{/else}</h3>
+		</div>
+		<div class="col-md-1">
+			<a href="@{Vendors.manage()}" class="btn btn-primary vertical pull-right"> &{'FinishAndSave'}</a>
+		</div>
+		<div class="col-md-1">
+		</div>
+		
+		<hr>
+	</div>
+
+<form class="form-horizontal RestosFormValidation" role="form"
+	action="@{saveVendorProducts(vendor)}" method="post" id="restoForm" name="vendorForm">
+
+	<input type="hidden" name="categoryID" value="${categoryID}">
+	<div class="row">
+		<ul class="nav nav-tabs">
+			<li><a href="@{Vendors.vendorsForm(vendor.ID)}">&{'MainInfo'}</a></li>
+			<li class="active"><a href="@{Vendors.vendorSelectedProducts(vendor.ID)}">&{'ProductsList'}</a></li>
+		</ul>
+		<br>
+	</div>    
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">&{'ProductsList'} (${productsList?.size()})</h3>
+					<span class="pull-right"></span>
+				</div>
+				<div class="panel-body">
+					<div class="panel with-nav-tabs panel-info">
+						<div class="panel-heading">
+						#{if categoriesList?.size() > 0 }
+							<ul class="nav nav-tabs">							
+								%{categoriesCount = 2;if(categoriesList?.size() <=3) categoriesCount =
+								categoriesList.size()-1 }% #{list items:0..categoriesCount, as:'i'}
+								<li %{if(categoriesList?.get(i)?.ID?.equals(categoryID)) out.print("class='active'")}%><a
+									href="@{Vendors.vendorProductsForm(vendor.ID,categoriesList.get(i)?.ID)}"
+									style="cursor: pointer">${categoriesList?.get(i)?.name}</a></li> #{/list} #{if
+								categoriesList?.size()-1 > 2}
+								<li class="dropdown"><a href="#" data-toggle="dropdown">&{'OthersCat'}<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										#{list items:3..categoriesList?.size()-1, as:'i'}
+										<li><a href="@{Vendors.vendorProductsForm(vendor?.ID,categoriesList?.get(i)?.ID)}">${categoriesList?.get(i)?.name}</a></li>
+										#{/list}
+									</ul></li> #{/if}
+				
+							</ul>
+											#{/if}
+								#{else}
+								No categories defined! <a target="_blank"
+									href="@{Categories.categoryForm()}" style="cursor: pointer">Add Category</a>
+								#{/else}
+						</div>
+					</div>
+					#{if productsList!=null && productsList?.size() > 0}
+					<div class="row">
+						<div class="col-xs-12">
+							<input type="search" id="search" value="" class="form-control search"
+								placeholder="&{'SearchbyName'}">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table" id="toSelectTable">
+								<thead>
+									<tr>
+										<th>
+											<div class="restoRadioButton">
+												<input type="checkbox" id="allToSelect" name="productsToRemove" value="${product?.ID}" >
+												&nbsp; &{'Name'} &nbsp;
+											</div>
+										</th>
+										<th width="10%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									#{list productsList, as:'product'}
+									<tr>
+										<td>
+											<div class="restoRadioButton">
+												<input type="checkbox" class="check" name="productsToAdd" value="${product?.ID}">
+												&nbsp; ${product?.name} &nbsp;
+											</div>
+										</td>
+										<td width="10%"><a href="@{addVendorProduct(vendor.ID,product?.ID)}"
+											class="addProducts" title="&{'Add'}"><span class="fa fa-plus-circle"></span></a></td>
+									</tr>
+									#{/list}
+								</tbody>
+							</table>
+							<hr>
+						</div>
+					</div>
+					#{/if} #{else} &{'Noproductsfoundinthiscategory'}! #{/else}
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<div class="row form-group margin-top-large">
+				<button class="btn btn-primary btn-sm center-block">
+					<span class="fa fa-angle-double-left"></span> &emsp;&{'Switch'}&emsp;<span
+						class="fa fa-angle-double-right"></span>
+				</button>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">&{'SelectedProducts'} (${selectedProductsList?.size()})</h3>
+				</div>
+				<div class="panel-body">
+					#{if selectedProductsList!=null && selectedProductsList?.size() > 0}
+					<div class="row">
+						<div class="col-xs-12">
+							<input type="search" id="search" value="" class="form-control search" placeholder="&{'SearchbyName'}">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table" id="selectedTable">
+								<thead>
+									<tr>
+										<th>
+											<div class="restoRadioButton">
+												<input type="checkbox" id="allSelected" name="productsToRemove" value="${product?.ID}">
+												&nbsp; &{'Name'} &nbsp;
+											</div>
+										</th>
+										<th>&{'Category'}</th>
+										<th width="10%"></th>
+									</tr>
+								</thead>
+								<tbody>
+									#{list selectedProductsList, as:'selectedProduct'}
+									<tr>
+										<td>
+											<div class="restoRadioButton">
+												<input type="checkbox" class="check" name="productsToRemove"
+													value="${selectedProduct?.ID}"> &nbsp; ${selectedProduct?.name} &nbsp;
+											</div>
+										</td>
+										<td>${selectedProduct?.getCategory()?.name}</td>
+										<td width="10%">
+										
+										<a href="@{Vendors.deleteVendorProduct(vendor.ID,selectedProduct?.ID)}" class="confirmRemove" title="&{'Delete'}"><span
+												class="fa fa-trash-o"></span></a></td>
+									</tr>
+									#{/list}
+								</tbody>
+							</table>
+							<hr>
+						</div>
+					</div>
+					#{/if} #{else} &{'Listisempty'}! #{/else}
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+#{include 'include/deleteConfirmDialog.html' /}
+<script src="/public/javascripts/jquery.searchable-1.0.0.min.js"></script>
+<script type="text/javascript">
+	$('.restoRadioButton').on("ifChecked", function(event) {
+		var id = event.target.id;
+		if (id == "allSelected")
+			$('#selectedTable').find('.check').iCheck('check');
+		if (id == "allToSelect")
+			$('#toSelectTable').find('.check').iCheck('check');
+
+	});
+
+	$('.restoRadioButton').on("ifUnchecked", function(event) {
+		var id = event.target.id;
+		if (id == "allSelected")
+			$('#selectedTable').find('.check').iCheck('uncheck');
+		if (id == "allToSelect")
+			$('#toSelectTable').find('.check').iCheck('uncheck');
+	});
+
+	$('.addProducts').click(function() {
+		$('#restoForm').submit();
+	});
+	$(function() {
+		$('table').searchable({
+			striped : true,
+			oddRow : {
+				'background-color' : '#f5f5f5'
+			},
+			evenRow : {
+				'background-color' : '#fff'
+			},
+			searchType : 'fuzzy'
+		});
+	});
+</script>

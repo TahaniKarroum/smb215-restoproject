@@ -1,0 +1,92 @@
+#{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+<div class="form-group">
+	<a href="@{Vendors.vendorsForm()}"  class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-sign-plus"></span>
+		&{'AddNewVendor'}</a>
+	<h3>&{'Vendors'}</h3>
+	<hr class="text-primary">
+</div>
+
+
+
+#{if (allVendorsList==null || allVendorsList?.size()==0) && isFilteringMode == false}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Vendors'}</h3>
+	</div>
+	<div class="panel-body">&{'Listisempty'}</div>
+</div>
+#{/if} #{else}
+
+<div class="row form-group">
+	<form class="form-inline" method="post" action="@{searchByVendorName()}" id="filter2" name="vendorName">
+		<div class="col-xs-7 col-sm-4 col-md-2">
+			<select name="vendorID" data-placeholder="&{'Vendors'}"
+				class="chosen-select-deselect required %{if (session.get('lang')?.equals('ar')) out.print('chosen-rtl')}%" onchange="document.vendorName.submit();">
+				<option value=""></option>
+				 #{list items:allVendorsList, as:'vendor'}
+				<option value="${vendor?.ID}"%{if (vendor?.ID.equals(vendorID)) out.print('selected')}% >${vendor?.name}</option> 
+				#{/list}
+			</select>
+		</div>
+		#{if isFilteringMode==true}
+		<div class="col-xs-2 col-sm-1">
+			<a href="@{Vendors.manage()}" class="btn btn-primary"><span> &{'ShowAll'}</span>
+			</a>
+		</div>
+		#{/if}
+	</form>
+</div>
+#{if (vendorsList==null || vendorsList?.size()==0) && isFilteringMode == true}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Vendors'}</h3>
+	</div>
+	<div class="panel-body">&{'NoResultsFound'}!</div>
+</div>
+#{/if} #{else}
+<div class="panel panel-primary filterable">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'VendorsList'} (${itemsCount})</h3>
+	</div>
+	<table class="table">
+		<thead>
+			<tr class="filters">
+				<th width="80px">&{'Status'}</th>
+				<th width="80px">#&{'Code'}</th>
+				<th>&{'Name'}</th>
+				<th>&{'TotalCredit'}</th>
+				<th>&{'Phone'}</th>
+				<th width="25%"><span class="hidden-xs">&{'Action'}</span>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--             #{list vendorsList, as:'vendor'} -->
+			#{if vendor?.isActive == false}
+			<tr class='active' title='&{'BlackListed'}'>#{/if} #{else}
+			<tr>
+				#{/else}
+				<td>#{if vendor?.isActive == false}<span class="glyphicon glyphicon-remove text-primary bigBtn"></span>#{/if} #{else}<span
+					class="glyphicon glyphicon-ok text-primary bigBtn" title='&{'Active'}'></span>#{/else}</td>
+				<td>${vendor?.vendorNumber}</td>
+				<td>${vendor?.name}</td>
+				<td>${vendor?.getCreditTotal()}</td>
+				<td>#{if vendor?.landPhone!=null && !vendor?.landPhone?.equals("")}${vendor?.landPhone},#{/if} #{if vendor?.mobile!=null && !vendor?.mobile?.equals("")}${vendor?.mobile} #{/if}</td>
+				<td>
+				<a href="@{vendorsForm(vendor?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit bigBtn"></span></a> 
+				#{if vendor?.isActive}<a href="@{Vendors.deactivate(vendor?.ID)}" class="confirmDesactivate"><span
+						class="glyphicon glyphicon-lock text-primary bigBtn" title="&{'Deactivate'}"></span></a> #{/if}
+				#{else} <a href="@{Vendors.activate(vendor?.ID)}" class="confirmActivate"> <span class="fa fa-unlock text-primary fa-big"
+						title="&{'Activate'}"></span></a> #{/else} 
+				<a href="@{deleteVendor(vendor?.ID)}" title="&{'Delete'}" class="confirmDelete"><span class="glyphicon glyphicon-trash bigBtn"></span></a>
+				</td>
+				
+			</tr>
+			<!--             #{/list} -->
+		</tbody>
+	</table>
+</div>
+#{include 'include/pagination.html' /}
+#{include 'include/formValidation.html' /}
+#{include 'include/deleteConfirmDialog.html' /} #{/else} #{/else}
