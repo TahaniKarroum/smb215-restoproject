@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import controllers.AppLogs;
 import siena.Entity;
 import siena.Generator;
 import siena.Id;
@@ -12,6 +13,7 @@ import siena.Max;
 import siena.Model;
 import siena.Query;
 import utils.Enums;
+import utils.Enums.LogType;
 
 @Entity
 public class Product extends Model {
@@ -97,6 +99,7 @@ public class Product extends Model {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
 			Model.batch(Product.class).insert(this);
+			AppLogs.createLog(LogType.Product.ordinal(), ID);
 		} else {
 			Model.batch(Product.class).update(this);
 		}

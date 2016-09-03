@@ -3,6 +3,7 @@ package controllers;
 import play.*;
 import play.mvc.*;
 import siena.Model;
+import utils.Enums.LogType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -64,7 +65,8 @@ public class Application extends Controller {
 			if (employee.isAdmin) {
 				session.put("isAdmin", true);
 			}
-		
+			int i = LogType.Login.ordinal();
+			AppLogs.createLog(i, null);
 			Application.index();
 		}
 	}
