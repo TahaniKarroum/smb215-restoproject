@@ -3,6 +3,7 @@ package models;
 import java.util.ArrayList;
 import java.util.List;
 
+import controllers.AppLogs;
 import siena.Entity;
 import siena.Generator;
 import siena.Id;
@@ -51,6 +52,7 @@ public class PVendor extends Model {
 			setVendorNumber();
 			isActive = true;
 			Model.batch(PVendor.class).insert(this);
+			 AppLogs.createLog(LogType.Vendor.ordinal(), ID);
 		} else {
 			Model.batch(PVendor.class).update(this);
 		}
