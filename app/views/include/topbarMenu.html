@@ -23,7 +23,9 @@
 						<li class="divider"></li>
 						<li><a href="@{Application.employeeLogout()}"><span class="fa fa-sign-out"></span> &{'Logout'} </a></li>
 					</ul>
-				</li>		
+				</li>
+				<li class="%{if(session.get('currentPage').equals('logsList')) out.print('active')}%"><a href="@{AppLogs.logsManage()}"><span class="fa fa-list"></span> &{'Logs'}</a></li>
+
 			</ul>
 		</div>
 	</div>
