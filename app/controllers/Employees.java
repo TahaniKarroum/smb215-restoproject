@@ -7,14 +7,21 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Account;
 import models.Employee;
 import play.mvc.Before;
 import siena.Model;
+import utils.Pagination;
 
 public class Employees extends controllers.CRUD {
 	@Before
 	static void addDefaults() throws IOException, ParseException {
 		Application.onEachController();
+	}
+	
+	public static boolean currentPage(String currentPage) {
+		session.put("currentPage", currentPage);
+		return true;
 	}
 
 	public static void employeeChangePasswordForm() {
@@ -66,4 +73,49 @@ public class Employees extends controllers.CRUD {
 			}
 		}
 	}
+	
+	public static void manage() {
+		currentPage("listofemployees");
+		int itemsCount = Employee.all().count();
+		List<Employee> employeesList = null;
+		if (itemsCount > 0) {
+			employeesList = Employee.all().fetch();
+		}
+		render(employeesList);
+
+	}
+	
+	public static void employeeForm(String ID) {
+		currentPage("listofemployees");
+		Employee employee = Employee.getByID(ID);
+		if (employee == null)
+			employee = new Employee();
+		render(employee);
+	}
+	
+	public static void saveEmployeeChanges(Employee employee) throws IOException {
+		currentPage("listofemployees");
+		employee.saveEmployee();
+		manage();
+	}
+	
+	public static void deleteEmployee(String ID) {
+		Employee employee = Employee.getByID(ID);
+		if (employee != null) {
+			//employee.delete();
+			employee.isActive = false;
+			employee.update();
+			if(employee.ID.equals(session.get("loggedInEmpID"))){
+				try {
+					Application.employeeLogout();
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			flash.put("deleteMessage", "The employee is deleted successfully");
+		}
+		manage();
+	}	
+	
 }

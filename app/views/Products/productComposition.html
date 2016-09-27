@@ -1,0 +1,210 @@
+#{extends 'productsMain.html' /} #{include
+'include/tableWithFilterHead.html' /} #{include 'include/formHead.html'
+/}
+#{include 'include/advancedFormValidation.html' /}
+<link href="/public/stylesheets/panel.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
+<form class="form-horizontal" role="form" action="@{saveProductComposite()}" method="post" id="restoForm" name="vendorForm">
+	<input type="hidden" name="productID" value="${product.ID}">
+	<input type="hidden" name="submitTypeInput" id="submitTypeInput" value="">
+	<div class="row form-group">
+		<div class="col-sm-4 pull-left">
+			<h4>&{'Product'} ${product?.name}</h4>
+		</div>
+		<div class="col-sm-1 pull-right">
+			<button type="submit" name="submitType" value="finish" class="btn btn-success" onclick="setSubmitType('finish')" %{ if(selectedProductsList.size()==0)out.print('disabled')}%>
+				<span class="glyphicon glyphicon-shopping-cart"></span> &{'Confirm'}
+			</button>
+		</div>
+
+	</div>
+	<hr>
+	<div class="row">
+		<div class="col-xs-5">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">&{'ProductsList'}</h3>
+					<span class="pull-right"></span>
+				</div>
+				<div class="panel-body">
+					
+					#{if productsList!=null && productsList?.size() > 0}
+					<div id="tableAllProducts">
+						<div class="row">
+							<div class="col-xs-12">
+								<input type="search" id="search" value="" class="form-control search" placeholder="&{'SearchbyName'}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-12">
+								<table class="table" id="toSelectTable">
+									<thead>
+										<tr>
+											<th>
+												<div class="restoRadioButton">&nbsp; &{'Name'} &nbsp;</div></th>
+											<th width="10%"></th>
+										</tr>
+									</thead>
+									<tbody>
+										%{ var = 0; }% 
+										#{list productsList, as:'pro'} 
+										#{if productsIDs==null || productsIDs?.size()==0 || productsIDs?.contains(pro?.ID) ==
+										false}
+										<tr>
+											<td>
+												<div class="restoRadioButton">
+													<input type="checkbox" class="check" name="productsToAdd" value="${pro?.ID}">
+													&nbsp;${pro?.name} &nbsp;
+												</div></td>
+											<td width="10%"></td>
+										</tr>
+										%{ var += 1; }% #{/if} #{/list}
+									</tbody>
+								</table>
+							</div>
+							<hr>
+						</div>
+					</div>
+					<div class="alert alert-info" hidden="hidden" id="alertMessage">
+						<p>&{'listIsEmpty'}</p>
+					</div>
+					#{/if}#{else} &{'listIsEmpty'} #{/else}
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-1">
+			<div class="row form-group margin-top-large">
+				<button type="submit" name="submitType" value="addProduct" class="btn btn-success" onclick="setSubmitType('addProduct')">
+					&{'Add'} <span class="fa fa-chevron-%{if(session.get('lang')?.equals('ar')) out.print('left'); else out.print('right');}%"></span>
+				</button>
+			</div>
+		</div>
+		<div class="col-xs-5">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">&{'SelectedProducts'}
+					#{if selectedProductsList==null}(0)#{/if} #{else} (${selectedProductsList?.size()}) #{/else}</h3>
+				</div>
+				<div class="panel-body">
+					#{if selectedProductsList!=null && selectedProductsList?.size() > 0}
+					<div class="row">
+						<div class="col-xs-12">
+							<input type="search" id="search" value="" class="form-control search" placeholder="&{'SearchbyName'}">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<table class="table" id="selectedTable">
+								<thead>
+									<tr>
+										<th width="10%">&{'Name'}</th>
+										<th width="30%">&{'Unit'}</th>
+										<th width="30%">&{'Qty'}</th>
+										<th width="10%"></th>
+									</tr>
+								</thead>
+								<tbody>
+								%{var=1}%
+									#{list selectedProductsList, as:'prod'} 
+									<tr>
+										<td>
+											<div class="restoRadioButton hide">
+												<input type="checkbox" class="check" name="productsToPurchase" checked >
+											</div> ${prod?.name}</td>
+										<td class="form-group">
+										<select name="unit_${prod?.ID}" id="unit_${var}" data-placeholder="&{'Unit'}" class="chosen-select %{if (session.get('lang')?.equals('ar')) out.print('chosen-rtl')}%">
+												<option value=""></option>
+												
+												<option value="${prod?.getMeasureUnit()?.ID}" %{if(product?.getMapProductComposite().get(prod?.ID)?.measureUnit_ID.equals(prod?.getMeasureUnit()?.ID)) out.print('selected')}% >${prod?.getMeasureUnit()?.label}</option>
+												
+										</select></td>
+										<td class="form-group"><input type="text" name="qty_${prod?.ID}" id="qty_${var}" class="form-control" value="${product?.getMapProductComposite()?.get(prod?.ID)?.quantity}"></td>
+										<td width="10">
+										<a href="@{deleteCompositeProduct(product?.getMapProductComposite().get(prod?.ID)?.ID,product?.ID)}" title="&{'Delete'}"
+											class="confirmDelete"><span class="fa fa-trash-o text-success"></span> </a>
+										</td>
+									</tr>
+									%{var=var+1}%
+									#{/list}
+								</tbody>
+							</table>
+							<hr>
+						</div>
+					</div>
+					#{/if} #{else} &{'listIsEmpty'} #{/else}
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+#{include 'include/deleteConfirmDialog.html' /}
+<script src="/public/javascripts/jquery.searchable-1.0.0.min.js"></script>
+
+<script type="text/javascript">
+
+$('#restoForm').bootstrapValidator({
+	excluded: ':disabled',	
+	fields: {
+	#{if selectedProductsList?.size()>0}
+		#{list items:1..selectedProductsList?.size() ,as:'k'}	
+		unit_${k}:{
+			validators : {
+				notEmpty : {message : "&{'Required'}"}
+			}
+		},
+		qty_${k}: {
+			validators : {
+				notEmpty : {message : "&{'Required'}"},
+		        greaterThan: {
+		            value:0 ,
+		            inclusive: false
+		        }
+			}			
+		}
+		#{if k<selectedProductsList?.size()}
+		,
+		#{/if}
+		#{/list}
+		#{/if}
+	}
+	});
+
+	function setSubmitType(type) {
+		$("#submitTypeInput").val(type);
+		return false;
+	}
+
+	$('.restoRadioButton').on("ifChecked", function(event) {
+		var id = event.target.id;
+		if (id == "allSelected")
+			$('#selectedTable').find('.check').iCheck('check');
+		if (id == "allToSelect")
+			$('#toSelectTable').find('.check').iCheck('check');
+
+	});
+
+	$('.restoRadioButton').on("ifUnchecked", function(event) {
+		var id = event.target.id;
+		if (id == "allSelected")
+			$('#selectedTable').find('.check').iCheck('uncheck');
+		if (id == "allToSelect")
+			$('#toSelectTable').find('.check').iCheck('uncheck');
+	});
+
+	$('.addProducts').click(function() {
+		$('#restoForm').submit();
+	});
+	$(function() {
+		$('table').searchable({
+		
+			oddRow : {
+				'background-color' : '#f5f5f5'
+			},
+			evenRow : {
+				'background-color' : '#fff'
+			},
+			searchType : 'fuzzy'
+		});
+	});
+
+</script>

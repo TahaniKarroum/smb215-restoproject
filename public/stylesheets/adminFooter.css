@@ -1,0 +1,16 @@
+.footer{
+	background-color:rgba(20,20,20,0.9);
+}
+.footer a{
+color:white;
+padding: 9px;
+}
+.footer a.pull-left{
+padding-left: 0px;
+}
+.footer-top{
+margin-bottom:38px;
+}
+.footer img{
+width: 80px;margin-top:4px;
+}

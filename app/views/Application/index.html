@@ -10,13 +10,147 @@
         <link rel="stylesheet" href="/public/stylesheets/framework/bootstrap.min.css" type="text/css" />
 		<script src="/public/javascripts/framework/jquery.min.js"></script>
 		<script src="/public/javascripts/framework/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="/public/stylesheets/flaticon/flaticon.css" type="text/css" />
+		<link href="/public/stylesheets/style.css" rel="stylesheet">
+		<link href="/public/stylesheets/widgets.css" rel="stylesheet">
+		<link href="/public/stylesheets/logs.css" rel="stylesheet">
+		<link href="/public/stylesheets/homeField.css" rel="stylesheet">
+		<link href="/public/stylesheets/alerts.css" rel="stylesheet">
+		<link href="/public/stylesheets/topbar.css" rel="stylesheet">
+		<link href="/public/stylesheets/adminFooter.css" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="/public/stylesheets/fonts/awesome/css/font-awesome.min.css" type="text/css" />
         #{get 'moreScripts' /}
     </head>
     <body>
     #{include 'include/topbarMenu.html' /}
     <div class="container" style="padding-left: 10px;margin-top:70px;">
-     
-        </div>
+    <div class="col-md-8 col-md-offset-2">
+     <div class="row" >
+				<div class="col-xs-2">
+					<h4 class="text-info">&{'Menu'}</h4>					
+				</div>
+				<hr>
+			</div>
+			<div class="row">
+     					<div class="col-xs-6 col-sm-3">
+							<div class="hero-widget btn-primary well-sm text-primary dropshadow">
+						
+							 	<a href="@{Vendors.manage()}" style="color: #fff; text-decoration: none">	
+										
+							<div class="icon">
+									<i class="fa fa-truck"></i>
+								</div>
+								<div class="text">
+									<var></var>
+									<label class="white"><small>&{'Stock'}</small></label>
+								</div>
+								</a>
+								<div class="options">
+									<div class="btn-group dropup">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											<span class="fa fa-cogs text-primary"></span> <span class="text-primary">&{'Action'}</span> <span class="caret"></span> <span class="sr-only"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="@{Products.manage()}"> <span class="glyphicon glyphicon-list text-primary"></span> <span class="text-primary"> &{'ProductsList'}</span>
+											</a></li>
+											<li><a href="@{Vendors.manage()}"> <span class="fa fa-group text-primary"></span> <span class="text-primary"> &{'VendorsList'}</span>
+											</a></li>
+											</ul>
+							
+									</div>
+								</div>								
+							</div>
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="hero-widget btn-success well-sm text-success dropshadow">
+								<a href="@{products.menuManage()}" style="color: #fff; text-decoration: none">
+						
+									<div class="icon">
+										<i class="flaticon-menu21"></i>
+									</div>
+									<div class="text">
+										<var>${productsNb}</var>
+										<label class="white"><small>&{'FoodMenu'}</small></label>
+									</div>
+								</a>
+								<div class="options">
+									<div class="btn-group dropup">
+										<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+											<span class="fa fa-cogs text-success"></span><span class="text-success"> &{'Action'}</span> <span class="caret"></span> <span class="sr-only"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="@{products.menuProductForm()}"> <span class="fa fa-pencil-square-o text-success"></span> <span class="text-success"> &{'NewFoodProduct'}</span>
+											</a></li>
+											<li><a href="@{products.menuManage()}"> <span class="fa fa-list text-success"></span> <span class="text-success">&{'FoodProductsList'}</span>
+											</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="visible-xs">
+							<br>&nbsp;
+						</div>
+						<div class="col-xs-6 col-sm-3">
+							<div class="hero-widget btn-info well-sm text-info panel-success dropshadow">
+							<a href="#" style="color: #fff; text-decoration: none">
+			
+							<div class="icon">
+									<i class="flaticon-covered18"></i>
+								</div>
+								<div class="text">
+									<var>${saleOrdersNb}</var>
+									<label class="white"><small>&{'FoodSaleOrders'}</small></label>
+								</div>
+								</a>
+								<div class="options">
+									<div class="options">
+										<div class="btn-group dropup">
+											<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+												<span class="fa fa-cogs text-info"></span> <span class="text-info"> &{'Action'}</span> <span class="caret"></span> <span class="sr-only"></span>
+											</button>
+											<ul class="dropdown-menu" role="menu">
+												<li><a href="#"> <span class="fa fa-pencil-square-o text-info"></span><span class="text-info"> &{'NewOrder'}</span>
+												</a></li>
+												<li><a href="#"> <span class="fa fa-list text-info"></span> <span class="text-info">&{'OrdersList'}</span>
+												</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-xs-6 col-sm-3">
+							<div class="hero-widget  btn-danger well-sm text-danger dropshadow">
+						     <a href="#" style="color: #fff; text-decoration: none">
+								<div class="icon">
+									<i class="fa fa-group"></i>
+								</div>
+								<div class="text">
+									<var></var>
+									<label class="white text-danger"><small>&{'Clients'}</small></label>
+								</div>
+								</a>
+								<div class="options">
+									<div class="btn-group dropup">
+										<button type="button" class="btn btn-default dropdown-toggle" data-placement="top left" data-toggle="dropdown">
+											<span class="fa fa-cogs text-danger"></span><span class="text-danger"> &{'Action'}</span> <span class="caret"></span> <span class="sr-only"></span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li><a href="#"> <span class="fa fa-pencil-square-o text-danger"></span> <span class="text-danger"> &{'NewCustomer'}</span>
+											</a></li>
+											<li><a href="#"> <span class="fa fa-list text-danger"></span> <span class="text-danger"> &{'ClientsList'}</span>
+											</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<br>
+				</div>
+			</div>
+     </div>
+ 
     </body>
 </html>

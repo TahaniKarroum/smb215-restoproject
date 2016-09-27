@@ -1,0 +1,8 @@
+        .alert-purple { border-color: #999;background: #694D9F;color: #999; }
+.alert-info-alt { border-color: #999;background: #81c7e1;color: #999; }
+.alert-danger-alt { border-color: #999;background: #E26868;color: #999; }
+.alert-warning-alt { border-color: #999;background: #faebcc;color: #999; }
+.alert-success-alt { border-color: #999;background: #d6e9c6;color: #999; }
+.glyphmargin .glyphicon { margin-right:10px; }
+.alert a {color: gold;}
+.left{float:left;}

@@ -1,0 +1,70 @@
+#{extends 'main.html' /}
+#{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+#{set title:'logsManage.html' /}
+<div class="form-group">
+    <a href="@{Application.index()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-arrow-left"></span>&{'Back'}</a>
+    <h3>&{'Logs'}</h3>
+    <hr class="text-primary">
+</div>
+#{if (logsList==null || logsList?.size()==0) && isFilteringMode == false}
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">&{'LogsList'}</h3>
+    </div>
+    <div class="panel-body">
+        &{'Listisempty'}!
+    </div>
+</div>
+#{/if}
+#{else}
+
+<div class="row form-group">
+	<form class="form-inline" method="post" action="@{searchByType()}" id="filter2" name="logType">
+		<div class="col-sm-3">
+			<select data-placeholder="&{'SearchbyType'}" class="chosen-select-deselect required" tabindex="5" name="type" onchange="document.logType.submit();">
+				<option value=""></option> #{list items:utils.Enums.LogType.values(), as:'type'} 
+				<option value="${type?.ordinal()}" %{if(intType==type?.ordinal())out.print("selected")}%>&{type?.name()}</option>  #{/list}
+			</select><span class="input-append"></span>
+		</div>
+		#{if isFilteringMode==true}
+        <div class="col-xs-2 col-sm-1">
+			<a href="@{AppLogs.logsManage()}" class="btn btn-primary"><span> &{'ShowAll'}</span></a>
+        </div>
+        #{/if}
+		</form>
+</div>
+
+<div class="panel panel-primary filterable">
+    <div class="panel-heading">
+        <h3 class="panel-title">&{'LogsList'}</h3>
+    </div>
+    <table class="table">
+        <thead>
+            <tr class="filters">
+                <th>&{'Type'}</th>
+                <th>&{'Date'}</th>
+                <th>&{'Employee'}</th>
+                <th>&{'Message'}</th>
+                <th ><span class="hidden-xs">&{'View'}</span></th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list logsList, as:'log'}
+             
+             <tr>
+             <td class="${log?.getModuleColor()}">&{utils.Enums.LogType.values()[log?.module_id]}</td>
+                <td>${log?.submitDate?.format('dd/MM/yyyy-hh:mm')}</td>
+                <td>${log?.getEmployee()?.name}</td>
+                <td>${log?.message}</td>
+                <td>
+                    #{if log?.link} <a href="${log.link}" title="&{'View'}" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>#{/if}
+                    #{else} <a href="#" style="color:black;"><span class="glyphicon glyphicon-eye-open"></span></a> #{/else}
+                </td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+</div>
+#{include 'include/pagination.html' /}
+#{/else}

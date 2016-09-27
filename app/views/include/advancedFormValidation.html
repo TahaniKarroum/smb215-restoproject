@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="/public/stylesheets/bootstrapValidator.min.css" />
+<script type="text/javascript" src="/public/javascripts/bootstrapValidator.js"></script>
+<script type="text/javascript">
+
+function addField_Required(formID, elementID) {
+	$('#'+formID).bootstrapValidator('addField', elementID, {
+	    validators: {
+		    notEmpty: {
+		    	message: "&{'Required'}"
+		    }
+	    }
+	});
+	return true;
+}
+
+function addField_GreaterThan(formID, elementID, val, orEqual) {
+	$('#'+formID).bootstrapValidator('addField', elementID, {
+		validators: {
+			greaterThan: {
+				value : val,
+				 message :"&{'ToBeGreaterThan'} 0",
+				inclusive : orEqual
+			}
+		}
+	});
+}
+
+function addField_Required_GreaterThan(formID, elementID, val, orEqual) {
+	$('#'+formID).bootstrapValidator('addField', elementID, {
+		validators: {
+			notEmpty: {
+		    	message : "&{'Required'}"
+		    },
+			greaterThan: {
+				value : val,
+				 message :"&{'ToBeGreaterThan'} 0",
+				inclusive : orEqual
+			}
+		}
+	});
+}
+
+function addFloatField_Required_GreaterThan(formID, elementID, val, orEqual) {
+	$('#'+formID).bootstrapValidator('addField', elementID, {
+		validators: {
+			notEmpty: {},
+			greaterThan: {
+				value : val,
+				inclusive : orEqual
+			}
+		}
+	});
+}
+
+function addField_Required_Between(formID, elementID, min, orEqualMin, max, orEqualMax) {
+// 	alert($('#'+elementID).val());
+	$('#'+formID).bootstrapValidator('addField', elementID, {
+		validators: {
+			notEmpty: {},
+			greaterThan: {
+				value : min,
+				inclusive : orEqualMin
+			},
+			lessThan: {
+				value : max,
+				inclusive : orEqualMax
+			}
+		}
+	});
+}
+
+function revalidateElement(formID, elementID) {
+    $('#'+formID).bootstrapValidator('revalidateField', elementID);
+}
+
+function removeElement(formID, elementID) {
+    $('#'+formID).bootstrapValidator('removeField', elementID);
+
+}
+
+function removeElements(formID, elementsIDs) {
+    for ( var elementID in iconsTable) {
+    	if ($('#' + elementID).length > 0) {
+    	    $('#'+formID).bootstrapValidator('removeField', elementID);
+    	}
+    }
+}
+
+function revalidateThis(element) {
+	var formID = $(element).closest('form').attr('id');
+    $('#'+formID).bootstrapValidator('revalidateField', element.id);
+}
+
+
+</script>

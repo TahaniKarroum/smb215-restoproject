@@ -33,27 +33,40 @@
 			<div class="">
 				<ul class="nav navbar-nav">
 					
-					<li class="${currentPage?.equals('categories') ? 'active':''}"><a
+					<li class="${currentPage?.equals('categories') ? 'activeli':''}"><a
 						href="@{Categories.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title=" &{'FoodCategories'}"> <span
 								class="fa fa-sitemap"></span>
 						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'Categories'}
 						</span>
 					</a></li>
-					<li class="${currentPage?.equals('brands') ? 'active':''}"><a
+					<li class="${currentPage?.equals('brands') ? 'activeli':''}"><a
 						href="@{Brands.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title=" &{'Brands'}"> <span
 								class="glyphicon glyphicon-bold"></span>
 						</span> <span class="full-nav"><span class="glyphicon glyphicon-bold"></span> &{'Brands'}
 						</span>
 					</a></li>
-						<li class="${currentPage?.equals('unitsList') ? 'active':''}"><a
+						<li class="${currentPage?.equals('unitsList') ? 'activeli':''}"><a
 						href="@{MeasureTypes.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title=" &{'MeasureTypes'}"> <span
 								class="fa fa-list"></span>
 						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'MeasureTypes'}
 						</span>
 					</a></li>
+					<li class="${currentPage?.equals('vendorsList') ? 'activeli':''}"><a
+						href="@{Vendors.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'VendorsList'}"> <span class="fa fa-group"></span>
+						</span> <span class="full-nav"><span class="fa fa-group"></span> &{'VendorsList'} </span>
+					</a></li>
+					<li class="${currentPage?.equals('newProductStock') ? 'activeli':''}"><a
+						href="@{Products.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Products'}"> <span
+								class="fa fa-barcode"></span>
+						</span> <span class="full-nav"><span class="fa fa-barcode"></span> &{'Products'}
+						</span>
+					</a></li>
+					
 				</ul>
 			</div>
 		</div>

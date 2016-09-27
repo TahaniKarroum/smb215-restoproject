@@ -1,0 +1,74 @@
+#{extends 'stockMain.html' /} #{set title:'menuManage.html' /}  #{set title:'Manage Plates' /} #{include
+'include/tableWithFilterHead.html' /}
+ #{include 'include/formHead.html' /}
+<div class="form-group">
+	<a href="@{Products.productForm()}" class="btn btn-primary pull-right btn-sm"><span
+		class="glyphicon glyphicon-plus-sign"></span> &{'AddProduct'}</a>
+	<h3>&{'Products'}</h3>
+	<hr class="text-primary">
+</div>
+<br>
+#{if productsList==null || productsList?.size()==0}
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'ProductsList'}</h3>
+	</div>
+	<div class="panel-body">&{'listIsEmpty'}</div>
+</div>
+#{/if} #{else}
+
+
+<div class="panel panel-primary filterable">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'ProductsList'}</h3>
+		<div class="pull-right">
+			<button class="btn btn-default btn-xs btn-filter">
+				<span class="glyphicon glyphicon-filter"></span> &{'Filter'}
+			</button>
+		</div>
+	</div>
+	<table class="table table-striped">
+		<thead>
+			<tr class="filters">
+				<th><input type="text" class="form-control"
+					placeholder="&{'Name'}" disabled></th>
+				<th><input type="text" class="form-control"
+					placeholder="&{'Category'}" disabled></th>
+				<th><input type="text" class="form-control"
+					placeholder="&{'MeasureUnit'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'Price'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'Cost'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'QuantityInStock'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'MinQuantity'}" disabled></th>
+				<th>&{'Action'}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!--#{list productsList, as:'product'} -->
+			#{if product?.qteInStock < product?.limitLevel }
+			<tr class="danger">
+			#{/if}
+			#{else}
+			<tr>
+			#{/else}
+				<td>${product?.name}</td>
+				<td>${product?.getCategoryName()}</td>
+				<td>${product?.getUnitMeasureName()}</td>
+				<td>${product?.price}</td>
+				<td>${product?.cost}</td>
+				<td>${product?.qteInStock}</td>
+				<td>${product?.limitLevel}</td>
+				<td>
+				<a href="@{Products.productForm(product?.ID)}"
+					title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-primary bigBtn"></span></a>
+				</td>
+			</tr>
+			<!--#{/list} -->
+		</tbody>
+	</table>
+</div>
+#{include 'include/deleteConfirmDialog.html' /} #{/else}

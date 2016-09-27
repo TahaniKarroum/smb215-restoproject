@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import controllers.AppLogs;
 import siena.Entity;
 import siena.Generator;
 import siena.Id;
@@ -12,6 +13,7 @@ import siena.Max;
 import siena.Model;
 import siena.Query;
 import utils.Enums;
+import utils.Enums.LogType;
 
 @Entity
 public class Product extends Model {
@@ -28,6 +30,8 @@ public class Product extends Model {
 	public int maxLimitLevel;
 	public double qteInStock;
 	public double stockCostPerYear;
+	public double price;
+	public double cost;
 	@Max(256)
 	public String stockLocation;
 	public int nearLimit;
@@ -95,6 +99,7 @@ public class Product extends Model {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
 			Model.batch(Product.class).insert(this);
+			AppLogs.createLog(LogType.Product.ordinal(), ID);
 		} else {
 			Model.batch(Product.class).update(this);
 		}
@@ -110,10 +115,17 @@ public class Product extends Model {
 	}
 
 	public String getUnitMeasureName() {
-		Unit unit = Unit.getByID(mesureUnit_ID);
+		MeasureUnit unit = MeasureUnit.getByID(mesureUnit_ID);
 		if (unit == null)
 			return "";
-		return unit.unit;
+		return unit.label;
+	}
+	
+	public MeasureUnit getMeasureUnit() {
+		MeasureUnit unit = MeasureUnit.getByID(mesureUnit_ID);
+		if (unit == null)
+			return null;
+		return unit;
 	}
 
 	public String getPurchasedUnitName() {

@@ -1,0 +1,34 @@
+#{extends 'stockMain.html' /}
+<br/>
+<div id="noActionBar">
+	<div id="title" style="padding-top: 20px;padding-left:140px;">Select Vendor</div>
+</div>
+
+#{ifnot vpList }
+<div class="notification" style="width:98%">This Product Has No Vendors!</div>
+#{/ifnot} 
+#{else}
+
+<table class="gridTable" width="100%" border="1">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Ship duration</th>
+			<th>Average Cost</th>
+			<th>Select</th>
+		</tr>
+	</thead>
+	<tbody>
+		%{ var = 1; }% #{list items:vpList, as:'vp'}
+		<tr %{ if(var%2 == 0) println "class='light' "; else
+			println "class='dark'"; }%>
+			<td width="290px">${vp_vMap?.get(vp)?.name}</td>
+			<td width="290px">${vp?.shipDuration / nb_vp_vMap?.get(vp)}</td>
+			<td width="290px">${vp?.cost / nb_vp_vMap?.get(vp)}</td>
+			</tr>
+		%{ var += 1; }%
+	</tbody>
+
+	#{/list}
+</table>
+#{/else}

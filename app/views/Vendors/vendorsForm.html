@@ -1,0 +1,96 @@
+#{extends 'stockMain.html' /}
+#{include 'include/formHead.html' /}
+<form class="form-horizontal RestoFormValidation" role="form" action="@{saveVendor()}" method="post" id="restoForm" name="vendorForm">
+
+	<div class="row">
+		<div class="col-xs-10">
+			<h3>#{if vendor?.ID == null} &{'AddVendor'} #{/if} #{else} &{'EditVendor'} #{/else}</h3>
+		</div>
+		<div class="col-xs-1">
+			<button type="submit" class="btn btn-primary vertical pull-right">&{'Save'}</button>
+		</div>
+		<div class="col-xs-1">
+			<a href="@{manage()}" class="btn btn-danger vertical pull-right" id="cancel">&{'Cancel'}</a>
+		</div>
+		<hr>
+	</div>
+
+<div class="row">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="@{Vendors.vendorsForm(vendor.ID)}">&{'MainInfo'}</a></li>
+        <li><a href="@{Vendors.vendorProductsForm(vendor.ID)}">&{'ProductsList'}</a></li>        
+    </ul>
+    <br>
+</div>
+    <fieldset>
+        #{field 'vendor.ID'} <input type="hidden" name="${field.name}" value="${vendor?.ID}" /> #{/field}
+        #{field 'vendor.isActive'} <input type="hidden" name="${field.name}" value="${vendor?.isActive}" /> #{/field}
+        <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'FullName'}*</label>
+            <div class="form-input-en">
+                #{field 'vendor.name'}<input id="${field?.id}" name="${field.name}" value="${vendor?.name}"  type="text" placeholder="&{'Name'}" class="form-control required" autofocus> #{/field}
+            </div>
+        </div>
+        <div class="form-group">
+			#{field 'vendor.address'}
+			<label for="${field?.id}" class="form-label-en">&{'Address'}*</label>
+			<div class="form-input-en">
+				<input id="${field?.id}" name="${field?.name}" value="${field?.value}" type="text" placeholder="&{'Address'}" class="form-control required">
+			</div>
+			#{/field}
+		</div>
+         <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'ContactName'}*</label>
+            <div class="form-input-en">
+                #{field 'vendor.contactName'}<input id="${field?.id}" name="${field.name}" value="${vendor?.contactName}"  type="text" placeholder="&{'Name'}" class="form-control required"> #{/field}
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'Mobile'}</label>
+            <div class="form-input-en">
+                 #{field 'vendor.mobile'}<input id="${field?.id}" name="${field.name}" value="${vendor?.mobile}"  type="text" placeholder="&{'Mobile'}" class="form-control atLeastOneRequired_1 phone"> #{/field}
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'LandPhone'}</label>
+            <div class="form-input-en">
+                #{field 'vendor.landPhone'}<input id="${field?.id}" name="${field.name}" value="${vendor?.landPhone}"  type="text" placeholder="&{'LandPhone'}" class="form-control atLeastOneRequired_2 phone"> #{/field}
+          <span class="help-block"><small class="text-primary">&{'MobileOrPhoneisRequired'}</small></span>
+            </div>
+  
+        </div> 
+          <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'Email'}</label>
+            <div class="form-input-en">
+                #{field 'vendor.email'}<input id="${field?.id}" name="${field.name}" value="${vendor?.email}"  type="text" placeholder="&{'Email'}" class="form-control"> #{/field}
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'Fax'}</label>
+            <div class="form-input-en">
+                 #{field 'vendor.fax'}<input id="${field?.id}" name="${field.name}" value="${vendor?.fax}"  type="text" placeholder="&{'Fax'}" class="form-control phone"> #{/field}
+            </div>
+        </div>
+         <div class="form-group">
+            <label for="${field.id}" class="form-label-en">&{'Website'}</label>
+            <div class="form-input-en">
+                 #{field 'vendor.website'}<input id="${field?.id}" name="${field.name}" value="${vendor?.website}"  type="text" placeholder="http://www.website.com" class="form-control"> #{/field}
+            </div>
+        </div>
+        </fieldset>
+        <fieldset>
+        <legend>&{'AdditionalInfo'}</legend>
+		 
+        <div class="form-group">
+                <label class="form-label-en" for="passwordinput">&{'Remarks'}</label>
+                <div  class="form-input-en">
+                    #{field 'vendor.remarks'}
+                    <textarea class="form-control counted1" id="${field.id}" name="${field.name}" rows="2" >${vendor.remarks}</textarea>
+                    #{/field}
+                 
+                </div>
+        </div>
+     
+    </fieldset>
+</form>
+#{include 'include/formValidation.html' /}

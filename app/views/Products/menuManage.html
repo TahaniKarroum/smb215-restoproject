@@ -43,8 +43,13 @@
 			<tr>
 				<td>${product?.name}</td>
 				<td>${product?.getCategoryName()}</td>
-				<td><a href="@{Products.menuProductForm(product?.ID)}"
+				<td>
+				<a href="@{Products.menuProductForm(product?.ID)}"
 					title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success bigBtn"></span></a>
+				
+					<a
+					href="@{Products.productComposition(product?.ID)}" title="&{'Composition'}"><span
+						class="fa fa-sitemap text-success fa-big"></span></a>
 				</td>
 			</tr>
 			<!--#{/list} -->
