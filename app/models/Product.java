@@ -59,7 +59,6 @@ public class Product extends Model {
 	public int priceType_ID;
 	public int productType_ID;
 
-
 	@Override
 	public String toString() {
 		return "Product [ID=" + ID + ", name=" + name + ", barcode=" + barcode + ", imagePath=" + imagePath
@@ -88,6 +87,11 @@ public class Product extends Model {
 	public static Query<Product> allMenuProducts() {
 		return Model.all(Product.class).filter("productType_ID", Enums.ProductType.menu.ordinal()).order("name");
 	}
+
+	public static Query<Product> getProductByCategory(String category_ID) {
+		return Model.all(Product.class).filter("category_ID", category_ID).order("name");
+	}
+
 	public String getCategoryName() {
 		Category category = Category.getByID(category_ID);
 		if (category == null)
@@ -120,7 +124,7 @@ public class Product extends Model {
 			return "";
 		return unit.label;
 	}
-	
+
 	public MeasureUnit getMeasureUnit() {
 		MeasureUnit unit = MeasureUnit.getByID(mesureUnit_ID);
 		if (unit == null)

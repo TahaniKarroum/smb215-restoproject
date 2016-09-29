@@ -22,7 +22,7 @@ public class Category extends Model {
 
 	@Override
 	public String toString() {
-		return "Category [ID=" + ID + ", name=" + name + ", description=" + description + "]";
+		return "Category [ID=" + ID + ", name=" + name+"]";
 	}
 
 	public static Query<Category> all() {

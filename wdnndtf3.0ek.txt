@@ -1,0 +1,137 @@
+﻿Merge remote-tracking branch 'origin/master'
+
+# Conflicts:
+#	tmp/bytecode/DEV/_app_views_AppLogs_logsManage.html
+#	tmp/bytecode/DEV/_app_views_Products_menuManage.html
+#	tmp/bytecode/DEV/_app_views_Vendors_manage.html
+#	tmp/bytecode/DEV/_app_views_errors_404.html
+#	tmp/bytecode/DEV/_app_views_include_deleteConfirmDialog.html
+#	tmp/bytecode/DEV/_app_views_include_formValidation.html
+#	tmp/bytecode/DEV/_app_views_include_formatNumber.html
+#	tmp/bytecode/DEV/_app_views_include_tableWithFilterHead.html
+#	tmp/bytecode/DEV/_app_views_productsMain.html
+#	tmp/bytecode/DEV/_module_crudsiena-2.0.1__app_views_tags_crud_types.tag
+#	tmp/bytecode/DEV/_module_crudsiena-2.0.1__conf_routes
+#	tmp/bytecode/DEV/controllers.CRUD$For
+#	tmp/bytecode/DEV/controllers.CRUD$Hidden
+#	tmp/bytecode/DEV/controllers.CRUD$ObjectType
+#	tmp/bytecode/DEV/controllers.CRUD$ObjectType$ObjectField
+#	tmp/bytecode/DEV/controllers.MeasureTypes
+#	tmp/bytecode/DEV/controllers.MeasureUnits
+#	tmp/bytecode/DEV/controllers.Products
+#	tmp/bytecode/DEV/controllers.Vendor_Products
+#	tmp/bytecode/DEV/controllers.Vendors
+#	tmp/bytecode/DEV/models.Brand
+#	tmp/bytecode/DEV/models.MeasureType
+#	tmp/bytecode/DEV/models.MeasureUnit
+#	tmp/bytecode/DEV/models.PVendor
+#	tmp/bytecode/DEV/models.Product
+#	tmp/bytecode/DEV/models.Product_MeasureUnit
+#	tmp/bytecode/DEV/models.Product_product_Composition
+#	tmp/bytecode/DEV/models.Vendor_Product
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch and 'origin/master' have diverged,
+# and have 1 and 1 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	modified:   .classpath
+#
+# Changes not staged for commit:
+#	modified:   app/controllers/Api.java
+#	modified:   app/models/Category.java
+#	modified:   app/models/Product.java
+#	modified:   tmp/bytecode/DEV/DocViewerPlugin
+#	deleted:    tmp/bytecode/DEV/_app_views_Accounts_accountsReports.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Accounts_displayAllAccounts.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Accounts_updateAccountForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Application_employeeLoginForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Application_index.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Brands_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Categories_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Categories_menuCategoryForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Categories_menuManage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Employees_employeeChangePasswordForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Employees_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_MeasureTypes_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_MeasureUnits_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Products_manage.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Products_menuProductForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Products_productComposition.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Products_productForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Vendors_vendorProductsForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_Vendors_vendorsForm.html
+#	deleted:    tmp/bytecode/DEV/_app_views_accountMain.html
+#	deleted:    tmp/bytecode/DEV/_app_views_employeeMain.html
+#	deleted:    tmp/bytecode/DEV/_app_views_errors_500.html
+#	deleted:    tmp/bytecode/DEV/_app_views_include_formHead.html
+#	deleted:    tmp/bytecode/DEV/_app_views_include_pagination.html
+#	deleted:    tmp/bytecode/DEV/_app_views_include_paginationMeasureUnit.html
+#	deleted:    tmp/bytecode/DEV/_app_views_include_paginationmenu.html
+#	deleted:    tmp/bytecode/DEV/_app_views_include_topbarMenu.html
+#	deleted:    tmp/bytecode/DEV/_app_views_main.html
+#	deleted:    tmp/bytecode/DEV/_app_views_stockMain.html
+#	deleted:    tmp/bytecode/DEV/_play__framework_templates_errors_404.txt
+#	deleted:    tmp/bytecode/DEV/_play__framework_templates_tags_404.html
+#	deleted:    tmp/bytecode/DEV/_play__framework_templates_tags_500.html
+#	modified:   tmp/bytecode/DEV/controllers.Accounts
+#	modified:   tmp/bytecode/DEV/controllers.Api
+#	modified:   tmp/bytecode/DEV/controllers.AppLogs
+#	modified:   tmp/bytecode/DEV/controllers.Application
+#	modified:   tmp/bytecode/DEV/controllers.Brands
+#	modified:   tmp/bytecode/DEV/controllers.CRUD
+#	modified:   tmp/bytecode/DEV/controllers.CRUD$Exclude
+#	modified:   tmp/bytecode/DEV/controllers.CRUD$For
+#	modified:   tmp/bytecode/DEV/controllers.CRUD$Hidden
+#	modified:   tmp/bytecode/DEV/controllers.CRUD$ObjectType
+#	modified:   tmp/bytecode/DEV/controllers.CRUD$ObjectType$ObjectField
+#	modified:   tmp/bytecode/DEV/controllers.Categories
+#	modified:   tmp/bytecode/DEV/controllers.Employees
+#	modified:   tmp/bytecode/DEV/controllers.PlayDocumentation
+#	modified:   tmp/bytecode/DEV/controllers.Transactions
+#	modified:   tmp/bytecode/DEV/helpers.CheatSheetHelper
+#	modified:   tmp/bytecode/DEV/helpers.CheatSheetHelper$1
+#	modified:   tmp/bytecode/DEV/helpers.CheatSheetHelper$2
+#	modified:   tmp/bytecode/DEV/helpers.CheatSheetHelper$3
+#	modified:   tmp/bytecode/DEV/models.Account
+#	modified:   tmp/bytecode/DEV/models.AppLog
+#	modified:   tmp/bytecode/DEV/models.Brand
+#	modified:   tmp/bytecode/DEV/models.Category
+#	modified:   tmp/bytecode/DEV/models.Client
+#	modified:   tmp/bytecode/DEV/models.Country
+#	modified:   tmp/bytecode/DEV/models.Employee
+#	modified:   tmp/bytecode/DEV/models.MeasureType
+#	modified:   tmp/bytecode/DEV/models.MeasureUnit
+#	modified:   tmp/bytecode/DEV/models.PVendor
+#	modified:   tmp/bytecode/DEV/models.Product
+#	modified:   tmp/bytecode/DEV/models.Product_MeasureUnit
+#	modified:   tmp/bytecode/DEV/models.Product_product_Composition
+#	modified:   tmp/bytecode/DEV/models.Transaction
+#	modified:   tmp/bytecode/DEV/models.Unit
+#	modified:   tmp/bytecode/DEV/utils.Enums
+#	modified:   tmp/bytecode/DEV/utils.Enums$LogType
+#	modified:   tmp/bytecode/DEV/utils.Enums$MeasureUnitMode
+#	modified:   tmp/bytecode/DEV/utils.Enums$MesureUnit
+#	modified:   tmp/bytecode/DEV/utils.Enums$ProductStatus
+#	modified:   tmp/bytecode/DEV/utils.Enums$ProductStatus$DiscountType
+#	modified:   tmp/bytecode/DEV/utils.Enums$ProductType
+#	modified:   tmp/bytecode/DEV/utils.Enums$ShippingMethod
+#	modified:   tmp/bytecode/DEV/utils.Enums$VendorPaymentType_ID
+#	modified:   tmp/bytecode/DEV/utils.Enums$VendorType
+#	modified:   tmp/bytecode/DEV/utils.Enums$categoryType
+#	modified:   tmp/bytecode/DEV/utils.Enums$clientType
+#	modified:   tmp/bytecode/DEV/utils.Enums$saleOrderType
+#	modified:   tmp/bytecode/DEV/utils.Pagination
+#
+
