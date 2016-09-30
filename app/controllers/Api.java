@@ -38,4 +38,15 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
+	public static JSONArray checkAvailableProduct(String productid) {
+		Gson gson = new Gson();
+		Product pro = Product.getByID(productid);
+		JSONArray jsonA = null;
+		if (pro.qteInStock > 0) {
+			String jsonData = gson.toJson(pro);
+			jsonA = JSONArray.fromObject(jsonData);
+		}
+		return jsonA;
+	}
+
 }
