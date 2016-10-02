@@ -81,14 +81,10 @@
         
         <!-- ============ Menu  ============= -->
 
-<section id ="menu" class="description_content">
-        #{include 'WebApplication/menu.html' /}
-<script>
-	$.get("../../controllers/WebApplication/foodMenu", function(data){
-				$('#menu').html(data);
-	} )
-</script>
-</section>
+		<section id ="menu" class="description_content">
+        	#{include 'WebApplication/menu.html' /}
+		</section>
+
         <!-- ============ Reservation  ============= -->
 
         <section  id="reservation"  class="description_content">

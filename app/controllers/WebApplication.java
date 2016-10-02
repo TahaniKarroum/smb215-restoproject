@@ -17,21 +17,11 @@ public class WebApplication extends Controller {
 
     public static void index() {
     	System.out.println("Website");
-        render();
+    	List<Category> foodMenuCategories = foodMenu();
+        render(foodMenuCategories);
     }
-    
-    public static void menu() {
-    	System.out.println("Menu section");
-    	int menuCategoriesCount = Category.allMenuCategories().count(); 	
-    	System.out.println("menu categories count"+menuCategoriesCount);
-		List<Category> foodMenuCategories = null;
-		if(menuCategoriesCount > 0){
-			foodMenuCategories = Category.allMenuCategories().fetch();
-		}
-		render(foodMenuCategories);
-	}
-    
-    public List<Category> foodMenu(){
+        
+    public static List<Category> foodMenu(){
     	System.out.println("Menu section");
     	int menuCategoriesCount = Category.allMenuCategories().count(); 	
     	System.out.println("menu categories count"+menuCategoriesCount);
