@@ -12,3 +12,5 @@ Les fonctionnalités :
 ->Gestion des produits: Les capacités de suivi des stocks par exemple quels produits se vendent, ce qui doit être réorganisées et identifie les éléments qui ont été volés ou sont autrement manquants. La fonctionnalité d'achat intégré est utilisé pour suivre les listes de fournisseurs, gérer les coûts des articles et générer et recevoir des ordres d'achat.
 
 Ce projet sera faite par java , mysql concernant le système et android pour l' application mobile
+
+Merge l'application android : https://github.com/TahaniKarroum/smb215-restoapplication dans le folder dans ce projet : Application Restaurant android
