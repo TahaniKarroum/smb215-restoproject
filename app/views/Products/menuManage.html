@@ -32,6 +32,8 @@
 			<tr class="filters">
 				<th><input type="text" class="form-control"
 					placeholder="&{'Name'}" disabled></th>
+					<th><input type="text" class="form-control"
+					placeholder="&{'Price'}" disabled></th>
 				<th><input type="text" class="form-control"
 					placeholder="&{'Category'}" disabled></th>
 	
@@ -42,6 +44,7 @@
 			<!--#{list productsList, as:'product'} -->
 			<tr>
 				<td>${product?.name}</td>
+				<td>${product?.price}</td>
 				<td>${product?.getCategoryName()}</td>
 				<td>
 				<a href="@{Products.menuProductForm(product?.ID)}"

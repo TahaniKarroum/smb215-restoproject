@@ -36,6 +36,22 @@
 			#{/field}
 		</div>
 <br>
+
+<div class="row">
+			<div class="col-md-2">
+				#{field 'product.price'} <label for="${field?.id}"
+					class="form-label-en">&{'Price'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" type="text" placeholder="&{'Price'}"
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+<br>
 		<div class="row">
 			<div class="col-md-2">
 				#{field 'product.category_ID'} <label class="form-label-en" for="">&{'Category'}*</label>
