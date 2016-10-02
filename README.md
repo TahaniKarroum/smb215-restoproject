@@ -13,4 +13,4 @@ Les fonctionnalités :
 
 Ce projet sera faite par java , mysql concernant le système et android pour l' application mobile
 
-Merge l'application android : https://github.com/TahaniKarroum/smb215-restoapplication dans le folder dans ce projet : Application Restaurant android
+Le link d'application android : https://github.com/TahaniKarroum/smb215-restoapplication 
