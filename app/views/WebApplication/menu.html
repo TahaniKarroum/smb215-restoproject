@@ -1,0 +1,49 @@
+#{if (foodMenuCategories != null && foodMenuCategories?.size() != 0)}
+
+     <div class="pricing background_content">
+        <h1><span>Checkout</span> Our menu</h1>
+     </div>
+    <div class="text-content container"> 
+        <div class="container">
+            <div class="row">
+                <div id="w">
+                    <ul id="filter-list" class="clearfix">
+                        <li class="filter" data-filter="all">All</li>
+                        #{list foodMenuCategories, as:'category'}
+                        <li class="filter" data-filter="breakfast">${category.name}</li>
+                        #{/list}
+                        
+                    </ul><!-- @end #filter-list -->    
+                    <ul id="portfolio">
+                        <li class="item breakfast"><img src="/public/template/images/food_icon01.jpg" alt="Food" >
+                            <h2 class="white">$20</h2>
+                        </li>
+
+                        <li class="item dinner special"><img src="/public/template/images/food_icon02.jpg" alt="Food" >
+                            <h2 class="white">$20</h2>
+                        </li>
+                        <li class="item dinner breakfast"><img src="/public/template/images/food_icon03.jpg" alt="Food" >
+                            <h2 class="white">$18</h2>
+                        </li>
+                        <li class="item special"><img src="/public/template/images/food_icon04.jpg" alt="Food" >
+                            <h2 class="white">$15</h2>
+                        </li>
+                        <li class="item dinner"><img src="/public/template/images/food_icon05.jpg" alt="Food" >
+                            <h2 class="white">$20</h2>
+                        </li>
+                        <li class="item special"><img src="/public/template/images/food_icon06.jpg" alt="Food" >
+                            <h2 class="white">$22</h2>
+                        </li>
+                        <li class="item desert"><img src="/public/template/images/food_icon07.jpg" alt="Food" >
+                            <h2 class="white">$32</h2>
+                        </li>
+                        <li class="item desert breakfast"><img src="/public/template/images/food_icon08.jpg" alt="Food" >
+                            <h2 class="white">$38</h2>
+                        </li>
+                    </ul><!-- @end #portfolio -->
+                </div><!-- @end #w -->
+            </div>
+        </div>
+    </div>  
+
+#{/if}
