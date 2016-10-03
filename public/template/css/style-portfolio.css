@@ -91,11 +91,11 @@
   max-width: 100%;
 }
 
-@media (min-width: 991px) {
+/*@media (min-width: 991px) {
 	#portfolio .item:nth-child(5),
 	#portfolio .item:nth-child(6),
 	#portfolio .item:nth-child(7),
 	#portfolio .item:nth-child(8) {
 		margin-bottom: 0;
 	}
-}
+}*/
