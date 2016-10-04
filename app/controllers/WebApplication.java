@@ -19,6 +19,7 @@ public class WebApplication extends Controller {
     	System.out.println("Website");
     	List<Category> foodMenuCategories = foodCategories();
     	List<Product> foodMenu = foodMenu();
+    	HashMap<String, String> hmap = new HashMap<String, String>();
         render(foodMenuCategories, foodMenu);
     }
         
