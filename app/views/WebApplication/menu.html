@@ -16,7 +16,7 @@
                     <ul id="portfolio">
                     #{if (foodMenu != null && foodMenu?.size() != 0)}
                     	#{list foodMenu, as:'food'}
-                    	<li class="item breakfast"><img src="/public/template/images/food_icon01.jpg" alt="${food.name}" >
+                    	<li class="item breakfast"><img src="/public/template/images/${food.imagePath}" alt="${food.name}" >
                             <h2 class="white">${food.price}</h2>
                         </li>
                         #{/list}

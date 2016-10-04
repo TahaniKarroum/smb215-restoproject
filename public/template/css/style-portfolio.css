@@ -87,8 +87,13 @@
   background: #fff;
 
 }
-#portfolio .item img {
+/*#portfolio .item img {
   max-width: 100%;
+}*/
+
+#portfolio .item img {
+    width: 100%;
+    height: 140px;
 }
 
 /*@media (min-width: 991px) {
