@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import models.Category;
+import models.Client;
 import models.Product;
 import net.sf.json.JSONArray;
 
@@ -46,6 +47,20 @@ public class Api extends controllers.CRUD {
 			String jsonData = gson.toJson(pro);
 			jsonA = JSONArray.fromObject(jsonData);
 		}
+		return jsonA;
+	}
+
+	public static JSONArray ping(String deviceid) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		if (cl == null) {
+			cl = new Client();
+		}
+		cl.device_uid = deviceid;
+		cl.name = "xxx";
+		cl.saveClient();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(cl);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
 
