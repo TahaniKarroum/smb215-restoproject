@@ -94,4 +94,16 @@ public class Api extends controllers.CRUD {
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
+	
+	public static JSONArray fillClientInformation(String deviceid,String name,String address, String phone) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		cl.name = name;
+		cl.address = address;
+		cl.phone=phone;
+		cl.saveClient();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(cl);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+	}
 }
