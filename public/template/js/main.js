@@ -39,7 +39,7 @@
 	
        
         $(function(){
-            $('#portfolio').mixitup({
+            $('#foodMenu').mixitup({
                 targetSelector: '.item',
                 transitionSpeed: 350
             });
