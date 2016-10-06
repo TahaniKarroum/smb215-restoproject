@@ -64,4 +64,12 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
+	public static JSONArray addtocart(String deviceid, String productid) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		Product pr = Product.getByID(productid);
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(cl);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+	}
 }
