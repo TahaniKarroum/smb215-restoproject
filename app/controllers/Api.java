@@ -3,6 +3,7 @@ package controllers;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -10,8 +11,11 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import models.Category;
 import models.Client;
+import models.Order;
+import models.Order_Product;
 import models.Product;
 import net.sf.json.JSONArray;
+import siena.Model;
 
 public class Api extends controllers.CRUD {
 
@@ -64,11 +68,29 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
-	public static JSONArray addtocart(String deviceid, String productid) {
+	public static JSONArray addtocart(String deviceid, String productid, String orderid, int qty) {
 		Client cl = Client.getByDeviceId(deviceid).get();
 		Product pr = Product.getByID(productid);
+		Order_Product op = null;
+		Order order = null;
+		if (orderid != null)
+			order = Order.getByID(orderid);
+		else
+			order = new Order();
+		Date todaydate = new Date();
+		order.client_ID = cl.ID;
+		order.orderDate = todaydate;
+		order.saveOrder();
+		op = Model.all(Order_Product.class).filter("order_ID", order.ID).filter("product_ID", productid).get();
+		if (op != null) {
+			op.quantity = qty;
+			op.total = pr.price * qty;
+			op.unitPrice = pr.price;
+			op.order_ID = order.ID;
+			op.saveOrder_Product(cl.ID);
+		}
 		Gson gson = new Gson();
-		String jsonData = gson.toJson(cl);
+		String jsonData = gson.toJson(order);
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
