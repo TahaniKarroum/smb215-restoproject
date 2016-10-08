@@ -179,3 +179,8 @@
 #foodMenu .item {
 	display: none;
 }
+
+#scqty {
+    color: #96E16B;
+    font-size: 18px;
+}

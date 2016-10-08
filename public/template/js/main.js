@@ -21,6 +21,7 @@
 				$(document).on("scroll", onScroll);
 			});
 		});
+		
 	});
  
 	function onScroll(event){
@@ -50,3 +51,22 @@
         });
     
     };
+    
+    
+//    $('.product_item').each(function(index){
+//    	console.log("index: " + index);
+//    	var product_id = $(this).find('input[name="product_id"]').val();
+//    	var product_qty = $(this).find('#product_qty_' + product_id).val();
+//    	console.log("product_id = " + product_id + ", product_qty = " + product_qty);
+//    })
+    
+    function product_addtocart(product_id){
+    	var product_qty = $('#product_qty_' + product_id).val();
+    	console.log("product_id = " + product_id + ", product_qty = " + product_qty);
+    	var cart_qty = $('#scqty').text();
+    	if(cart_qty == ""){ cart_qty = "0"}
+    	console.log("cart_qty = " +cart_qty);
+    	var total_qty = parseInt(cart_qty) + parseInt(product_qty);
+    	console.log("total_qty: " + total_qty);
+    	$('#scqty').text(total_qty);
+    }

@@ -26,20 +26,21 @@
                     <div id="foodMenu">
                     #{if (foodMenu != null && foodMenu?.size() != 0)}
                     	#{list foodMenu, as:'food'}
-	                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 item ${hmap.get(food.category_ID)}">
+	                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product_item item ${hmap.get(food.category_ID)}">
 						    <div class="hovereffect">
+						    <input type="hidden" name="product_id" value="${food.ID}">
 						    <div class="food-head"><h4>${food.name}</h4><small>${food.price}$</small></div>
 						        <img class="img-responsive" src="/public/template/images/${food.imagePath}" alt="${food.name}">
 						            <div class="overlay">
 						                <p class="icon-links">
 						                	<div class="input-group spinner">
-											    <input type="text" class="form-control" value="0">
+											    <input type="text" class="form-control" name="product_qty" id="product_qty_${food.ID}" value="0">
 											    <div class="input-group-btn-vertical">
 											      <button class="btn btn-default" type="button"><i class="fa fa-caret-up"></i></button>
 											      <button class="btn btn-default" type="button"><i class="fa fa-caret-down"></i></button>
 											    </div>
 										  	</div>
-										  	<button type="button" class="btn btn-success">ADD TO CARD</button>
+										  	<button id="product_addtocart_${food.ID}" type="button" class="btn btn-success" onclick="product_addtocart('${food.ID}');">ADD TO CART</button>
 						                </p>
 						            </div>
 						    </div>
