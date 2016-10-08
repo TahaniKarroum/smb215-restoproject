@@ -160,7 +160,7 @@ h1, h2, p, span, a {
     -ms-transition: color 0.3s ease-in-out;
     transition: color 0.3s ease-in-out;
 }
-.color_animation:hover{
+.color_animation:hover, .color_animation>i:hover{
     color: #9BE86F !important;
 }
 /*========================
