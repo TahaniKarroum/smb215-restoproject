@@ -11,7 +11,7 @@ import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
 import models.Category;
 import models.Client;
-import models.Order;
+import models.ClientOrder;
 import models.Order_Product;
 import models.Product;
 import net.sf.json.JSONArray;
@@ -72,11 +72,11 @@ public class Api extends controllers.CRUD {
 		Client cl = Client.getByDeviceId(deviceid).get();
 		Product pr = Product.getByID(productid);
 		Order_Product op = null;
-		Order order = null;
+		ClientOrder order = null;
 		if (orderid != null)
-			order = Order.getByID(orderid);
+			order = ClientOrder.getByID(orderid);
 		else
-			order = new Order();
+			order = new ClientOrder();
 		Date todaydate = new Date();
 		order.client_ID = cl.ID;
 		order.orderDate = todaydate;

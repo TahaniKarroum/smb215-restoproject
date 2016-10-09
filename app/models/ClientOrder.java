@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
-public class Order extends Model {
+public class ClientOrder extends Model {
 	@Id(Generator.UUID)
 	public String ID;
 	public Date orderDate;
@@ -21,22 +21,22 @@ public class Order extends Model {
 	public String client_ID;
 	//public List<Order_Product> items;
 
-	public static Query<Order> all() {
-		return Model.all(Order.class);
+	public static Query<ClientOrder> all() {
+		return Model.all(ClientOrder.class);
 	}
 
 	public void saveOrder() {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
-			Model.batch(Order.class).insert(this);
+			Model.batch(ClientOrder.class).insert(this);
 		} else {
-			Model.batch(Order.class).update(this);
+			Model.batch(ClientOrder.class).update(this);
 		}
 	}
 
-	public static Order getByID(String ID) {
+	public static ClientOrder getByID(String ID) {
 		try {
-			Order obj = Model.getByKey(Order.class, ID);
+			ClientOrder obj = Model.getByKey(ClientOrder.class, ID);
 			return obj;
 		} catch (Exception e) {
 			return null;

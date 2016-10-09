@@ -15,7 +15,7 @@ import models.*;
 
 public class WebApplication extends Controller {
 
-    public static void index(Order order) {
+    public static void index(ClientOrder order) {
     	System.out.println("Website");
     	List<Category> foodMenuCategories = foodCategories();
     	List<Product> foodMenu = foodMenu();

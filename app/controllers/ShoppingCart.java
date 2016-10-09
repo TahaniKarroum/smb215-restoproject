@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 
 import models.Category;
 import models.Client;
-import models.Order;
+import models.ClientOrder;
 import models.Order_Product;
 import models.PVendor;
 import models.Product;
@@ -48,12 +48,12 @@ public class ShoppingCart extends controllers.CRUD {
 	
 	public static void addToCart(Order_Product op) throws IOException {
 		
-		Order order = null;
+		ClientOrder order = null;
 		if (op.order_ID != null) {
-			order = Order.getByID(op.order_ID);
+			order = ClientOrder.getByID(op.order_ID);
 		}
 		else {
-			order = new Order();
+			order = new ClientOrder();
 			op.order_ID = order.ID;
 		}
 		

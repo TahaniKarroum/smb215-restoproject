@@ -40,8 +40,8 @@ public class Order_Product extends Model {
 		return Product.getByID(product_ID);
 	}
 
-	public Order getOrder() {
-		return Order.getByID(order_ID);
+	public ClientOrder getOrder() {
+		return ClientOrder.getByID(order_ID);
 	}
 
 	public double getProductQuantityInStock() {
