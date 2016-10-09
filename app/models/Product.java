@@ -67,7 +67,7 @@ public class Product extends Model {
 				+ stockCostPerYear + ", stockLocation=" + stockLocation + ", nearLimit=" + nearLimit + ", isActive="
 				+ isActive + ", status_id=" + status_id + ", mesureUnit_ID=" + mesureUnit_ID + ", purchasedUnit_ID="
 				+ purchasedUnit_ID + ", category_ID=" + category_ID + ", lastVendor_ID=" + lastVendor_ID
-				+ ", isRemoved=" + isRemoved + ", barCodeimagePath=" + barCodeimagePath + ", manufacturer="
+				+ ", isRemoved=" + isRemoved+ ", manufacturer="
 				+ manufacturer + ", country_ID=" + country_ID + ", countryCode=" + countryCode + ", number=" + number
 				+ ", maxDiscount=" + maxDiscount + ", currentDiscount=" + currentDiscount + ", currentDiscountUnit="
 				+ currentDiscountUnit + ", isTVAAble=" + isTVAAble + ", isAllowAlarm=" + isAllowAlarm
