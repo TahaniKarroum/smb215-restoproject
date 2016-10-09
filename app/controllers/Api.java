@@ -94,16 +94,26 @@ public class Api extends controllers.CRUD {
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
-	
-	public static JSONArray fillClientInformation(String deviceid,String name,String address, String phone) {
+
+	public static JSONArray fillClientInformation(String deviceid, String name, String address, String phone) {
 		Client cl = Client.getByDeviceId(deviceid).get();
 		cl.name = name;
 		cl.address = address;
-		cl.phone=phone;
+		cl.phone = phone;
 		cl.saveClient();
 		Gson gson = new Gson();
 		String jsonData = gson.toJson(cl);
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
+	}
+
+	public static JSONArray getlistItemsByOrder(String orderid) {
+		ClientOrder order = ClientOrder.getByID(orderid);
+		List<Order_Product> items = order.getListOrderProduct();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(items);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+
 	}
 }

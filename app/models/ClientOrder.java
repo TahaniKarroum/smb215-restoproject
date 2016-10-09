@@ -19,7 +19,6 @@ public class ClientOrder extends Model {
 	public Date orderDate;
 	public double total;
 	public String client_ID;
-	//public List<Order_Product> items;
 
 	public static Query<ClientOrder> all() {
 		return Model.all(ClientOrder.class);
@@ -41,5 +40,10 @@ public class ClientOrder extends Model {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public List<Order_Product> getListOrderProduct() {
+		List<Order_Product> listOrderProducts = Model.all(Order_Product.class).filter("order_ID", ID).fetch();
+		return listOrderProducts;
 	}
 }
