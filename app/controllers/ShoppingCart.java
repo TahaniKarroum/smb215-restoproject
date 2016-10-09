@@ -34,38 +34,35 @@ import utils.Enums.VendorType;
 import utils.Enums;
 import utils.Pagination;
 
-@CRUD.For(PVendor.class)
 public class ShoppingCart extends controllers.CRUD {
-	
+
 	public static ArrayList<Order_Product> cartItems;
-	
+
 	@Before
 	public static void addDefault() throws IOException, ParseException, NoSuchAlgorithmException {
 		if (session.get("loggedInEmpID") == null)
 			Application.employeeLogin(false, true);
 		Application.onEachController();
 	}
-	
+
 	public static void addToCart(Order_Product op) throws IOException {
-		
+
 		ClientOrder order = null;
 		if (op.order_ID != null) {
 			order = ClientOrder.getByID(op.order_ID);
-		}
-		else {
+		} else {
 			order = new ClientOrder();
 			op.order_ID = order.ID;
 		}
-		
+
 		double total_price = op.unitPrice * op.quantity;
 		op.total = total_price;
-		
+
 		Date todaydate = new Date();
 		order.orderDate = todaydate;
 		order.saveOrder();
-				
+
 		WebApplication.index(order);
 	}
 
-	
 }

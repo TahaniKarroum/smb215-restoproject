@@ -9,6 +9,7 @@ import siena.Model;
 import siena.Query;
 
 import java.util.*;
+import models.Product;
 
 @Entity
 public class Order_Product extends Model {
