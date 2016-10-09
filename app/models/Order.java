@@ -8,6 +8,8 @@ import siena.Max;
 import siena.Model;
 import siena.Query;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Entity
@@ -17,6 +19,7 @@ public class Order extends Model {
 	public Date orderDate;
 	public double total;
 	public String client_ID;
+	//public List<Order_Product> items;
 
 	public static Query<Order> all() {
 		return Model.all(Order.class);
@@ -39,5 +42,4 @@ public class Order extends Model {
 			return null;
 		}
 	}
-
 }

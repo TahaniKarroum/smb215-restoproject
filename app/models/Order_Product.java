@@ -1,17 +1,17 @@
 package models;
 
 import play.*;
-import play.data.validation.Required;
 import siena.Entity;
 import siena.Generator;
 import siena.Id;
+import siena.Max;
 import siena.Model;
 import siena.Query;
+
 import java.util.*;
 
 @Entity
 public class Order_Product extends Model {
-
 	@Id(Generator.UUID)
 	public String ID;
 	public String order_ID;

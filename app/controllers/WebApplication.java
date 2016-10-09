@@ -15,7 +15,7 @@ import models.*;
 
 public class WebApplication extends Controller {
 
-    public static void index() {
+    public static void index(Order order) {
     	System.out.println("Website");
     	List<Category> foodMenuCategories = foodCategories();
     	List<Product> foodMenu = foodMenu();
@@ -23,7 +23,7 @@ public class WebApplication extends Controller {
     	for(Category cat: foodMenuCategories){
     		hmap.put(cat.ID, cat.name);
     	}
-        render(foodMenuCategories, foodMenu, hmap);
+        render(foodMenuCategories, foodMenu, hmap, order);
     }
         
     public static List<Category> foodCategories(){
