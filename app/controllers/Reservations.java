@@ -5,7 +5,10 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.Account;
 import models.Brand;
+import models.Category;
+import models.Employee;
 import models.Product;
 import models.Reservation;
 import play.mvc.*;
@@ -36,10 +39,13 @@ public class Reservations extends controllers.CRUD {
 		Reservation reservation = Reservation.getByID(ID);
 		if (reservation == null)
 			reservation = new Reservation();
+		
+		List<Account> allAccounts = Account.getAllAccounts().fetch();
+		
 		System.out.println("hhhhhhhhhhhhh "+ID);
-		System.err.println("reddddd   "+ID);
+		System.err.println(allAccounts);
 		//renderText("blablabal  "+ID+"  okkkk");
-		render(reservation);
+		render(reservation, allAccounts);
 	}
 
 	public static void saveReservation(Reservation reservation) throws IOException {
@@ -48,17 +54,13 @@ public class Reservations extends controllers.CRUD {
 	}
 
 	public static void manage() {
-		String pageNbFromSession = session.get("currentBrandsPage");
-		int itemsCount = Brand.all().count();
-		Pagination pagination = null;
-		List<Brand> brandsList = null;
+		currentPage("listofreservation");
+		int itemsCount = Reservation.all().count();
+		List<Reservation> reservationList = null;
 		if (itemsCount > 0) {
-			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
-			session.put("currentBrandsPage", pagination.getCurrentPage());
-			brandsList = Brand.all().fetch(pagination.getPageSize(), pagination.getPageStartIndex());
+			reservationList = Reservation.all().fetch();
 		}
-		List<Brand> allBrands = Model.all(Brand.class).fetch();
-		render(brandsList, pagination, allBrands);
+		render(reservationList);
 	}
 
 	public static void searchByBrand() throws IOException {
