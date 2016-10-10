@@ -17,13 +17,14 @@ public class WebApplication extends Controller {
 
     public static void index(ClientOrder order) {
     	System.out.println("Website");
+    	String orderID = order.ID;
     	List<Category> foodMenuCategories = foodCategories();
     	List<Product> foodMenu = foodMenu();
     	HashMap<String, String> hmap = new HashMap<String, String>();
     	for(Category cat: foodMenuCategories){
     		hmap.put(cat.ID, cat.name);
     	}
-        render(foodMenuCategories, foodMenu, hmap, order);
+        render(foodMenuCategories, foodMenu, hmap, orderID);
     }
         
     public static List<Category> foodCategories(){

@@ -29,7 +29,7 @@
                     	<form role="form" action="@{ShoppingCart.addToCart()}" method="post" id="product${food.ID}">
 	                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product_item item ${hmap.get(food.category_ID)}">
 						    <div class="hovereffect">
-						    #{field 'order.ID'}<input type="hidden" name="${field?.name}" value="${field?.ID}">#{/field}
+						    <input type="hidden" name="orderID" value="${orderID}">
 						    #{field 'op.product_ID'}<input type="hidden" name="${field?.name}" value="${field?.value}">#{/field}
 						    #{field 'op.unitPrice'}<input type="hidden" name="${field?.name}" value="${field?.value}">#{/field}
 						    <div class="food-head"><h4>${food.name}</h4><small>${food.price}$</small></div>
