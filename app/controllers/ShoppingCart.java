@@ -46,24 +46,22 @@ public class ShoppingCart extends controllers.CRUD {
 	}
 
 	public static void addToCart(Order_Product op) throws IOException {
-		String orderID = params.get("orderID");
 		ClientOrder order = null;
-		if (orderID != null && orderID != "") {
-			op.order_ID = orderID;
-			order = ClientOrder.getByID(orderID);
+		if (op.ID != null && op.ID != "") {
+			order = ClientOrder.getByID(op.ID);
 		} else {
 			order = new ClientOrder();
+			Date todaydate = new Date();
+			order.orderDate = todaydate;
+			order.saveOrder();
+			
 			op.order_ID = order.ID;
-		}
+		}			
 
 		double total_price = op.unitPrice * op.quantity;
 		op.total = total_price;
 		
-		op.saveOrder_Product("");
-
-		Date todaydate = new Date();
-		order.orderDate = todaydate;
-		order.saveOrder();
+		op.saveOrder_Product("");		
 
 		WebApplication.index(order);
 	}
