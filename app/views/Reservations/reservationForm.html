@@ -1,0 +1,76 @@
+#{extends 'stockMain.html' /} #{set title:'reservationForm.html' /} #{include
+'include/formHead.html' /} 
+
+<form class="form-horizontal RestoFormValidation" role="form"
+	action="@{saveReservation()}" method="post">
+	<fieldset>
+		<legend>&{'ReservationForm'}</legend>
+		<input type="hidden" name="id" value="${brand?.ID}">
+		#{field 'reservation.ID'} <input type="hidden" name="${field?.name}"
+			value="${field?.value}" /> #{/field}
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.resv_numb_pers'} <label for="${field?.id}"
+					class="form-label-en">&{'Number Of persons'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		 
+		 <br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.resv_account_id'} <label class="form-label-en" for="">&{'Account'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						 	#{list allAccounts, as:'account'}  
+						<option value="${account?.ID}" ${field.value==account?.ID?' selected':''}>${account?.type}</option>
+					 		#{/list}  
+					</select> <span class="input-append"></span>
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		
+		 <br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.res_date'} <label for="${field?.id}"
+					class="form-label-en">&{'Reservation Date'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+	
+		
+		<div class="row">
+			<div class="form-button-en">
+				<button type="submit" class="btn btn-primary">&{'Save'}</button>
+				<a href="@{manage()}" class="btn btn-danger">&{'Cancel'}</a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+#{include 'include/formValidation.html' /}
