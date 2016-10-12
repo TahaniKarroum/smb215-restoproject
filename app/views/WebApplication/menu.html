@@ -28,9 +28,9 @@
                     	#{list foodMenu, as:'food'}
                     	<form role="form" action="@{ShoppingCart.addToCart()}" method="post" id="product${food.ID}">
 	                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product_item item ${hmap.get(food.category_ID)}">
-						    <div class="hovereffect">
+						    <div class="hovereffect">	    
 						    <input type="hidden" name="orderID" value="${orderID}">
-						    #{field 'op.product_ID'}<input type="hidden" name="${field?.name}" value="${food.ID}">#{/field}
+						    #{field 'op.ID'}<input type="hidden" name="${field?.name}" value="${food.ID}">#{/field}
 						    #{field 'op.unitPrice'}<input type="hidden" name="${field?.name}" value="${food.price}">#{/field}
 						    <div class="food-head"><h4>${food.name}</h4><small>${food.price}$</small></div>
 						        <img class="img-responsive" src="/public/template/images/${food.imagePath}" alt="${food.name}">

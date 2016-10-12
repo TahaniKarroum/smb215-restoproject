@@ -19,6 +19,12 @@ public class ClientOrder extends Model {
 	public Date orderDate;
 	public double total;
 	public String client_ID;
+	
+	public static List<Order_Product> orderItems;
+	
+	public ClientOrder(){
+		this.orderItems=new ArrayList<Order_Product>();
+	}
 
 	public static Query<ClientOrder> all() {
 		return Model.all(ClientOrder.class);
@@ -40,6 +46,10 @@ public class ClientOrder extends Model {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public static void addItem(Order_Product op){
+		orderItems.add(op);
 	}
 
 	public List<Order_Product> getListOrderProduct() {

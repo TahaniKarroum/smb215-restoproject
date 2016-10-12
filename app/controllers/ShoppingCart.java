@@ -47,12 +47,17 @@ public class ShoppingCart extends controllers.CRUD {
 
 	public static void addToCart(Order_Product op) throws IOException {
 		ClientOrder order = null;
-		if (op.ID != null && op.ID != "") {
-			order = ClientOrder.getByID(op.ID);
+		String orderID = params.get("orderID");
+		if (orderID != null && orderID != "") {
+			System.out.println("product order ID = "+op.order_ID);
+			order = ClientOrder.getByID(op.order_ID);
+			op.order_ID = orderID;
+			order.addItem(op);
 		} else {
 			order = new ClientOrder();
 			Date todaydate = new Date();
 			order.orderDate = todaydate;
+			order.addItem(op);
 			order.saveOrder();
 			
 			op.order_ID = order.ID;
