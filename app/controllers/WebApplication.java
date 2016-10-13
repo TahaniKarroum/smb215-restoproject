@@ -16,7 +16,6 @@ import models.*;
 public class WebApplication extends Controller {
 
     public static void index(ClientOrder order) {
-    	System.out.println("Website");
     	
     	String orderID = "";
     	int cartItemsCount = 0;

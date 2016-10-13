@@ -48,12 +48,15 @@ public class ShoppingCart extends controllers.CRUD {
 	public static void addToCart(Order_Product op) throws IOException {
 		ClientOrder order = null;
 		String orderID = params.get("orderID");
-		if (orderID != null && orderID != "") {
-			System.out.println("product order ID = "+op.order_ID);
-			order = ClientOrder.getByID(op.order_ID);
+		
+		if (orderID != null && orderID.equals("") == false && !orderID.isEmpty()) {
+			
+			order = ClientOrder.getByID(orderID);			
 			op.order_ID = orderID;
 			order.addItem(op);
+									
 		} else {
+			
 			order = new ClientOrder();
 			Date todaydate = new Date();
 			order.orderDate = todaydate;
@@ -61,6 +64,7 @@ public class ShoppingCart extends controllers.CRUD {
 			order.saveOrder();
 			
 			op.order_ID = order.ID;
+						
 		}			
 
 		double total_price = op.unitPrice * op.quantity;

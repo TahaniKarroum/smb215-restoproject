@@ -60,8 +60,10 @@ public class Order_Product extends Model {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
 			Model.batch(Order_Product.class).insert(this);
+			System.out.println("Insert Done");
 		} else {
 			Model.batch(Order_Product.class).update(this);
+			System.out.println("Update");
 		}
 	}
 
