@@ -53,6 +53,16 @@ public class Api extends controllers.CRUD {
 		}
 		return jsonA;
 	}
+	
+	public static JSONArray getlistItemsByOrder(String orderid) {
+		ClientOrder order = ClientOrder.getByID(orderid);
+		List<Order_Product> items = order.getListOrderProduct();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(items);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+
+	}
 
 	public static JSONArray ping(String deviceid) {
 		Client cl = Client.getByDeviceId(deviceid).get();
@@ -107,13 +117,5 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
-	public static JSONArray getlistItemsByOrder(String orderid) {
-		ClientOrder order = ClientOrder.getByID(orderid);
-		List<Order_Product> items = order.getListOrderProduct();
-		Gson gson = new Gson();
-		String jsonData = gson.toJson(items);
-		JSONArray jsonA = JSONArray.fromObject(jsonData);
-		return jsonA;
-
-	}
+	
 }
