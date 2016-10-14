@@ -53,24 +53,38 @@ public class ShoppingCart extends controllers.CRUD {
 			
 			order = ClientOrder.getByID(orderID);			
 			op.order_ID = orderID;
-			order.addItem(op);
 									
 		} else {
 			
 			order = new ClientOrder();
 			Date todaydate = new Date();
 			order.orderDate = todaydate;
-			order.addItem(op);
-			order.saveOrder();
 			
 			op.order_ID = order.ID;
 						
 		}			
-
-		double total_price = op.unitPrice * op.quantity;
-		op.total = total_price;
+			
+		if(op.quantity > 0){
+			order.addItem(op);
+			
+			double total_price = op.unitPrice * op.quantity;
+			op.total = total_price;
+			
+			op.saveOrder_Product("");
+		}
 		
-		op.saveOrder_Product("");		
+		else{
+			List<Order_Product> lp = new ArrayList<Order_Product>();
+			lp = order.getListOrderProduct();
+			
+			for(Order_Product p : lp){
+				if(op.product_ID.equalsIgnoreCase(p.product_ID)){
+					order.removeOrderProduct(op.product_ID);
+				}
+			}
+		}
+		
+		order.saveOrder();
 
 		WebApplication.index(order);
 	}

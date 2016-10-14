@@ -56,4 +56,18 @@ public class ClientOrder extends Model {
 		List<Order_Product> listOrderProducts = Model.all(Order_Product.class).filter("order_ID", ID).fetch();
 		return listOrderProducts;
 	}
+	
+	public static void removeOrderProduct(String product_id){
+		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
+		int productsCount = productsList.size();
+		if(productsCount > 0){
+			for(Order_Product item : productsList){
+				if(item != null){
+					item.delete();
+				}
+			}
+		}
+		
+	}
+	
 }

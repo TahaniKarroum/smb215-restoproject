@@ -29,6 +29,10 @@ public class Order_Product extends Model {
 	public static Order_Product getByOrderID_ProductID(String orderID, String product_ID) {
 		return Model.all(Order_Product.class).filter("order_ID", orderID).filter("product_ID", product_ID).get();
 	}
+	
+	public static Query<Order_Product> getAllOrderProducts() {
+		return Model.all(Order_Product.class);
+	}
 
 	public String getProductName() {
 		Product product = Product.getByID(product_ID);
