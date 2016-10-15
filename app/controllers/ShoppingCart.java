@@ -62,9 +62,39 @@ public class ShoppingCart extends controllers.CRUD {
 			
 			op.order_ID = order.ID;
 						
-		}			
-			
-		if(op.quantity > 0){
+		}
+		
+		List<Order_Product> orderItems = new ArrayList<Order_Product>();
+		orderItems = order.getListOrderProduct();
+		boolean status = false;
+		if(orderItems.size() > 0){
+			System.out.println("this order product ID "+op.product_ID);
+			for(Order_Product p : orderItems){
+				System.out.println("list order ID");
+				if(op.product_ID.equals(p.product_ID)){
+					status = true;
+					System.out.println("this product already exist in the shopping cart");
+					if(op.quantity == 0){
+						order.removeOrderProduct(op.product_ID);					
+					}
+					else{
+						order.updateOrderProduct(op.product_ID, op.quantity);
+					}
+				}
+				
+			}
+			if(status == false){
+				System.out.println("this is a new product to add to shopping cart");
+				order.addItem(op);
+				
+				double total_price = op.unitPrice * op.quantity;
+				op.total = total_price;
+				
+				op.saveOrder_Product("");
+			}
+		}
+		else{
+			System.out.println("the shopping cart is empty now we add a new product to it");
 			order.addItem(op);
 			
 			double total_price = op.unitPrice * op.quantity;
@@ -73,17 +103,7 @@ public class ShoppingCart extends controllers.CRUD {
 			op.saveOrder_Product("");
 		}
 		
-		else{
-			List<Order_Product> lp = new ArrayList<Order_Product>();
-			lp = order.getListOrderProduct();
-			
-			for(Order_Product p : lp){
-				if(op.product_ID.equalsIgnoreCase(p.product_ID)){
-					order.removeOrderProduct(op.product_ID);
-				}
-			}
-		}
-		
+					
 		order.saveOrder();
 
 		WebApplication.index(order);

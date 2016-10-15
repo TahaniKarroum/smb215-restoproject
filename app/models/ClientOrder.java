@@ -66,8 +66,22 @@ public class ClientOrder extends Model {
 					item.delete();
 				}
 			}
-		}
-		
+		}		
+	}
+	
+	public void updateOrderProduct(String product_id, int quantity){
+		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
+		int productsCount = productsList.size();
+		if(productsCount > 0){
+			for(Order_Product item : productsList){
+				if(item != null){
+					item.quantity = quantity;
+					item.total = quantity * item.unitPrice;
+					Model.batch(Order_Product.class).update(item);
+					System.out.println("Update product quantity and total");
+				}
+			}
+		}	
 	}
 	
 }
