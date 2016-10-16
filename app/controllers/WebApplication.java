@@ -19,13 +19,13 @@ public class WebApplication extends Controller {
     	
     	String orderID = "";
     	int shoppingCartItems = 0;
-    	List<Order_Product> productList = null;
+    	List<Order_Product> orderProductList = null;
     	HashMap<String, Integer> inOrder = new HashMap<String, Integer>();
     	
     	if(order != null){
     		orderID = order.ID;
-    		productList = order.getListOrderProduct();
-    		for(Order_Product p : productList){
+    		orderProductList = order.getListOrderProduct();
+    		for(Order_Product p : orderProductList){
     			shoppingCartItems = shoppingCartItems + p.quantity;
     			inOrder.put(p.product_ID, p.quantity);
     		}
@@ -38,7 +38,7 @@ public class WebApplication extends Controller {
     	for(Category cat: foodMenuCategories){
     		hmap.put(cat.ID, cat.name);
     	}
-        render(foodMenuCategories, foodMenu, hmap, orderID, shoppingCartItems, inOrder);
+        render(foodMenuCategories, foodMenu, hmap, orderID, shoppingCartItems, inOrder, orderProductList);
     }
         
     public static List<Category> foodCategories(){
