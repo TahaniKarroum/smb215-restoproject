@@ -55,12 +55,15 @@ public class Api extends controllers.CRUD {
 	}
 
 	public static JSONArray getlistItemsByOrder(String orderid) {
-		ClientOrder order = ClientOrder.getByID(orderid);
-		List<Order_Product> items = order.getListOrderProduct();
-		Gson gson = new Gson();
-		String jsonData = gson.toJson(items);
-		JSONArray jsonA = JSONArray.fromObject(jsonData);
-		return jsonA;
+		if (orderid != null && orderid.length() > 0) {
+			ClientOrder order = ClientOrder.getByID(orderid);
+			List<Order_Product> items = order.getListOrderProduct();
+			Gson gson = new Gson();
+			String jsonData = gson.toJson(items);
+			JSONArray jsonA = JSONArray.fromObject(jsonData);
+			return jsonA;
+		} else
+			return null;
 
 	}
 
@@ -102,19 +105,12 @@ public class Api extends controllers.CRUD {
 			order.saveOrder();
 		}
 		op = Model.all(Order_Product.class).filter("order_ID", order.ID).filter("product_ID", productid).get();
-		if (op != null)
-
-		{
-			op.quantity = qty;
-			op.total = pr.price * qty;
-			op.unitPrice = pr.price;
-			op.product_ID = productid;
-			op.order_ID = order.ID;
-			op.saveOrder_Product(cl.ID);
-		} else {
+		if (op == null) {
 			op = new Order_Product();
 			op.product_ID = productid;
 			op.quantity = qty;
+			op.productname = pr.name;
+			op.image = pr.imagePath;
 			op.total = pr.price * qty;
 			op.unitPrice = pr.price;
 			op.order_ID = order.ID;
