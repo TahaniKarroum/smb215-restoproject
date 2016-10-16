@@ -21,6 +21,14 @@ public class Order_Product extends Model {
 	public double unitPrice;
 	public double total;
 	public Date submitDate;
+	
+	
+
+	@Override
+	public String toString() {
+		return "Order_Product [ID=" + ID + ", order_ID=" + order_ID + ", product_ID=" + product_ID + ", quantity="
+				+ quantity + ", unitPrice=" + unitPrice + ", total=" + total + ", submitDate=" + submitDate + "]";
+	}
 
 	public static List<Order_Product> getByOrderID(String orderID) {
 		return Model.all(Order_Product.class).filter("order_ID", orderID).fetch();

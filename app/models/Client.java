@@ -16,23 +16,23 @@ import java.util.*;
 public class Client extends Model {
 	@Id(Generator.UUID)
 	public String ID;
-	
+
 	public String device_uid;
-	
+
 	public String name;
-	
+
 	public String phone;
 	public String mobile;
-	
+
 	public String email;
-	
+
 	public String address;
 
 	@Override
 	public String toString() {
-		return "Client [ID=" + ID + ", device_uid=" + device_uid + ", name=" + name + ", phone=" + phone + ", mobile="
-				+ mobile + ", email=" + email + ", address=" + address + "]";
+		return "[{ID:" + ID + ",name:" +name + "}]";
 	}
+
 	public void saveClient() {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
@@ -42,13 +42,20 @@ public class Client extends Model {
 		}
 	}
 
-
 	public static Query<Client> all() {
 		return Model.all(Client.class);
-    }
-	
-	public static Query<Client> getByDeviceId(String deviceid) {
-		return Model.all(Client.class).filter("device_uid",deviceid);
-    }
+	}
 
+	public static Query<Client> getByDeviceId(String deviceid) {
+		return Model.all(Client.class).filter("device_uid", deviceid);
+	}
+
+	public static Client getByID(String ID) {
+		try {
+			Client obj = Model.getByKey(Client.class, ID);
+			return obj;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 }

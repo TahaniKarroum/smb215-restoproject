@@ -53,7 +53,7 @@ public class Api extends controllers.CRUD {
 		}
 		return jsonA;
 	}
-	
+
 	public static JSONArray getlistItemsByOrder(String orderid) {
 		ClientOrder order = ClientOrder.getByID(orderid);
 		List<Order_Product> items = order.getListOrderProduct();
@@ -68,39 +68,62 @@ public class Api extends controllers.CRUD {
 		Client cl = Client.getByDeviceId(deviceid).get();
 		if (cl == null) {
 			cl = new Client();
+			cl.device_uid = deviceid;
+			cl.name = "Blabla";
 		}
-		cl.device_uid = deviceid;
-		cl.name = "xxx";
 		cl.saveClient();
+		List<Client> newCl = new ArrayList<Client>();
+		newCl.add(Client.getByID(cl.ID));
 		Gson gson = new Gson();
-		String jsonData = gson.toJson(cl);
+		String jsonData = gson.toJson(newCl);
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
 
 	public static JSONArray addtocart(String deviceid, String productid, String orderid, int qty) {
 		Client cl = Client.getByDeviceId(deviceid).get();
-		Product pr = Product.getByID(productid);
+		if (cl == null) {
+			cl = new Client();
+			cl.device_uid = deviceid;
+			cl.name = "Blabla";
+			cl.saveClient();
+		}
+
+		Product pr = Model.all(Product.class).filter("ID", productid).get();
 		Order_Product op = null;
 		ClientOrder order = null;
+		Date todaydate = new Date();
 		if (orderid != null)
 			order = ClientOrder.getByID(orderid);
-		else
+		if (order == null) {
 			order = new ClientOrder();
-		Date todaydate = new Date();
-		order.client_ID = cl.ID;
-		order.orderDate = todaydate;
-		order.saveOrder();
+			order.client_ID = cl.ID;
+			order.orderDate = todaydate;
+			order.saveOrder();
+		}
 		op = Model.all(Order_Product.class).filter("order_ID", order.ID).filter("product_ID", productid).get();
-		if (op != null) {
+		if (op != null)
+
+		{
+			op.quantity = qty;
+			op.total = pr.price * qty;
+			op.unitPrice = pr.price;
+			op.product_ID = productid;
+			op.order_ID = order.ID;
+			op.saveOrder_Product(cl.ID);
+		} else {
+			op = new Order_Product();
+			op.product_ID = productid;
 			op.quantity = qty;
 			op.total = pr.price * qty;
 			op.unitPrice = pr.price;
 			op.order_ID = order.ID;
 			op.saveOrder_Product(cl.ID);
 		}
+		List<Order_Product> list = new ArrayList<Order_Product>();
+		list.add(op);
 		Gson gson = new Gson();
-		String jsonData = gson.toJson(order);
+		String jsonData = gson.toJson(list);
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
@@ -117,5 +140,4 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
-	
 }
