@@ -15,22 +15,20 @@ import java.util.*;
 @Entity
 public class Reservation extends Model {
 	@Id(Generator.UUID)
-	public String resv_id;
+	public String res_id;
 
-	public String resv_account_id;
-	public int resv_numb_pers;
+	public String res_client_id;
+	public int res_numb_pers;
 	public Date res_date;
 
 	public Date res_date_from;
 	public Date res_date_to;
 
-	
 
 	@Override
 	public String toString() {
-		return "Reservation [resv_id=" + resv_id + ", resv_account_id=" + resv_account_id + ", resv_numb_pers="
-				+ resv_numb_pers + ", res_date=" + res_date + ", res_date_from=" + res_date_from + ", res_date_to="
-				+ res_date_to + "]";
+		return "Reservation [res_id=" + res_id + ", res_client_id=" + res_client_id + ", res_numb_pers=" + res_numb_pers
+				+ ", res_date=" + res_date + ", res_date_from=" + res_date_from + ", res_date_to=" + res_date_to + "]";
 	}
 
 	public static Query<Reservation> all() {
@@ -48,8 +46,8 @@ public class Reservation extends Model {
 
 	public void saveReservation() {
 
-		if (resv_id == null || resv_id.equals("") == true) {
-			this.resv_id = null;
+		if (res_id == null || res_id.equals("") == true) {
+			this.res_id = null;
 
 			Model.batch(Reservation.class).insert(this);
 		} else {

@@ -10,7 +10,7 @@
 			value="${field?.value}" /> #{/field}
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.resv_numb_pers'} <label for="${field?.id}"
+				#{field 'reservation.res_numb_pers'} <label for="${field?.id}"
 					class="form-label-en">&{'Number Of persons'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -28,15 +28,15 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.resv_account_id'} <label class="form-label-en" for="">&{'Account'}*</label>
+				#{field 'reservation.res_client_id'} <label class="form-label-en" for="">&{'Client'}*</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
 					<select name="${field.name}" class="chosen-select-deselect required"
 						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
 						<option value=""></option>
-						 	#{list allAccounts, as:'account'}  
-						<option value="${account?.ID}" ${field.value==account?.ID?' selected':''}>${account?.type}</option>
+						 	#{list allClients, as:'client'}  
+						<option value="${client?.ID}" ${field.value==client?.ID?' selected':''}>${account?.type}</option>
 					 		#{/list}  
 					</select> <span class="input-append"></span>
 				</div>

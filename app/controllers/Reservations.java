@@ -8,6 +8,7 @@ import java.util.List;
 import models.Account;
 import models.Brand;
 import models.Category;
+import models.Client;
 import models.Employee;
 import models.Product;
 import models.Reservation;
@@ -40,12 +41,12 @@ public class Reservations extends controllers.CRUD {
 		if (reservation == null)
 			reservation = new Reservation();
 		
-		List<Account> allAccounts = Account.getAllAccounts().fetch();
-		
-		System.out.println("hhhhhhhhhhhhh "+ID);
-		System.err.println(allAccounts);
+		//List<Account> allAccounts = Account.getAllAccounts().fetch();
+		List<Client> allClients = Client.all().fetch();
+		//System.out.println("hhhhhhhhhhhhh "+ID);
+		//System.err.println(allAccounts);
 		//renderText("blablabal  "+ID+"  okkkk");
-		render(reservation, allAccounts);
+		render(reservation, allClients);
 	}
 
 	public static void saveReservation(Reservation reservation) throws IOException {
