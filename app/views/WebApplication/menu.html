@@ -28,7 +28,12 @@
                     	#{list foodMenu, as:'food'}
                     	<form role="form" action="@{ShoppingCart.addToCart()}" method="post" id="product${food.ID}">
 	                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 product_item item ${hmap.get(food.category_ID)}">
-						    <div class="hovereffect">	    
+						    #{if (inOrder != null && inOrder?.size() != 0 && inOrder.get(food.ID) != null)}
+						    <div class="hovereffect selectedFood">
+						    #{/if}
+						    #{else}
+						    <div class="hovereffect">
+						    #{/else}	    
 						    <input type="hidden" name="orderID" value="${orderID}">
 						    #{field 'op.product_ID'}<input type="hidden" name="${field?.name}" value="${food.ID}">#{/field}
 						    #{field 'op.unitPrice'}<input type="hidden" name="${field?.name}" value="${food.price}">#{/field}
@@ -37,7 +42,7 @@
 						            <div class="overlay">
 						                <p class="icon-links">
 						                	<div class="input-group spinner">
-											    #{field 'op.quantity'}<input type="number" min="0" class="form-control" name="${field?.name}" id="product_qty_${food.ID}" value="${field?.value}">#{/field}
+											    #{field 'op.quantity'}<input type="number" min="0" class="form-control" name="${field?.name}" id="product_qty_${food.ID}" value="${inOrder.get(food.ID)}">#{/field}
 										  	</div>
 										  	<button id="product_addtocart_${food.ID}" type="submit" class="btn btn-success">ADD TO CART</button>
 						                </p>
