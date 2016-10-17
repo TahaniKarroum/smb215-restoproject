@@ -246,7 +246,7 @@
 								<td>${product.total}</td>
 								<td>
 									<a href="" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
-									<a href="" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
+									<a href="@{ShoppingCart.removeItem(product?.product_ID)}" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 								</td>
 							</tr>
 							#{/list}
