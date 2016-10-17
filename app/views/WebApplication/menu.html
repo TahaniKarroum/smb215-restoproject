@@ -42,13 +42,11 @@
 						    <div class="food-head"><h4>${food.name}</h4><small>${food.price}$</small></div>
 						        <img class="img-responsive" src="/public/template/images/${food.imagePath}" alt="${food.name}">
 						            <div class="overlay">
-						                <p class="icon-links">
-						                	<div class="input-group spinner">
-											    #{field 'op.quantity'}<input type="number" min="0" class="form-control" name="${field?.name}" id="product_qty_${food.ID}" value="${inOrder.get(food.ID)}">#{/field}
-										  	</div>
-										  	<button id="product_addtocart_${food.ID}" type="submit" class="btn btn-success">ADD TO CART</button>
-						                </p>
-						            </div>
+					                	<div class="input-group spinner">
+										    #{field 'op.quantity'}<input type="number" min="0" class="form-control" name="${field?.name}" id="product_qty_${food.ID}" value="${inOrder.get(food.ID)}">#{/field}
+									  	</div>
+									  	<button id="product_addtocart_${food.ID}" type="submit" class="btn btn-success">ADD TO CART</button>
+					            	</div>
 						    </div>
 						</div>
 						</form>
