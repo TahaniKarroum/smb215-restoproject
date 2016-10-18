@@ -105,17 +105,19 @@ public class Api extends controllers.CRUD {
 			order.saveOrder();
 		}
 		op = Model.all(Order_Product.class).filter("order_ID", order.ID).filter("product_ID", productid).get();
-		if (op == null) {
+		if (op == null)
 			op = new Order_Product();
-			op.product_ID = productid;
-			op.quantity = qty;
-			op.productname = pr.name;
-			op.image = pr.imagePath;
-			op.total = pr.price * qty;
-			op.unitPrice = pr.price;
-			op.order_ID = order.ID;
-			op.saveOrder_Product(cl.ID);
-		}
+
+		op.product_ID = productid;
+		op.quantity = qty;
+		op.productname = pr.name;
+		op.image = pr.imagePath;
+		op.total = pr.price * qty;
+		op.unitPrice = pr.price;
+		op.order_ID = order.ID;
+		op.saveOrder_Product(cl.ID);
+		if (qty == 0)
+			op.delete();
 		List<Order_Product> list = new ArrayList<Order_Product>();
 		list.add(op);
 		Gson gson = new Gson();
