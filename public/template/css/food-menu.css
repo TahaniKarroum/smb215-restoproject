@@ -188,3 +188,53 @@
     color: #96E16B;
     font-size: 18px;
 }
+
+#cart h2 {
+	font-weight: 600;
+    text-align: left;
+    margin-bottom: 15px;
+}
+.itemContent {
+	padding-bottom: 15px;
+	padding-top: 15px;
+    border-bottom: 1px solid #DDD;
+}
+.itemImage {
+	overflow: hidden;
+}
+.itemImage img {
+	height: 80px;
+    overflow: hidden;
+    margin-left: -50%;
+}
+.itemName {
+	margin: 0px 15px 10px;    
+	text-align: left;    
+	font-size: 16px;    
+	font-weight: 700;
+}
+.itemID, .itemOption {
+	text-align: left;
+}
+.itemPriceQty tr th {
+	padding: 2px 10px;
+	color: #AAA;
+}
+.itemPriceQty tr td input[type="number"]{
+    width: 40px;
+    padding-left: 7px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    border: 1px solid #DDD;
+}
+.orderTotal {
+	text-align: right;
+	padding: 15px 30px;
+}
+.orderTotal span {
+	font-size: 18px;
+	font-weight: 600;
+}
+.orderLabel {
+	margin-right: 20px;
+}

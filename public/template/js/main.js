@@ -22,6 +22,10 @@
 			});
 		});
 		
+		$('a[href=#cart]').on('click', function(e){
+			$('#cart').css('display', 'block');
+		})
+		
 	});
  
 	function onScroll(event){

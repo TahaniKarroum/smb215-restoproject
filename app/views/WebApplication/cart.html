@@ -1,121 +1,57 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Restaurant</title>
-        <link rel="stylesheet" href="/public/template/css/normalize.css">
-        <link rel="stylesheet" href="/public/template/css/food-menu.css">
-        <link rel="stylesheet" href="/public/template/css/main.css" media="screen" type="text/css">
-        <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="/public/template/css/bootstrap.css">
-        <link rel="stylesheet" href="/public/template/css/style-portfolio.css">
-        <link rel="stylesheet" href="/public/template/css/picto-foundry-food.css" />
-        <link rel="stylesheet" href="/public/template/css/jquery-ui.css">
-        
-        <!-- dataTable css files -->
-		<link rel="stylesheet" href="/public/stylesheets/datatable/dataTables.bootstrap.min.css" type="text/css" />
-		<link rel="stylesheet" href="/public/stylesheets/datatable/responsive.bootstrap.min.css" type="text/css" />        
-        <link href="/public/stylesheets/framework/bootstrap.min.css" rel="stylesheet" media="screen">
-        
-        
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/public/template/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="icon" href="/public/template/favicon-1.ico" type="image/x-icon">
-    </head>
-    <body>
-    
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="row">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Restaurant</a>
-                    </div>
+<div class="container">
+	<div class="col-md-12">
+		<h2>MY SHOPPING CART</h2>
+	</div>
+	
+	<div class="col-md-6 col-sm-12 col-xs-12">
+	#{if (orderProductList != null && orderProductList?.size() != 0)}
+		#{list orderProductList, as:'product'}
+		<div class="row itemContent">
+			<div class="col-md-2">
+				<div class="itemImage">
+					<img src="/public/template/images/${product.image}" alt="${product.productname}">
+				</div>
+			</div>
+			<div class="col-md-10">
+				<h3 class="itemName">${product.productname}</h3>
+				<div class="col-md-6">
+					<div class="itemID">
+						<span class="">Item ID: </span> <span class="value">${product.product_ID}</span>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<table class="itemPriceQty">
+						<tr>
+							<th>Price:</th>
+							<th>Quantity:</th>
+							<th>Total:</th>
+						</tr>
+						<tr>
+							<td style="">$${product.unitPrice}</td>
+							<td><input type="number" value="${product.quantity}"></td>
+							<td>$${product.total}</td>
+						</tr>
+					</table>
+				</div>
+				<div class="col-md-12">
+					<div class="itemOption">
+						<a>Remove</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		#{/list}
+		<div class="row orderTotal">
+			<div class="col-md-12">
+				<span class="orderLabel">Order Total: </span><span class="orderValue">$${totalPrice}</span>
+			</div>			
+		</div>
+	#{/if}
+	</div>
 
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav main-nav  clear navbar-right ">
-                            <li><a class="navactive color_animation" href="#top">WELCOME</a></li>
-                            <li><a class="color_animation" href="#story">ABOUT</a></li>
-                            <li><a class="color_animation" href="#menu">OUR MENU</a></li>
-                            <li><a class="color_animation" href="#reservation">RESERVATION</a></li>
-                            <li><a class="color_animation" href="#contact">CONTACT</a></li>
-                            <li><a class="color_animation" href="#shoppingCart" data-toggle="modal" data-target="#shoppingCart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white; font-size:20px;"></i> <span id='scqty' style="color:white;">${shoppingCartItems}</span> </a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div>
-            </div><!-- /.container-fluid -->
-        </nav>
-        
-        <!-- Shopping cart items -->
-        <div class="container">
-        
-        	<div class="col-md-6 col-sm-12 col-xs-12">
-        		<div class="itemContent">
-        			<div class="itemImage">
-        				<img src="" alt="">
-        			</div>
-        			<div class="itemDetails">
-        				<h2></h2>
-        				<div class="itemStatus">
-        					<div class="itemId">
-        						<span>Item ID: </span>
-        						<span></span>
-       						</div>
-        				</div>
-        				<div class="itemPriceQty">
-        					<div class="ietmTotal">
-        						<span class="label">Item total:</span>
-        						<span class="value"></span>
-        					</div>
-        					<div class="itemQty">
-        						<span class="label"></span>
-        						<input type="number" value="">
-        					</div>
-        					<div class="itemPrice">
-        						<span class="label">Price:</span>
-        						<span class="value"></span>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
-        	
-        	<div class="col-md-6 col-sm-12 col-xs-12"></div>
-        	
-        </div>
-         
-        <!-- ============ Footer Section  ============= -->
+	<div class="col-md-6 col-sm-12 col-xs-12">
+		
+	</div>
 
-        <footer class="sub_footer">
-            <div class="container">
-                <div class="col-md-4"><p class="sub-footer-text text-center">&copy; Restaurant 2014, Theme by <a href="https://themewagon.com/">ThemeWagon</a></p></div>
-                <div class="col-md-4"><p class="sub-footer-text text-center">Back to <a href="#top">TOP</a></p>
-                </div>
-                <div class="col-md-4"><p class="sub-footer-text text-center">Built With Care By <a href="#" target="_blank">Us</a></p></div>
-            </div>
-        </footer>
+</div>
 
-
-        <script type="text/javascript" src="/public/template/js/jquery-1.10.2.min.js"> </script>
-        <script type="text/javascript" src="/public/template/js/bootstrap.min.js" ></script>
-        <script type="text/javascript" src="/public/template/js/jquery-1.10.2.js"></script>     
-        <script type="text/javascript" src="/public/template/js/jquery.mixitup.min.js" ></script>
-        <script type="text/javascript" src="/public/template/js/main.js" ></script>
-        <script type="text/javascript" src="/public/template/js/food-menu.js" ></script>
-        
-        <!-- dataTable js files -->
-		<script src="/public/javascripts/dataTable/jquery.dataTables.min.js"></script>
-		<script src="/public/javascripts/dataTable/dataTables.bootstrap.min.js"></script>
-		<script src="/public/javascripts/dataTable/dataTables.responsive.min.js"></script>
-		<script src="/public/javascripts/dataTable/responsive.bootstrap.min.js"></script>
-         
-    </body>
-</html>

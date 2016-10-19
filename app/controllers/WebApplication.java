@@ -60,6 +60,10 @@ public class WebApplication extends Controller {
     	}
     	return foodMenu;
     }
+    
+    public static void cart(){
+    	render();
+    }
 
 
 }

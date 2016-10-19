@@ -47,7 +47,8 @@
                             <li><a class="color_animation" href="#menu">OUR MENU</a></li>
                             <li><a class="color_animation" href="#reservation">RESERVATION</a></li>
                             <li><a class="color_animation" href="#contact">CONTACT</a></li>
-                            <li><a class="color_animation" href="#shoppingCart" data-toggle="modal" data-target="#shoppingCart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white; font-size:20px;"></i> <span id='scqty' style="color:white;">${shoppingCartItems}</span> </a></li>
+<!--                             <li><a class="color_animation" href="#shoppingCart" data-toggle="modal" data-target="#shoppingCart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white; font-size:20px;"></i> <span id='scqty' style="color:white;">${shoppingCartItems}</span> </a></li> -->
+                        	<li><a class="color_animation" href="#cart"><i class="fa fa-shopping-cart" aria-hidden="true" style="color:white; font-size:20px;"></i> <span id='scqty' style="color:white;">${shoppingCartItems}</span> </a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div>
@@ -89,6 +90,12 @@
 
 		<section id ="menu" class="description_content">
         	#{include 'WebApplication/menu.html' /}
+		</section>
+		
+		<!-- ============ Shopping cart  ============= -->
+		
+		<section id="cart" style="display:none;" class="description_content">
+			#{include 'WebApplication/cart.html' /}
 		</section>
 
         <!-- ============ Reservation  ============= -->
