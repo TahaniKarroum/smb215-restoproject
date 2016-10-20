@@ -61,9 +61,21 @@ public class WebApplication extends Controller {
     	return foodMenu;
     }
     
-    public static void cart(){
-    	render();
-    }
-
+    public static void removeOrderProduct(String product_id){
+		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
+		String order_id;
+		int productsCount = productsList.size();
+		if(productsCount > 0){
+			for(Order_Product item : productsList){				
+				if(item != null){
+					order_id = item.order_ID;
+					item.delete();
+					ClientOrder order = ClientOrder.getByID(order_id);
+					WebApplication.index(order);
+				}
+			}					
+		}		
+	}
+    
 
 }

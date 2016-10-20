@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import controllers.WebApplication;
+
 @Entity
 public class ClientOrder extends Model {
 	@Id(Generator.UUID)
@@ -55,19 +57,7 @@ public class ClientOrder extends Model {
 	public List<Order_Product> getListOrderProduct() {
 		List<Order_Product> listOrderProducts = Model.all(Order_Product.class).filter("order_ID", ID).fetch();
 		return listOrderProducts;
-	}
-	
-	public static void removeOrderProduct(String product_id){
-		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
-		int productsCount = productsList.size();
-		if(productsCount > 0){
-			for(Order_Product item : productsList){
-				if(item != null){
-					item.delete();
-				}
-			}
-		}		
-	}
+	}	
 	
 	public void updateOrderProduct(String product_id, int quantity){
 		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();

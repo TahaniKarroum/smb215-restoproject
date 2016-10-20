@@ -22,9 +22,16 @@
 			});
 		});
 		
-		$('a[href=#cart]').on('click', function(e){
+		$('a[href*="#cart"]').on('click', function(e){
 			$('#cart').css('display', 'block');
-		})
+			window.location.hash = '#cart';
+		});
+		
+		if (window.location.href.indexOf("#cart") > -1) {
+			$('#cart').css('display', 'block');
+			window.location.hash = '#cart';
+		}
+
 		
 	});
  
