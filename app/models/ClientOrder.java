@@ -57,7 +57,23 @@ public class ClientOrder extends Model {
 	public List<Order_Product> getListOrderProduct() {
 		List<Order_Product> listOrderProducts = Model.all(Order_Product.class).filter("order_ID", ID).fetch();
 		return listOrderProducts;
-	}	
+	}
+	
+	public static void removeOrderProduct(String product_id){
+		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
+		String order_id;
+		int productsCount = productsList.size();
+		if(productsCount > 0){
+			for(Order_Product item : productsList){				
+				if(item != null){
+					order_id = item.order_ID;
+					item.delete();
+					ClientOrder order = getByID(order_id);
+					WebApplication.index(order);
+				}
+			}					
+		}		
+	}
 	
 	public void updateOrderProduct(String product_id, int quantity){
 		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();

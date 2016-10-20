@@ -31,6 +31,17 @@
 			$('#cart').css('display', 'block');
 			window.location.hash = '#cart';
 		}
+		
+		$('.item_qty').on('change paste keyup', function(){
+			console.log("ALAA");
+			$.ajax({
+				  method: "GET",
+				  url: "updateProductQty",
+				  data: {"product_id": "7028b3fc-5023-49bd-88ff-68eca6371045", "qty": 3}
+				}).done(function() {
+					console.log("YASMIN");
+				});
+		})
 
 		
 	});

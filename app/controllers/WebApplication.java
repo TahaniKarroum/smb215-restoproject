@@ -77,5 +77,15 @@ public class WebApplication extends Controller {
 		}		
 	}
     
+    public static void updateProductQty(String product_id, int qty){
+    	Order_Product product = Order_Product.getByProductID(product_id);
+    	if(product != null){
+    		product.quantity = qty;
+    		product.saveOrder_Product("");
+    		ClientOrder order = ClientOrder.getByID(product.order_ID);
+    		WebApplication.index(order);
+    	}
+    }
+    
 
 }

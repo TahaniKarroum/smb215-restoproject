@@ -9,6 +9,8 @@ import siena.Model;
 import siena.Query;
 
 import java.util.*;
+
+import controllers.WebApplication;
 import models.Product;
 
 @Entity
@@ -88,6 +90,20 @@ public class Order_Product extends Model {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public static Order_Product getByProductID(String product_id){
+		Order_Product obj = null;
+		List<Order_Product> productsList = Order_Product.getAllOrderProducts().filter("product_ID", product_id).fetch();
+		int productsCount = productsList.size();
+		if(productsCount > 0){
+			for(Order_Product item : productsList){				
+				if(item != null){
+					obj = item;
+				}
+			}					
+		}
+		return obj;
 	}
 
 	public boolean canBeDeleted() {
