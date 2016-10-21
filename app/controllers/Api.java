@@ -50,8 +50,10 @@ public class Api extends controllers.CRUD {
 		cl.address = address;
 		cl.phone = phone;
 		cl.saveClient();
+		List<Client> newCl = new ArrayList<Client>();
+		newCl.add(Client.getByID(cl.ID));
 		Gson gson = new Gson();
-		String jsonData = gson.toJson(cl);
+		String jsonData = gson.toJson(newCl);
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
