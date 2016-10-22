@@ -81,6 +81,7 @@ public class WebApplication extends Controller {
     	Order_Product product = Order_Product.getByProductID(product_id);
     	if(product != null){
     		product.quantity = qty;
+    		product.total = qty * product.unitPrice;
     		product.saveOrder_Product("");
     		ClientOrder order = ClientOrder.getByID(product.order_ID);
     		WebApplication.index(order);

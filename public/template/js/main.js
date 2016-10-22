@@ -33,13 +33,15 @@
 		}
 		
 		$('.item_qty').on('change paste keyup', function(){
-			console.log("ALAA");
+			var product_id = $(this).attr("data-id");
+			var product_qty = $(this).val();
 			$.ajax({
 				  method: "GET",
 				  url: "updateProductQty",
-				  data: {"product_id": "7028b3fc-5023-49bd-88ff-68eca6371045", "qty": 3}
+				  data: {"product_id": product_id, "qty": parseInt(product_qty, 10)}
 				}).done(function() {
-					console.log("YASMIN");
+					location.reload();
+					window.location.hash = '#cart';
 				});
 		})
 
