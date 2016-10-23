@@ -42,21 +42,6 @@ public class Api extends controllers.CRUD {
 		JSONArray jsonA = JSONArray.fromObject(jsonData);
 		return jsonA;
 	}
-	
-
-	public static JSONArray fillClientInformation(String deviceid, String name, String address, String phone) {
-		Client cl = Client.getByDeviceId(deviceid).get();
-		cl.name = name;
-		cl.address = address;
-		cl.phone = phone;
-		cl.saveClient();
-		List<Client> newCl = new ArrayList<Client>();
-		newCl.add(Client.getByID(cl.ID));
-		Gson gson = new Gson();
-		String jsonData = gson.toJson(newCl);
-		JSONArray jsonA = JSONArray.fromObject(jsonData);
-		return jsonA;
-	}
 
 	public static JSONArray checkAvailableProduct(String productid) {
 		Gson gson = new Gson();
@@ -141,5 +126,27 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
+	public static JSONArray fillClientInformation(String deviceid, String name, String address, String phone,
+			String orderid) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		cl.name = name;
+		cl.address = address;
+		cl.phone = phone;
+		cl.saveClient();
+		ClientOrder co = ClientOrder.getByID(orderid);
+		List<Order_Product> opList = co.getListOrderProduct();
+		if (opList != null && opList.size() > 0) {
+			for (Order_Product order_Product : opList) {
+				co.total += order_Product.total;
+			}
+		}
+		co.saveOrder();
+		List<Client> newCl = new ArrayList<Client>();
+		newCl.add(Client.getByID(cl.ID));
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(newCl);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+	}
 
 }
