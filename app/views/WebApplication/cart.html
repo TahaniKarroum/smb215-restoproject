@@ -50,35 +50,35 @@
 	</div>
 
 	<div class="col-md-6 col-sm-12 col-xs-12">
-		<form class="form-horizontal" style="background-color: #DDD; padding: 30px;">
+		<form class="form-horizontal" style="background-color: #DDD; padding: 30px;" role="form" action="@{WebApplication.confirmOrder()}" method="post">
 			<div class="form-group">
 			    <label for="clientName" class="col-sm-3 control-label">Full name <span class="redColor">*</span></label>
 			    <div class="col-sm-9">
-			    	<input type="text" class="form-control" id="clientName">
+			    	#{field 'client.name'}<input type="text" class="form-control" id="clientName" name="${field?.name}" value="${field?.value}">#{/field}
 			    </div>
 		    </div>
 		    <div class="form-group">
-			    <label for="clientAddress" class="col-sm-3 control-label">Street Address <span class="redColor">*</span></label>
+			    <label for="clientAddress" class="col-sm-3 control-label">Address <span class="redColor">*</span></label>
 			    <div class="col-sm-9">
-			    	<input type="text" class="form-control" id="clientAddress">
+			    	#{field 'client.address'}<input type="text" class="form-control" id="clientAddress" name="${field?.name}" value="${field?.value}">#{/field}
 			    </div>
 		    </div>
 		    <div class="form-group">
 			    <label for="clientMobile" class="col-sm-3 control-label">Mobile <span class="redColor">*</span></label>
 			    <div class="col-sm-9">
-			    	<input type="text" class="form-control" id="clientMobile">
+			    	#{field 'client.mobile'}<input type="text" class="form-control" id="clientMobile" name="${field?.name}" value="${field?.value}">#{/field}
 			    </div>
 		    </div>
 		    <div class="form-group">
 			    <label for="clientPhone" class="col-sm-3 control-label">Phone </label>
 			    <div class="col-sm-9">
-			    	<input type="text" class="form-control" id="clientPhone">
+			    	#{field 'client.phone'}<input type="text" class="form-control" id="clientPhone" name="${field?.name}" value="${field?.value}">#{/field}
 			    </div>
 		    </div>
 		    <div class="form-group">
 			    <label for="clientEmail" class="col-sm-3 control-label">Email Address </label>
 			    <div class="col-sm-9">
-			    	<input type="email" class="form-control" id="clientEmail">
+			    	#{field 'client.email'}<input type="email" class="form-control" id="clientEmail" name="${field?.name}" value="${field?.value}">#{/field}
 			    </div>
 		    </div>
 		    <div class="form-group">

@@ -31,7 +31,7 @@ public class ClientOrder extends Model {
 	public static Query<ClientOrder> all() {
 		return Model.all(ClientOrder.class);
 	}
-
+	
 	public void saveOrder() {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
