@@ -60,6 +60,8 @@ public class Client extends Model {
 	}
 
 	public List<ClientOrder> getAllOrders() {
-		return Model.all(ClientOrder.class).filter("client_ID", ID).fetch();
+		List<ClientOrder> orders=null;
+		orders=Model.all(ClientOrder.class).filter("client_ID", ID).fetch();
+		 return orders;
 	}
 }
