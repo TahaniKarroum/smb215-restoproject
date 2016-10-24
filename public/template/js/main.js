@@ -23,8 +23,13 @@
 		});
 		
 		$('a[href*="#cart"]').on('click', function(e){
-			$('#cart').css('display', 'block');
-			window.location.hash = '#cart';
+			if($("input[name=orderID]").val() != "" && $("input[name=orderID]").val() != null){
+				$('#cart').css('display', 'block');
+				window.location.hash = '#cart';
+			}
+			else {
+				alert("Your shopping cart is empty! Add your item from our menu.");
+			}
 		});
 		
 		if (window.location.href.indexOf("#cart") > -1) {
