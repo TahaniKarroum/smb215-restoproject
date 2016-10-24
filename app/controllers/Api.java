@@ -149,4 +149,13 @@ public class Api extends controllers.CRUD {
 		return jsonA;
 	}
 
+	public static JSONArray getHistory(String deviceid) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		List<ClientOrder> historiesList = cl.getAllOrders();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(historiesList);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+	}
+
 }

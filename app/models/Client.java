@@ -30,7 +30,7 @@ public class Client extends Model {
 
 	@Override
 	public String toString() {
-		return "[{ID:" + ID + ",name:" +name + "}]";
+		return "[{ID:" + ID + ",name:" + name + "}]";
 	}
 
 	public void saveClient() {
@@ -57,5 +57,9 @@ public class Client extends Model {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+
+	public List<ClientOrder> getAllOrders() {
+		return Model.all(ClientOrder.class).filter("client_ID", ID).fetch();
 	}
 }
