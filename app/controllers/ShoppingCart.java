@@ -132,5 +132,26 @@ public class ShoppingCart extends controllers.CRUD {
 			}
 		}
 	}
+	
+	public static void confirmOrder(Client client){
+    	client.saveClient();
+    	ClientOrder order;
+    	List<Order_Product> orderItems = new ArrayList<Order_Product>();
+    	double order_total = 0.0;
+    	String orderID = params.get("orderID");
+    	System.out.println("orderID "+orderID);
+    	if(orderID != null && orderID.equals("") == false){
+    		order = ClientOrder.getByID(orderID);
+    		order.client_ID = client.ID;
+    		orderItems = order.getListOrderProduct();
+    		for(Order_Product p : orderItems){
+    			order_total = order_total + p.total;
+    		}
+    		order.total = order_total;
+    		order.saveOrder();
+    		
+    		WebApplication.index(null);
+    	}
+    }
 
 }

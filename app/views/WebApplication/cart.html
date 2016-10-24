@@ -50,7 +50,8 @@
 	</div>
 
 	<div class="col-md-6 col-sm-12 col-xs-12">
-		<form class="form-horizontal" style="background-color: #DDD; padding: 30px;" role="form" action="@{WebApplication.confirmOrder()}" method="post">
+		<form class="form-horizontal" style="background-color: #DDD; padding: 30px;" role="form" action="@{ShoppingCart.confirmOrder()}" method="post">
+			<input type="hidden" name="orderID" value="${orderID}">
 			<div class="form-group">
 			    <label for="clientName" class="col-sm-3 control-label">Full name <span class="redColor">*</span></label>
 			    <div class="col-sm-9">
