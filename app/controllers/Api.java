@@ -12,6 +12,7 @@ import com.google.gson.reflect.TypeToken;
 import models.Category;
 import models.Client;
 import models.ClientOrder;
+import models.Feedback;
 import models.Order_Product;
 import models.Product;
 import net.sf.json.JSONArray;
@@ -161,6 +162,42 @@ public class Api extends controllers.CRUD {
 			return jsonA;
 		} else
 			return null;
+	}
+
+	public static JSONArray addFeed(String deviceid,String text ) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		if (cl == null) {
+			cl = new Client();
+			cl.device_uid = deviceid;
+			cl.name = "Anonymous";
+		}
+		cl.saveClient();
+		Feedback feed=new Feedback();
+		feed.client_ID=cl.ID;
+		feed.description=text;
+		feed.saveFeed();
+		List<Feedback> newCl = new ArrayList<Feedback>();
+		newCl.add(feed);
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(newCl);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
+	}
+	
+
+	public static JSONArray listfeedbacks(String deviceid) {
+		Client cl = Client.getByDeviceId(deviceid).get();
+		if (cl == null) {
+			cl = new Client();
+			cl.device_uid = deviceid;
+			cl.name = "Anonymous";
+		}
+		cl.saveClient();
+		List<Feedback> list =Model.all(Feedback.class).filter("client_ID",cl.ID).fetch();
+		Gson gson = new Gson();
+		String jsonData = gson.toJson(list);
+		JSONArray jsonA = JSONArray.fromObject(jsonData);
+		return jsonA;
 	}
 
 }
