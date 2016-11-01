@@ -7,6 +7,7 @@ import siena.Id;
 import siena.Max;
 import siena.Model;
 import siena.Query;
+import utils.Enums;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -21,9 +22,15 @@ public class ClientOrder extends Model {
 	public Date orderDate;
 	public double total;
 	public String client_ID;
-	
+	public int status;
 	public static List<Order_Product> orderItems;
 	
+	@Override
+	public String toString() {
+		return "ClientOrder [ID=" + ID + ", orderDate=" + orderDate + ", total=" + total + ", client_ID=" + client_ID
+				+ ", status=" + status + "]";
+	}
+
 	public ClientOrder(){
 		this.orderItems=new ArrayList<Order_Product>();
 	}
@@ -35,6 +42,7 @@ public class ClientOrder extends Model {
 	public void saveOrder() {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
+			this.status=Enums.StatusOrder.UnderPrepare.ordinal();
 			Model.batch(ClientOrder.class).insert(this);
 		} else {
 			Model.batch(ClientOrder.class).update(this);

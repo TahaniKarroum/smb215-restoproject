@@ -23,6 +23,10 @@ public class Enums {
 		none, menu, stock;
 	}
 
+	public enum StatusOrder {
+		none, Delivered, UnderPrepare;
+	}
+
 	public enum categoryType {
 		none, menu, stock;
 	}
