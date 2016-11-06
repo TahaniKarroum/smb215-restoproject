@@ -1,0 +1,48 @@
+#{extends 'stockMain.html' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+<div class="form-group">
+	<h3>&{'Orders'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (clientordersList==null || clientordersList?.size()==0) }
+<div class="panel panel-primary">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Orders'}</h3>
+	</div>
+	<div class="panel-body">&{'Listisempty'}</div>
+</div>
+#{/if} #{else}
+
+<div class="panel panel-primary filterable">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Orders'} (${clientordersList?.size()})</h3>
+	</div>
+	<div id="accordion" role="tablist" aria-multiselectable="true">
+	%{i=0}%
+	#{list clientordersList, as:'order'} 
+
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+         Order # ${order?.ordernb} 
+        </a>
+      </h5>
+    </div>
+
+    <div id="collapse${i}" class="collapse %{ if(i==0) out.print('in'); }%  role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+      #{list order?.getListOrderProduct(), as:'orderproduct'} 
+        ${orderproduct?.productname} /  ${orderproduct?.quantity} / ${orderproduct?.unitPrice} /  ${orderproduct?.total} 
+       #{/list}
+      </div>
+    </div>
+  </div>
+  %{i=i+1}%
+   #{/list}
+</div>
+</div>
+#{include 'include/pagination.html' /}
+#{include 'include/formValidation.html' /}
+#{include 'include/deleteConfirmDialog.html' /} #{/else} 

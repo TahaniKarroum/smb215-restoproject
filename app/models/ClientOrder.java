@@ -23,6 +23,7 @@ public class ClientOrder extends Model {
 	public double total;
 	public String client_ID;
 	public int status;
+	public int ordernb;
 	public static List<Order_Product> orderItems;
 	
 	@Override
@@ -39,10 +40,19 @@ public class ClientOrder extends Model {
 		return Model.all(ClientOrder.class);
 	}
 	
+	public int getLastOrderNb(){
+		ClientOrder lastOrder=Model.all(ClientOrder.class).order("-ordernb").get();
+		if(lastOrder!=null)
+			return lastOrder.ordernb;
+		else
+			return 0;
+	}
+	
 	public void saveOrder() {
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
 			this.status=Enums.StatusOrder.UnderPrepare.ordinal();
+			this.ordernb=getLastOrderNb()+1;
 			Model.batch(ClientOrder.class).insert(this);
 		} else {
 			Model.batch(ClientOrder.class).update(this);
