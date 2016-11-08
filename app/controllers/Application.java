@@ -52,6 +52,15 @@ public class Application extends Controller {
 		return calendar.getTime();
 	}
 
+	public static Date getDateFromString(String dateStr, String format) throws ParseException {
+		if (dateStr == null || dateStr.length() == 0)
+			return null;
+		Calendar c = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat(format);
+		c.setTime(sdf.parse(dateStr));
+		return c.getTime();
+	}
+
 	public static void index() {
 		onEachController();
 		Date today = getTodayDate();

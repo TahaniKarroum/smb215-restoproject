@@ -1,0 +1,176 @@
+<script type="text/javascript">
+	var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+	$('.form_datetime').datetimepicker({
+		//language:  'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		forceParse : 0,
+		showMeridian : 1,
+		pickerPosition: "top-left"
+	});
+	$('.form_datetime_bottom').datetimepicker({
+		//language:  'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		forceParse : 0,
+		showMeridian : 1,
+		pickerPosition: "bottom-left"
+	});
+	$('.form_date').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "top-left"
+	});
+	$('.form_date2').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "bottom-left"
+	});
+	$('.form_date_future').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		startDate : nowTemp,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "top-left"
+	});
+	$('.form_date_future_down').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		startDate : nowTemp,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "bottom-right"
+	});
+	$('.form_date_future2').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		startDate : nowTemp,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "bottom-left"
+	});
+	$('.form_date_past').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		endDate : nowTemp,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "top-left"
+	});
+	$('.form_date_past_down').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		endDate : nowTemp,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+		format : 'dd/mm/yyyy',
+        pickerPosition: "bottom-left"
+	});
+	$('.form_down').datetimepicker({
+		language : 'en',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0,
+        pickerPosition: "bottom-right"
+	});
+	$('.form_time').datetimepicker({
+		language : 'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 1,
+		minView : 0,
+		maxView : 1,
+		forceParse : 0,
+        pickerPosition: "top-left"
+	});
+	$('.form_date_of_birth').datetimepicker({
+		format : 'dd/mm/yyyy',
+		language : 'en',
+		weekStart : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 'decade',
+		minView : 2,
+		forceParse : 0,
+        pickerPosition: "top-left",
+        initialDate:"01/01/1990"
+	});
+	
+	function dateGreater(id1, id2){
+		 
+		var checkin = $('#dpd1').datetimepicker(
+		{
+		  onRender: function(date) {
+		    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+		  }
+		}
+		).on('changeDate', function(ev) {
+		  if (ev.date.valueOf() > checkout.date.valueOf()) {
+		    var newDate = new Date(ev.date)
+		    newDate.setDate(newDate.getDate() + 1);
+		    checkout.setValue(newDate);
+		  }
+		  checkin.hide();
+		  $('#dpd2')[0].focus();
+		}).data('datetimepicker');
+		var checkout = $('#dpd2').datetimepicker({
+		  onRender: function(date) {
+		    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+		  }
+		}).on('changeDate', function(ev) {
+		  checkout.hide();
+		}).data('datepicker');
+	}
+</script>
