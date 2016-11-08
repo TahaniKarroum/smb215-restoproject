@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+%{session.put("lastPage" ,request.getBase()+""+request.url);}%
+#{if session.get("lang")!=null && session.get("lang")?.equals("ar")}
+<html lang="ar" dir="rtl">
+#{/if}
+#{else}
+<html lang="en">
+#{/else}
+<title>#{get 'title' /}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+#{if session.get("lang")?.equals("ar")}
+		<link href="/public/stylesheets/framework/bootstrap-rtl.min.css" rel="stylesheet" media="screen">
+		#{/if}
+		#{else}
+		<link href="/public/stylesheets/framework/bootstrap.min.css" rel="stylesheet" media="screen">
+		#{/else}
+<link rel="stylesheet" href="/public/stylesheets/style.css" type="text/css" />
+<link rel="stylesheet" href="/public/stylesheets/sideMenu.css" type="text/css" />
+<link href="/public/stylesheets/adminFooter.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
+<link rel="stylesheet" href="/public/stylesheets/fonts/awesome/css/font-awesome.min.css" type="text/css" />
+<script src="/public/javascripts/framework/jquery.min.js"></script>
+<script type="text/javascript" src="/public/javascripts/framework/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/public/stylesheets/flaticon/flaticon.css" type="text/css" />
+#{include 'include/formatNumber.html' /}
+</head>
+<body>
+	%{currentPage = session.get('currentPage')}%
+	<div class="navbar btn-info navbar-twitch  %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="@{Application.index()}"> <span class="small-nav"> <span class="logo"> <img src="/public/images/logo.png" style="width: 33px;"> </span> </span> <span
+					class="full-nav"> <img src="/public/images/logo.png" style="width: 95px; margin-top:-26px"> </span> </a>
+			</div>
+			<div class="">
+				<ul class="nav navbar-nav">
+				  <li class="${currentPage?.equals('orders') ? 'active':''}">
+					<a href="@{ClientOrders.manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'Orders'}"> <span class="glyphicon glyphicon-list-alt"></span> </span> <span class="full-nav"><span class="glyphicon glyphicon-list-alt"></span> &{'Orders'} </span> </a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<button type="button" class="btn btn-default btn-xs navbar-twitch-toggle navbar-twitch-toggle-%{if(session.get('lang')?.equals('ar')) out.print('right'); else out.print('left');}%">
+        <span class="glyphicon glyphicon-chevron-%{if(session.get('lang')?.equals('ar')) out.print('left'); else out.print('right');}% nav-open"></span> <span class="glyphicon glyphicon-chevron-%{if(session.get('lang')?.equals('ar')) out.print('right'); else out.print('left');}% nav-close"></span>
+    </button>
+	 #{include 'include/topbarMenu.html' /} 
+	<div class="container  %{if (session.get('lang')?.equals('ar')) out.print('right'); else out.print('left')}%">
+		<div class="row">#{doLayout /}</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					$('.navbar-nav [data-toggle="tooltip"]').tooltip();
+					$('.navbar-twitch-toggle').on('click', function(event) {
+						event.preventDefault();
+						$('.navbar-twitch').toggleClass('open');
+					});
+
+					$('.nav-style-toggle').on(
+							'click',
+							function(event) {
+								event.preventDefault();
+								var $current = $('.nav-style-toggle.disabled');
+								$(this).addClass('disabled');
+								$current.removeClass('disabled');
+								$('.navbar-twitch').removeClass(
+										'navbar-' + $current.data('type'));
+								$('.navbar-twitch').addClass(
+										'navbar-' + $(this).data('type'));
+							});
+				});
+	</script>
+
+</body>
+</html>

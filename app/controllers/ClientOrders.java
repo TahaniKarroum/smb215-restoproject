@@ -40,24 +40,24 @@ public class ClientOrders extends controllers.CRUD {
 		int itemsCount = ClientOrder.all().filter("status", Enums.StatusOrder.UnderPrepare.ordinal()).count();
 		Pagination pagination = null;
 		List<ClientOrder> clientordersList = null;
-		HashMap<String,List<Order_Product>> map = null;
+		HashMap<String, List<Order_Product>> map = null;
 		if (itemsCount > 0) {
-			 map = new HashMap<String, List<Order_Product>>();
+			map = new HashMap<String, List<Order_Product>>();
 			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
 			session.put("currentBrandsPage", pagination.getCurrentPage());
 			clientordersList = ClientOrder.all().filter("status", Enums.StatusOrder.UnderPrepare.ordinal())
 					.order("orderDate").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
 			for (ClientOrder clientOrder : clientordersList) {
-				List<Order_Product>order_products=clientOrder.getListOrderProduct();
-				map.put(clientOrder.ID,order_products);
+				List<Order_Product> order_products = clientOrder.getListOrderProduct();
+				map.put(clientOrder.ID, order_products);
 			}
 		}
-		render(clientordersList, pagination,map);
+		render(clientordersList, pagination, map);
 	}
 
 	public static void setReady(String id) {
 		ClientOrder order = ClientOrder.getByID(id);
-		order.status = Enums.StatusOrder.Delivered.ordinal();
+		order.status = Enums.StatusOrder.Completed.ordinal();
 		order.saveOrder();
 		manage();
 	}
@@ -66,5 +66,4 @@ public class ClientOrders extends controllers.CRUD {
 		session.put("currentOrdersPage", page);
 		manage();
 	}
-
 }

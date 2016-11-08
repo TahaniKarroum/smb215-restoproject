@@ -1,0 +1,21 @@
+<link href="/public/stylesheets/modal.css" rel="stylesheet" media="screen">
+<script type="text/javascript" src="/public/javascripts/jquery.confirm.min.js"></script>
+<script>$(".confirm1").confirm();
+            $(".confirm").confirm({
+                title:"Set Order Ready",
+                text: "Are you sure you want to set status ready of this order?",
+                		confirm: function(button) {
+                    button.fadeOut(2000).fadeIn(2000);
+                   // alert("You just confirmed.");
+                   var link = button.attr('href');
+                   window.location.href = link;
+                },
+                cancel: function(button) {
+                    button.fadeOut(2000).fadeIn(2000);
+                },
+               
+                    confirmButton: "Yes I am",
+                    cancelButton: "No"
+                
+            });
+</script>
