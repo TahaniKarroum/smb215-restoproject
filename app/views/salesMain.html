@@ -36,9 +36,20 @@
 			</div>
 			<div class="">
 				<ul class="nav navbar-nav">
-				  <li class="${currentPage?.equals('orders') ? 'active':''}">
+				  <li class="${currentPage?.equals('orders') ? 'activeli':''}">
 					<a href="@{ClientOrders.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title="&{'Orders'}"> <span class="glyphicon glyphicon-list-alt"></span> </span> <span class="full-nav"><span class="glyphicon glyphicon-list-alt"></span> &{'Orders'} </span> </a>
+					</li>
+					
+				  <li class="${currentPage?.equals('ReadyOrders') ? 'activeli':''}">
+					<a href="@{ClientOrders.payOrders()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'Ready Orders'}"> <span class="flaticon-covered18"></span> </span> <span class="full-nav"><span class="flaticon-covered18"></span> &{'Ready Orders'} </span> </a>
+					</li>
+					
+					
+				  <li class="${currentPage?.equals('PaidOrders') ? 'activeli':''}">
+					<a href="@{ClientOrders.listOfPaidOrders()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'Paid Orders'}"> <span class="fa fa-dollar"></span> </span> <span class="full-nav"><span class="fa fa-dollar"></span> &{'Paid Orders'} </span> </a>
 					</li>
 				</ul>
 			</div>

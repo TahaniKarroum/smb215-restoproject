@@ -24,7 +24,7 @@ public class Enums {
 	}
 
 	public enum StatusOrder {
-		none, Completed, UnderPrepare;
+		none, Completed, UnderPrepare,Paid;
 	}
 
 	public enum categoryType {

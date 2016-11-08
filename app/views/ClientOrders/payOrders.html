@@ -1,22 +1,22 @@
 #{extends 'salesMain.html' /} #{include 'include/tableWithFilterHead.html' /}
 #{include 'include/formHead.html' /}
 <div class="form-group">
-	<h3>&{'Orders'}</h3>
-	<hr class="text-warning">
+	<h3>&{'Ready Orders'}</h3>
+	<hr class="text-success">
 </div>
 
 #{if (clientordersList==null || clientordersList?.size()==0) }
-<div class="panel panel-warning">
+<div class="panel panel-success">
 	<div class="panel-heading">
-		<h3 class="panel-title">&{'Orders'}</h3>
+		<h3 class="panel-title">&{'Ready Orders'}</h3>
 	</div>
 	<div class="panel-body">&{'Listisempty'}</div>
 </div>
 #{/if} #{else}
 
-<div class="panel panel-warning filterable">
+<div class="panel panel-success filterable">
 	<div class="panel-heading">
-		<h3 class="panel-title">&{'Orders'} (${clientordersList?.size()})</h3>
+		<h3 class="panel-title">&{'Ready Orders'} (${clientordersList?.size()})</h3>
 	</div>
 	<div id="accordion" role="tablist" aria-multiselectable="true">
 	%{i=0}%
@@ -39,7 +39,7 @@
 				<td style="border:0;!important"><b>Client Name : </b> #{if order?.getClient()!=null}${order?.getClient()?.name} #{/if}</td>
 				<td style="border:0;!important"><b>Client Phone : </b> #{if order?.getClient()!=null}${order?.getClient()?.phone} #{/if}</td>
 				<td style="border:0;!important"><b>Address : </b> #{if order?.getClient()!=null}${order?.getClient()?.address} #{/if}</td>
-				<td><b><a href="@{setReady(order?.ID)}" title="Set Completed" class="confirm"><span class="fa fa-square-o"></span></a> </b></td>
+				<td><b><a href="@{setPaid(order?.ID)}" title="Set Completed" class="confirm"><span class="fa fa-square-o"></span></a> </b></td>
 			</tr>
 			</tbody>
           </table>
@@ -74,6 +74,6 @@
    #{/list}
 </div>
 </div>
-#{include 'include/pagination.html' /}
+#{include 'include/paginationpayorders.html' /}
 #{include 'include/formValidation.html' /}
 #{include 'include/readyConfirmDialog.html' /} #{/else} 

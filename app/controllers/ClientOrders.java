@@ -21,7 +21,7 @@ public class ClientOrders extends controllers.CRUD {
 	public static void addDefault() throws IOException, ParseException {
 		Application.checkEmployeeLogin();
 		Application.onEachController();
-		currentPage("orders");
+		
 	}
 
 	public static boolean currentPage(String currentPage) {
@@ -36,6 +36,7 @@ public class ClientOrders extends controllers.CRUD {
 	}
 
 	public static void manage() {
+		currentPage("orders");
 		String pageNbFromSession = session.get("currentClientOrdersPage");
 		int itemsCount = ClientOrder.all().filter("status", Enums.StatusOrder.UnderPrepare.ordinal()).count();
 		Pagination pagination = null;
@@ -44,26 +45,80 @@ public class ClientOrders extends controllers.CRUD {
 		if (itemsCount > 0) {
 			map = new HashMap<String, List<Order_Product>>();
 			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
-			session.put("currentBrandsPage", pagination.getCurrentPage());
+			session.put("currentClientOrdersPage", pagination.getCurrentPage());
 			clientordersList = ClientOrder.all().filter("status", Enums.StatusOrder.UnderPrepare.ordinal())
 					.order("orderDate").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
-			for (ClientOrder clientOrder : clientordersList) {
-				List<Order_Product> order_products = clientOrder.getListOrderProduct();
-				map.put(clientOrder.ID, order_products);
-			}
 		}
-		render(clientordersList, pagination, map);
+		render(clientordersList, pagination);
+	}
+
+	public static void payOrders() {
+		currentPage("ReadyOrders");
+		String pageNbFromSession = session.get("currentPayClientOrdersPage");
+		int itemsCount = ClientOrder.all().filter("status", Enums.StatusOrder.Completed.ordinal()).count();
+		Pagination pagination = null;
+		List<ClientOrder> clientordersList = null;
+		HashMap<String, List<Order_Product>> map = null;
+		if (itemsCount > 0) {
+			map = new HashMap<String, List<Order_Product>>();
+			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
+			session.put("currentPayClientOrdersPage", pagination.getCurrentPage());
+			clientordersList = ClientOrder.all().filter("status", Enums.StatusOrder.Completed.ordinal())
+					.order("orderDate").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
+		}
+		render(clientordersList, pagination);
+	}
+	
+
+	public static void listOfPaidOrders() {
+		currentPage("PaidOrders");
+		String pageNbFromSession = session.get("currentPaidOrdersClientOrdersPage");
+		int itemsCount = ClientOrder.all().filter("status", Enums.StatusOrder.Paid.ordinal()).count();
+		Pagination pagination = null;
+		List<ClientOrder> clientordersList = null;
+		HashMap<String, List<Order_Product>> map = null;
+		if (itemsCount > 0) {
+			map = new HashMap<String, List<Order_Product>>();
+			pagination = new Pagination(pageNbFromSession, itemsCount, 25);
+			session.put("currentPaidOrdersClientOrdersPage", pagination.getCurrentPage());
+			clientordersList = ClientOrder.all().filter("status", Enums.StatusOrder.Paid.ordinal())
+					.order("orderDate").fetch(pagination.getPageSize(), pagination.getPageStartIndex());
+		}
+		render(clientordersList, pagination);
 	}
 
 	public static void setReady(String id) {
 		ClientOrder order = ClientOrder.getByID(id);
 		order.status = Enums.StatusOrder.Completed.ordinal();
 		order.saveOrder();
-		manage();
+		payOrders();
 	}
 
+	public static void setPaid(String id) {
+		ClientOrder order = ClientOrder.getByID(id);
+		order.status = Enums.StatusOrder.Paid.ordinal();
+		order.saveOrder();
+		payOrders();
+	}
+
+	
 	public static void getPage(int page) throws IOException {
-		session.put("currentOrdersPage", page);
-		manage();
+		currentPage("orders");
+		session.put("currentClientOrdersPage", page);
+		listOfPaidOrders();
+	}
+	
+
+	public static void getPayPage(int page) throws IOException {
+		currentPage("ReadyOrders");
+		session.put("currentPayClientOrdersPage", page);
+		payOrders();
+	}
+	
+
+	public static void getPaidOrdersPage(int page) throws IOException {
+		currentPage("PaidOrders");
+		session.put("currentPaidOrdersClientOrdersPage", page);
+		listOfPaidOrders();
 	}
 }
