@@ -6,7 +6,7 @@
 	<fieldset>
 		<legend>&{'ReservationForm'}</legend>
 		<input type="hidden" name="id" value="${brand?.ID}">
-		#{field 'reservation.ID'} <input type="hidden" name="${field?.name}"
+		#{field 'reservation.res_id'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
 		<div class="row">
 			<div class="col-md-2">
@@ -132,16 +132,13 @@
 		<div class="row">
 			<div class="col-md-2">
 				#{field 'reservation.res_status'} <label for="${field?.id}"
-					class="form-label-en">&{'Status (Pending|Accepted|Canceled)'} *</label>
+					class="form-label-en">&{'Status *<br/> (Pending|Accepted|Canceled)'}</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
-					 #{select 'reservation.res_status', value:field?.value, id:'field?.id', name:'field?.name', class:'form-control required'}
-						#{option 1}Pending#{/option}
-						#{option 2}Accepted#{/option}
-						#{option 3}Canceled#{/option}
-					#{/select}
-						  
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
 				</div>
 			</div>
 			#{/field}

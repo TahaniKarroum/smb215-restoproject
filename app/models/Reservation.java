@@ -29,8 +29,8 @@ public class Reservation extends Model {
 	public int res_numb_pers;
 	public Date res_date;
 
-	public Date res_date_from;
-	public Date res_date_to;
+	public String res_date_from;
+	public String res_date_to;
 
 
 	@Override
