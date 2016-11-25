@@ -54,6 +54,12 @@ public class PurchaseOrders extends controllers.CRUD {
 		render(vendorOrdersList, pagination);
 	}
 
+	public static void NewOrder() {
+		currentPage("NewOrder");
+		render();
+	}
+	
+	
 	public static void payOrders() {
 		currentPage("ReadyOrders");
 		String pageNbFromSession = session.get("currentPayPurchaseOrdersPage");

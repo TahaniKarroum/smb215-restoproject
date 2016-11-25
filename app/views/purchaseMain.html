@@ -29,7 +29,7 @@
 </head>
 <body>
 	%{currentPage = session.get('currentPage')}%
-	<div class="navbar btn-info navbar-twitch  %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
+	<div class="navbar btn-warning navbar-twitch  %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="@{Application.index()}"> <span class="small-nav"> <span class="logo"> <img src="/public/images/logo.png" style="width: 33px;"> </span> </span> <span
@@ -37,6 +37,12 @@
 			</div>
 			<div class="">
 				<ul class="nav navbar-nav">
+				
+				<li class="${currentPage?.equals('NewOrder') ? 'activeli':''}">
+					<a href="@{PurchaseOrders.newOrder()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'New Order'}"> <span class="glyphicon glyphicon-plus-sign"></span> </span> <span class="full-nav"><span class="glyphicon glyphicon-list-alt"></span> &{'New Order'} </span> </a>
+					</li>
+				
 				  <li class="${currentPage?.equals('orders') ? 'activeli':''}">
 					<a href="@{PurchaseOrders.manage()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title="&{'Orders'}"> <span class="glyphicon glyphicon-list-alt"></span> </span> <span class="full-nav"><span class="glyphicon glyphicon-list-alt"></span> &{'Orders'} </span> </a>
