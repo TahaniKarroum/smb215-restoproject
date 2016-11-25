@@ -1,0 +1,79 @@
+#{extends 'salesMain.html' /} #{include 'include/tableWithFilterHead.html' /}
+#{include 'include/formHead.html' /}
+<div class="form-group">
+	<h3>&{'Ready Orders'}</h3>
+	<hr class="text-success">
+</div>
+
+#{if (vendorOrdersList==null || vendorOrdersList?.size()==0) }
+<div class="panel panel-success">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Ready Orders'}</h3>
+	</div>
+	<div class="panel-body">&{'Listisempty'}</div>
+</div>
+#{/if} #{else}
+
+<div class="panel panel-success filterable">
+	<div class="panel-heading">
+		<h3 class="panel-title">&{'Ready Orders'} (${vendorOrdersList?.size()})</h3>
+	</div>
+	<div id="accordion" role="tablist" aria-multiselectable="true">
+	%{i=0}%
+	#{list vendorOrdersList, as:'order'} 
+
+  <div class="card">
+    <div class="card-header" role="tab" id="headingOne">
+      <h5 class="mb-0">
+      Order # ${order?.ordernb} 
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse${i}" aria-expanded="true" aria-controls="collapse${i}">
+     <span class="pull-right text-danger"> <b><u> Click here to view details</u></b></span>
+        </a>
+      </h5>
+          <table class="table" >
+          <tbody>
+			<tr >
+				<td style="border:0;!important"><b>Status : </b> ${order?.getStatus()}</td>
+				<td style="border:0;!important"><b>Order Date : </b>${order?.orderDate?.format("dd/MM/yyy hh:mm a")} </td>
+				<td style="border:0;!important"><b>Total : </b>${order?.total}$</td>
+				<td style="border:0;!important"><b>Client Name : </b> #{if order?.getClient()!=null}${order?.getClient()?.name} #{/if}</td>
+				<td style="border:0;!important"><b>Client Phone : </b> #{if order?.getClient()!=null}${order?.getClient()?.phone} #{/if}</td>
+				<td style="border:0;!important"><b>Address : </b> #{if order?.getClient()!=null}${order?.getClient()?.address} #{/if}</td>
+				<td><b><a href="@{setPaid(order?.ID)}" title="Set Completed" class="confirm"><span class="fa fa-square-o"></span></a> </b></td>
+			</tr>
+			</tbody>
+          </table>
+    </div>
+
+    <div id="collapse${i}" class="collapse  role="tabpanel" aria-labelledby="headingOne">
+      <div class="card-block">
+      <table class="table">
+		<thead>
+			<tr class="filters">
+				<th>&{'Name'}</th>
+				<th>&{'UnitPrice'}</th>
+				<th>&{'Quantity'}</th>
+				<th>&{'TotalPrice'}</th>
+			</tr>
+		</thead>
+		<tbody>	
+      #{list order?.getListOrderProduct(), as:'orderproduct'} 
+			<tr>
+				<td>${orderproduct?.productname}</td>
+				<td>${orderproduct?.unitPrice} $</td>
+				<td>${orderproduct?.quantity} </td>
+				<td>${orderproduct?.total} $</td>		
+				</tr>
+       #{/list}
+       </tbody>
+       </table>
+      </div>
+    </div>
+  </div>
+  %{i=i+1}%
+   #{/list}
+</div>
+</div>
+#{include 'include/paginationpayorders.html' /}
+#{include 'include/formValidation.html' /}
+#{include 'include/readyConfirmDialog.html' /} #{/else} 
