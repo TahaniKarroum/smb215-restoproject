@@ -17,12 +17,13 @@
 	<table id="listofreservation" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 	<thead>
 		<tr>
-			<th>&{'resv_id'}</th>
-			<th>&{'resv_account_id'}</th>
-			<th>&{'resv_numb_pers'}</th>
-			<th>&{'res_date'}</th>
+			 
+			<th>&{'first_name'}</th>
+			<th>&{'last_name'}</th>
+			<th>&{'phone'}</th>
 			<th>&{'res_date_from'}</th>
 			<th>&{'res_date_to'}</th>
+			<th>&{'res_status'}</th>
 			 <th>&{'Actions'}</th>
 		</tr>
 	</thead>
@@ -30,15 +31,18 @@
 	<tbody>
 		#{list reservationList, as:'reservation'}
 		<tr>
-			<td>${reservation.resv_id}</td>
-			<td>${reservation.resv_account_id}</td>
-			<td>${reservation.resv_numb_pers}</td>
-			<td>${reservation.res_date}</td>
+		 
+			<td>${reservation.first_name}</td>
+			<td>${reservation.last_name}</td>
+			<td>${reservation.phone}</td>
+			
+			
 			<td>${reservation.res_date_from}</td>
 			<td>${reservation.res_date_to}</td>
+			<td>${reservation.res_status}</td>
 			 
 			<td>
-				<a href="@{reservationForm(reservation?.resv_id)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
+				<a href="@{reservationForm(reservation?.res_id)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
 				 
 				<a href="#" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 				 

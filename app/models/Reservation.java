@@ -16,7 +16,15 @@ import java.util.*;
 public class Reservation extends Model {
 	@Id(Generator.UUID)
 	public String res_id;
-
+	
+	public String first_name;
+	public String last_name;
+	public String phone;
+	public String state;
+	public String guest_number;
+	public String email;
+	public String subject;
+	public String res_status;//pending accepted canceled
 	public String res_client_id;
 	public int res_numb_pers;
 	public Date res_date;
@@ -27,8 +35,11 @@ public class Reservation extends Model {
 
 	@Override
 	public String toString() {
-		return "Reservation [res_id=" + res_id + ", res_client_id=" + res_client_id + ", res_numb_pers=" + res_numb_pers
-				+ ", res_date=" + res_date + ", res_date_from=" + res_date_from + ", res_date_to=" + res_date_to + "]";
+		return "Reservation [res_id=" + res_id + ", first_name=" + first_name + ", phone=" + phone + ", last_name="
+				+ last_name + ", state=" + state + ", guest_number=" + guest_number + ", email=" + email + ", subject="
+				+ subject + ", res_status=" + res_status + ", res_client_id=" + res_client_id + ", res_numb_pers="
+				+ res_numb_pers + ", res_date=" + res_date + ", res_date_from=" + res_date_from + ", res_date_to="
+				+ res_date_to + "]";
 	}
 
 	public static Query<Reservation> all() {

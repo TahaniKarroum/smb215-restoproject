@@ -22,35 +22,15 @@
 			</div>
 			#{/field}
 		</div>
-		
 		 
 		 <br>
 		
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'reservation.res_client_id'} <label class="form-label-en" for="">&{'Client'}*</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<select name="${field.name}" class="chosen-select-deselect required"
-						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
-						<option value=""></option>
-						 	#{list allClients, as:'client'}  
-						<option value="${client?.ID}" ${field.value==client?.ID?' selected':''}>${account?.type}</option>
-					 		#{/list}  
-					</select> <span class="input-append"></span>
-				</div>
-			</div>
-			#{/field}
-		</div>
-		
-		
-		 <br>
+		 
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.res_date'} <label for="${field?.id}"
-					class="form-label-en">&{'Reservation Date'} *</label>
+				#{field 'reservation.first_name'} <label for="${field?.id}"
+					class="form-label-en">&{'First Name'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -63,6 +43,113 @@
 		</div>
 		
 		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.last_name'} <label for="${field?.id}"
+					class="form-label-en">&{'Last Name'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.phone'} <label for="${field?.id}"
+					class="form-label-en">&{'Phone'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.state'} <label for="${field?.id}"
+					class="form-label-en">&{'State'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.res_date_from'} <label for="${field?.id}"
+					class="form-label-en">&{'Date From'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.res_date_to'} <label for="${field?.id}"
+					class="form-label-en">&{'Date To'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'reservation.res_status'} <label for="${field?.id}"
+					class="form-label-en">&{'Status (Pending|Accepted|Canceled)'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					 #{select 'reservation.res_status', value:field?.value, id:'field?.id', name:'field?.name', class:'form-control required'}
+						#{option 1}Pending#{/option}
+						#{option 2}Accepted#{/option}
+						#{option 3}Canceled#{/option}
+					#{/select}
+						  
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+		
 	
 		
 		<div class="row">
