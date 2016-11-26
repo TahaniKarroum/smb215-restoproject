@@ -1,14 +1,14 @@
 #{extends 'purchaseMain.html' /} #{include 'include/tableWithFilterHead.html' /}
-#{include 'include/formHead.html' /}
+#{include 'include/formHead.html' /}#{include 'include/advancedFormValidation.html' /}
 <link href="/public/stylesheets/panel.css" rel="stylesheet" media="screen">
 <link rel="stylesheet" href="/public/stylesheets/notification.css" type="text/css" />
  
-<form class="form-horizontal" role="form" action="@{saveProductComposite()}" method="post" id="restoForm" name="vendorForm">
-	<input type="hidden" name="productID" value="${product.ID}">
+<form class="form-horizontal" role="form" action="@{savePurchaseOrder()}" method="post" id="restoForm" name="vendorForm">
+	<input type="hidden" name="verndorID" value="${vendor.ID}">
 	<input type="hidden" name="submitTypeInput" id="submitTypeInput" value="">
 	<div class="row form-group">
 		<div class="col-sm-4 pull-left">
-			<h4>&{'Product'} ${product?.name}</h4>
+			<h4>&{'Vendor'} ${vendor?.name}</h4>
 		</div>
 		<div class="col-sm-1 pull-right">
 			<button type="submit" name="submitType" value="finish" class="btn btn-success" onclick="setSubmitType('finish')" %{ if(selectedProductsList.size()==0)out.print('disabled')}%>
@@ -114,13 +114,12 @@
 										<select name="unit_${prod?.ID}" id="unit_${var}" data-placeholder="&{'Unit'}" class="chosen-select %{if (session.get('lang')?.equals('ar')) out.print('chosen-rtl')}%">
 												<option value=""></option>
 												
-												<option value="${prod?.getMeasureUnit()?.ID}" %{if(product?.getMapProductComposite().get(prod?.ID)?.measureUnit_ID.equals(prod?.getMeasureUnit()?.ID)) out.print('selected')}% >${prod?.getMeasureUnit()?.label}</option>
+												<option value="${prod?.getMeasureUnit()?.ID}"  >${prod?.getMeasureUnit()?.label}</option>
 												
 										</select></td>
 										<td class="form-group"><input type="text" name="qty_${prod?.ID}" id="qty_${var}" class="form-control" value="${product?.getMapProductComposite()?.get(prod?.ID)?.quantity}"></td>
 										<td width="10">
-										<a href="@{deleteCompositeProduct(product?.getMapProductComposite().get(prod?.ID)?.ID,product?.ID)}" title="&{'Delete'}"
-											class="confirmDelete"><span class="fa fa-trash-o text-success"></span> </a>
+										 
 										</td>
 									</tr>
 									%{var=var+1}%
@@ -205,5 +204,19 @@ $('#restoForm').bootstrapValidator({
 			searchType : 'fuzzy'
 		});
 	});
+
+	
+
+	var nbc = $('.chosen-select').length;
+		if (nbc > 0) {
+			$('.chosen-select').chosen();
+		}
+		var nbc1 = $('.chosen-select-deselect').length;
+		if (nbc1 > 0) {
+			$('.chosen-select-deselect').chosen({
+				allow_single_deselect : true
+			});
+		}
+		
 
 </script>

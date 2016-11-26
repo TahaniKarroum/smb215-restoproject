@@ -12,6 +12,7 @@ import models.PVendor;
 import models.PurchaseOrder;
 import models.PurchseOrderItem;
 import models.Product;
+import models.Product_product_Composition;
 import play.mvc.*;
 import siena.Model;
 import utils.Enums;
@@ -77,6 +78,11 @@ public class PurchaseOrders extends controllers.CRUD {
 		}
 		render(vendor, productsList, selectedProductsList, productsIDs);
 	 
+	}
+	
+	
+	public static void savePurchaseOrder() {
+		 
 	}
 	
 	
