@@ -57,6 +57,9 @@ public class PurchaseOrders extends controllers.CRUD {
 	}
 
 	public static void NewOrder(String vendor_ID) {
+		if (vendor_ID == null)
+			 Vendors.manage();
+			
 		currentPage("NewOrder");
 		
 		//get Vendor
