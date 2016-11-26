@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import models.Brand;
+import models.PVendor;
 import models.PurchaseOrder;
 import models.PurchseOrderItem;
 import models.Product;
@@ -54,9 +55,28 @@ public class PurchaseOrders extends controllers.CRUD {
 		render(vendorOrdersList, pagination);
 	}
 
-	public static void NewOrder() {
+	public static void NewOrder(String vendor_ID) {
 		currentPage("NewOrder");
-		render();
+		
+		//get Vendor
+		PVendor vendor = PVendor.getByID(vendor_ID);
+		
+		//Get All Products 
+		List<Product> productsList = Product.allStockProducts().fetch();
+		
+		//Get Products for this vendor 
+		List<Product> selectedProductsList = Vendors.getProductsByVendor(vendor_ID);
+	 
+		List<String> productsIDs = null;
+		if (selectedProductsList != null && selectedProductsList.size() > 0) {
+			productsIDs = new ArrayList<String>();
+			for (Product p : selectedProductsList) {
+				if (p != null)
+					productsIDs.add(p.ID);
+			}
+		}
+		render(vendor, productsList, selectedProductsList, productsIDs);
+	 
 	}
 	
 	

@@ -74,6 +74,7 @@
 				<td>${vendor?.getCreditTotal()}</td>
 				<td>#{if vendor?.landPhone!=null && !vendor?.landPhone?.equals("")}${vendor?.landPhone},#{/if} #{if vendor?.mobile!=null && !vendor?.mobile?.equals("")}${vendor?.mobile} #{/if}</td>
 				<td>
+				<a href="@{PurchaseOrders.newOrder(vendor?.ID)}" title="&{'New Purchase Order'}"><span class="glyphicon glyphicon-shopping-cart bigBtn"></span></a> 
 				<a href="@{vendorsForm(vendor?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit bigBtn"></span></a> 
 				#{if vendor?.isActive}<a href="@{Vendors.deactivate(vendor?.ID)}" class="confirmDesactivate"><span
 						class="glyphicon glyphicon-lock text-primary bigBtn" title="&{'Deactivate'}"></span></a> #{/if}
