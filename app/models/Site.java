@@ -26,6 +26,10 @@ public class Site extends Model {
 		return "Site [ID=" + ID + ", SiteName=" + SiteName + ", Location=" + Location + "]";
 	}
 
+	public static Query<Site> getAllSites() {
+		return Model.all(Site.class);
+	}
+	
 	public static Query<Site> all() {
 		return Model.all(Site.class);
 	}
@@ -50,5 +54,7 @@ public class Site extends Model {
 			Model.batch(Site.class).update(this);
 		}
 	}
+	
+	
 
 }

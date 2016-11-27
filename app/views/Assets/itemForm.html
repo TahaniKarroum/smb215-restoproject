@@ -92,6 +92,25 @@
 		</div>
 		
 		<br>
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'item.SiteId'} <label class="form-label-en" for="">&{'Site'}*</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list siteList, as:'site'} -->
+						<option value="${site?.ID}" ${field.value==site?.ID?' selected':''}>${site?.SiteName}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
+				</div>
+			</div>
+			#{/field}
+		</div>
+<br>
 	
 		
 		<div class="row">

@@ -23,6 +23,7 @@
 			 <th>&{'Desc'}</th>
 			 <th>&{'Cost'}</th>
 			 <th>&{'Value'}</th>
+			 <th>&{'Site'}</th>
 			 <th>&{'Actions'}</th>
 		</tr>
 	</thead>
@@ -36,6 +37,7 @@
 			 <td>${item.ItemDesc}</td>
 			 <td>${item.ItemCost}</td>
 			 <td>${item.ItemValue}</td>
+			 <td>${ item.getSiteName()}</td>
 		  
 			<td>
 				<a href="@{itemForm(item?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>

@@ -22,7 +22,7 @@ public class AssetItems extends Model {
 	public String ItemDesc;
 	public String ItemCost;
 	public String ItemValue;
-	public int SiteId;
+	public String SiteId;
  
  
 	@Override
@@ -42,6 +42,13 @@ public class AssetItems extends Model {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public String getSiteName() {
+		Site site = Site.getByID(SiteId);
+		if (site == null)
+			return "No Site";
+		return site.SiteName;
 	}
 
 	public void save() {

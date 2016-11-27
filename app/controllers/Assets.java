@@ -15,7 +15,9 @@ import models.Site;
 import models.AssetItems;
 import play.mvc.*;
 import siena.Model;
+import siena.Query;
 import utils.Pagination;
+import utils.Enums.categoryType;
 
 public class Assets extends controllers.CRUD {
 
@@ -56,7 +58,10 @@ public class Assets extends controllers.CRUD {
 			site = new Site();
 	 
 		render(site);
+		 
 	}
+	
+	
 
 	public static void savesite(Site site) throws IOException {
 		site.savesite();
@@ -79,8 +84,10 @@ public class Assets extends controllers.CRUD {
 		AssetItems item = AssetItems.getByID(ID);
 		if (item == null)
 			item = new AssetItems();
-	 
-		render(item);
+		
+		List<Site> siteList = Site.getAllSites().fetch();
+		render(item, siteList);
+ 
 	}
 
 	public static void saveitem(AssetItems item) throws IOException {
