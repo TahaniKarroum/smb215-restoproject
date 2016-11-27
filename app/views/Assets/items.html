@@ -1,0 +1,58 @@
+#{extends 'assetMain.html' /} #{set title:'manage.html' /} #{include
+'include/formHead.html' /} 
+
+<div class="form-group">
+	<a href="@{itemForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New item'}</a>
+	<h3>&{'item'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (itemList==null || itemList?.size()==0) && isFilteringMode == true}
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <strong>Warning!</strong> No Data Found.
+</div>
+#{/if}
+#{else}
+
+	<table id="listofitem" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			 
+			<th>&{'Name'}</th>
+			<th>&{'Status'}</th>
+			 <th>&{'Desc'}</th>
+			 <th>&{'Cost'}</th>
+			 <th>&{'Value'}</th>
+			 <th>&{'Actions'}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		#{list itemList, as:'item'}
+		<tr>
+		 
+			<td>${item.ItemName}</td>
+			<td>${item.ItemStatus}</td>
+			 <td>${item.ItemDesc}</td>
+			 <td>${item.ItemCost}</td>
+			 <td>${item.ItemValue}</td>
+		  
+			<td>
+				<a href="@{itemForm(item?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
+				 
+				<a href="#" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
+				 
+			</td>
+		</tr>
+		#{/list}
+	</tbody>
+
+</table>
+
+#{/else}
+
+<script>
+$(document).ready(function() {
+    $('#listofitem').DataTable();
+} );
+</script>

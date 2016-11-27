@@ -11,8 +11,8 @@ import models.Category;
 import models.Client;
 import models.Employee;
 import models.Product;
-import models.Reservation;
 import models.Site;
+import models.AssetItems;
 import play.mvc.*;
 import siena.Model;
 import utils.Pagination;
@@ -61,6 +61,31 @@ public class Assets extends controllers.CRUD {
 	public static void savesite(Site site) throws IOException {
 		site.savesite();
 		sites();
+	}
+
+	
+	public static void items() {
+		currentPage("items");
+		int itemsCount = AssetItems.all().count();
+		List<AssetItems> itemList = null;
+		if (itemsCount > 0) {
+			itemList = AssetItems.all().fetch();
+		}
+		render(itemList);
+	}
+
+	
+	public static void itemForm(String ID) {
+		AssetItems item = AssetItems.getByID(ID);
+		if (item == null)
+			item = new AssetItems();
+	 
+		render(item);
+	}
+
+	public static void saveitem(AssetItems item) throws IOException {
+		item.save();
+		items();
 	}
 
 	 
