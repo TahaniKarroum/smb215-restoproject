@@ -12,6 +12,7 @@ import models.Client;
 import models.Employee;
 import models.Product;
 import models.Reservation;
+import models.Site;
 import play.mvc.*;
 import siena.Model;
 import utils.Pagination;
@@ -36,6 +37,30 @@ public class Assets extends controllers.CRUD {
 		currentPage("assetHome");
 		
 		render();
+	}
+	
+	public static void sites() {
+		currentPage("sites");
+		int itemsCount = Site.all().count();
+		List<Site> siteList = null;
+		if (itemsCount > 0) {
+			siteList = Site.all().fetch();
+		}
+		render(siteList);
+	}
+
+	
+	public static void siteForm(String ID) {
+		Site site = Site.getByID(ID);
+		if (site == null)
+			site = new Site();
+	 
+		render(site);
+	}
+
+	public static void savesite(Site site) throws IOException {
+		site.savesite();
+		sites();
 	}
 
 	 
