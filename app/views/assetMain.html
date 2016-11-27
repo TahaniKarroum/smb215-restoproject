@@ -19,7 +19,7 @@
 </head>
 <body>
 	%{currentPage = session.get('currentPage')}%
-	<div class="navbar btn-primary navbar-twitch %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
+	<div class="navbar btn-danger navbar-twitch %{if(session.get('lang')?.equals('ar')) out.print('navbar-twitch-right right') else out.print('navbar-twitch-left left')}%" role="navigation">
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="@{Application.index()}"> <span class="small-nav"> <span class="logo">
@@ -33,47 +33,41 @@
 			<div class="">
 				<ul class="nav navbar-nav">
 					
-					<li class="${currentPage?.equals('categories') ? 'activeli':''}"><a
-						href="@{Categories.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'FoodCategories'}"> <span
-								class="fa fa-sitemap"></span>
-						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'Categories'}
+					<li class="${currentPage?.equals('Assets Home') ? 'activeli':''}"><a
+						href="@{manage()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Assets Home'}"> <span
+								class="fa fa-home"></span>
+						</span> <span class="full-nav"><span class="fa fa-home"></span> &{'Assets Home'}
 						</span>
 					</a></li>
-					<li class="${currentPage?.equals('brands') ? 'activeli':''}"><a
-						href="@{Brands.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'Brands'}"> <span
-								class="glyphicon glyphicon-bold"></span>
-						</span> <span class="full-nav"><span class="glyphicon glyphicon-bold"></span> &{'Brands'}
+					<li class="${currentPage?.equals('sites') ? 'activeli':''}"><a
+						href="@{sites()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Sites'}"> <span
+								class="fa fa-map-marker"></span>
+						</span> <span class="full-nav"><span class="fa fa-map-marker"></span> &{'Sites'}
 						</span>
 					</a></li>
-						<li class="${currentPage?.equals('unitsList') ? 'activeli':''}"><a
-						href="@{MeasureTypes.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'MeasureTypes'}"> <span
-								class="fa fa-list"></span>
-						</span> <span class="full-nav"><span class="fa fa-list"></span> &{'MeasureTypes'}
+						<li class="${currentPage?.equals('items') ? 'activeli':''}"><a
+						href="@{items()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Items'}"> <span
+								class="fa fa-briefcase"></span>
+						</span> <span class="full-nav"><span class="fa fa-briefcase"></span> &{'Items'}
 						</span>
 					</a></li>
-					<li class="${currentPage?.equals('vendorsList') ? 'activeli':''}"><a
-						href="@{Vendors.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title="&{'VendorsList'}"> <span class="fa fa-group"></span>
-						</span> <span class="full-nav"><span class="fa fa-group"></span> &{'VendorsList'} </span>
+					<li class="${currentPage?.equals('reports') ? 'activeli':''}"><a
+						href="@{reports()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title="&{'reports'}"> <span class="fa fa-file-o"></span>
+						</span> <span class="full-nav"><span class="fa fa-file-o"></span> &{'reports'} </span>
 					</a></li>
-					<li class="${currentPage?.equals('newProductStock') ? 'activeli':''}"><a
-						href="@{Products.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'Products'}"> <span
-								class="fa fa-barcode"></span>
-						</span> <span class="full-nav"><span class="fa fa-barcode"></span> &{'Products'}
+					<li class="${currentPage?.equals('comments') ? 'activeli':''}"><a
+						href="@{comments()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Comments'}"> <span
+								class="fa fa-weixin"></span>
+						</span> <span class="full-nav"><span class="fa fa-weixin"></span> &{'Comments'}
 						</span>
 					</a></li>
                     
-                     <li ><a
-						href="@{PurchaseOrders.manage()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'Purchase Orders'}"> <span
-								class="fa fa-file"></span>
-						</span> <span class="full-nav"><span class="fa fa-file"></span> &{'Purchase Orders'}
-						</span>
-					</a></li>
+                   
                    
 					
 				</ul>

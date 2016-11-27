@@ -31,6 +31,11 @@ public class AssetItems extends Model {
 				+ ItemDesc + ", ItemCost=" + ItemCost + ", ItemValue=" + ItemValue + "]";
 	}
 
+	public static Query<AssetItems> getAllItems() {
+		return Model.all(AssetItems.class);
+	}
+	
+	
 	public static Query<AssetItems> all() {
 		return Model.all(AssetItems.class);
 	}

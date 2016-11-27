@@ -1,0 +1,56 @@
+#{extends 'assetMain.html' /} #{set title:'manage.html' /} #{include
+'include/formHead.html' /} 
+
+<div class="form-group">
+	<a href="@{commentForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New comment'}</a>
+	<h3>&{'comment'}</h3>
+	<hr class="text-primary">
+</div>
+
+#{if (commentList==null || commentList?.size()==0) && isFilteringMode == true}
+<div class="alert alert-warning alert-dismissible" role="alert">
+  <strong>Warning!</strong> No Data Found.
+</div>
+#{/if}
+#{else}
+
+	<table id="listofcomment" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			 
+			<th>&{'Title'}</th>
+			<th>&{'Description'}</th>
+	 
+			 <th>&{'Actions'}</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		#{list commentList, as:'comment'}
+		<tr>
+		 
+			<td>${comment.ComTitle}</td>
+			<td>${comment.ComDesc}</td>
+		 
+			
+		 
+			 
+			<td>
+				<a href="@{commentForm(comment?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
+				 
+				<a href="#" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
+				 
+			</td>
+		</tr>
+		#{/list}
+	</tbody>
+
+</table>
+
+#{/else}
+
+<script>
+$(document).ready(function() {
+    $('#listofcomment').DataTable();
+} );
+</script>

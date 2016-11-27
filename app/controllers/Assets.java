@@ -9,6 +9,7 @@ import models.Account;
 import models.Brand;
 import models.Category;
 import models.Client;
+import models.Comment;
 import models.Employee;
 import models.Product;
 import models.Site;
@@ -95,6 +96,43 @@ public class Assets extends controllers.CRUD {
 		items();
 	}
 
+	
+	//Reports 
+	public static void reports() {
+		currentPage("reports");
+		List<Site> siteList = Site.getAllSites().fetch();
+		List<AssetItems> itemList = AssetItems.getAllItems().fetch();
+		render(siteList, itemList);
+	}
+	
+	//Comments 
+	public static void comments() {
+		currentPage("comments");
+		int itemsCount = Comment.all().count();
+		List<Comment> commentList = null;
+		if (itemsCount > 0) {
+			commentList = Comment.all().fetch();
+		}
+		render(commentList);
+	}
+
+	
+	public static void commentForm(String ID) {
+		Comment comment = Comment.getByID(ID);
+		if (comment == null)
+			comment = new Comment();
 	 
+		render(comment);
+		 
+	}
+	
+	
+
+	public static void savecomment(Comment comment) throws IOException {
+		comment.save();
+		comments();
+	}
+//End Comments
+
 
 }

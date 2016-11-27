@@ -1,0 +1,102 @@
+#{extends 'assetMain.html' /} #{set title:'manage.html' /}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-10">
+			<div class="panel panel-primary">
+				<!-- Default panel contents -->
+				<div class="panel-heading">
+					<h2 class="panel-title">Asset Tracking Report</h2>
+				</div>
+				<div class="panel-body">
+					<h3>All Sites</h3>
+				</div>
+				<ul class="list-group">
+
+					<li class="list-group-item">#{if (siteList==null ||
+						siteList?.size()==0) && isFilteringMode == true}
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<strong>Warning!</strong> No Data Found.
+						</div> #{/if} #{else}
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+
+									<th>&{'SiteName'}</th>
+									<th>&{'Location'}</th>
+
+									<th>&{'Actions'}</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								#{list siteList, as:'site'}
+								<tr>
+
+									<td>${site.SiteName}</td>
+									<td>${site.Location}</td>
+
+
+
+
+									<td><a href="@{siteForm(site?.ID)}" title="&{'Edit'}"><span
+											class="glyphicon glyphicon-edit text-success mdbtn"></span></a> <a
+										href="#" class="confirmDelete" title="&{'Delete'}"><span
+											class="glyphicon glyphicon-trash text-danger mdbtn"></span></a></td>
+								</tr>
+								#{/list}
+							</tbody>
+
+						</table> #{/else}
+					</li>
+
+					<li class="list-group-item">
+						<h3>All Asset Items</h3> #{if (itemList==null ||
+						itemList?.size()==0) && isFilteringMode == true}
+						<div class="alert alert-warning alert-dismissible" role="alert">
+							<strong>Warning!</strong> No Data Found.
+						</div> #{/if} #{else}
+
+						<table class="table table-hover">
+							<thead>
+								<tr>
+
+									<th>&{'Name'}</th>
+									<th>&{'Status'}</th>
+									<th>&{'Desc'}</th>
+									<th>&{'Cost'}</th>
+									<th>&{'Value'}</th>
+									<th>&{'Site'}</th>
+									<th>&{'Actions'}</th>
+								</tr>
+							</thead>
+
+							<tbody>
+								#{list itemList, as:'item'}
+								<tr>
+
+									<td>${item.ItemName}</td>
+									<td>${item.ItemStatus}</td>
+									<td>${item.ItemDesc}</td>
+									<td>${item.ItemCost}</td>
+									<td>${item.ItemValue}</td>
+									<td>${ item.getSiteName()}</td>
+
+									<td><a href="@{itemForm(item?.ID)}" title="&{'Edit'}"><span
+											class="glyphicon glyphicon-edit text-success mdbtn"></span></a> <a
+										href="#" class="confirmDelete" title="&{'Delete'}"><span
+											class="glyphicon glyphicon-trash text-danger mdbtn"></span></a></td>
+								</tr>
+								#{/list}
+							</tbody>
+
+						</table> #{/else}
+
+					</li>
+
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

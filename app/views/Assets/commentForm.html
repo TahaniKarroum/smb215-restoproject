@@ -1,0 +1,58 @@
+#{extends 'stockMain.html' /} #{set title:'commentForm.html' /} #{include
+'include/formHead.html' /} 
+
+<form class="form-horizontal RestoFormValidation" role="form"
+	action="@{savecomment()}" method="post">
+	<fieldset>
+		<legend>&{'commentForm'}</legend>
+		<input type="hidden" name="id" value="${brand?.ID}">
+		#{field 'comment.ID'} <input type="hidden" name="${field?.name}"
+			value="${field?.value}" /> #{/field}
+		 
+		 
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'comment.ComTitle'} <label for="${field?.id}"
+					class="form-label-en">&{'Comment Title'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+	 <div class="row">
+			<div class="col-md-2">
+				#{field 'comment.ComDesc'} <label for="${field?.id}"
+					class="form-label-en">&{'Description'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+	
+		
+		<div class="row">
+			<div class="form-button-en">
+				<button type="submit" class="btn btn-primary">&{'Save'}</button>
+				<a href="@{comments()}" class="btn btn-danger">&{'Cancel'}</a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+#{include 'include/formValidation.html' /}
