@@ -1,0 +1,68 @@
+package controllers;
+
+import java.io.IOException;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+
+import models.Account;
+import models.Brand;
+import models.Category;
+import models.Client;
+import models.Employee;
+import models.Product;
+import models.RatingProduct;
+import play.mvc.*;
+import siena.Model;
+import utils.Pagination;
+
+public class Ratings extends controllers.CRUD {
+
+	@Before
+	public static void addDefault() throws IOException, ParseException {
+		Application.checkEmployeeLogin();
+		Application.onEachController();
+		currentPage("Ratings");
+	}
+
+	public static boolean currentPage(String currentPage) {
+		session.put("currentPage", currentPage);
+		return true;
+	}
+	
+
+	public static void manage() {
+		currentPage("ratings");
+		 
+		render(1);
+	}
+
+	 
+
+	public static void ratingProductForm(String ID) {
+		RatingProduct ratingProduct = RatingProduct.getByID(ID);
+		if (ratingProduct == null)
+			ratingProduct = new RatingProduct();
+		 
+		render(ratingProduct);
+	}
+
+	public static void saveRatingProduct(RatingProduct rating) throws IOException {
+		rating.save();
+		manage();
+	}
+
+	public static void ratingProducts() {
+		currentPage("ratings");
+		int itemsCount = RatingProduct.all().count();
+		List<RatingProduct> ratingproductlist = null;
+		if (itemsCount > 0) {
+			ratingproductlist = RatingProduct.all().fetch();
+		}
+		render(ratingproductlist);
+	}
+
+	 
+	 
+
+}

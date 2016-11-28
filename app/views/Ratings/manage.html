@@ -1,0 +1,28 @@
+#{extends 'ratingMain.html' /} #{set title:'manage.html' /}
+ 
+<style> 
+.panel-body .btn:not(.btn-block) { width:380px;margin-bottom:10px; }</style>
+ <div class="container" style="margin-top: 60px;">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span class="glyphicon glyphicon-bookmark"></span> Select Type Of  Rating</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-12">
+                          <a href="@{ratingProducts()}" class="btn btn-danger btn-lg " role="button"><span class="glyphicon glyphicon-list-alt"></span> <br/>Sites</a>
+                          <a href="@{items()}" class="btn btn-warning btn-lg" role="button"><span class="glyphicon glyphicon-bookmark"></span> <br/>Items</a>
+                         
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
