@@ -1,0 +1,58 @@
+#{extends 'stockMain.html' /} #{set title:'siteForm.html' /} #{include
+'include/formHead.html' /} 
+
+<form class="form-horizontal RestoFormValidation" role="form"
+	action="@{savesite()}" method="post">
+	<fieldset>
+		<legend>&{'siteForm'}</legend>
+		<input type="hidden" name="id" value="${brand?.ID}">
+		#{field 'site.ID'} <input type="hidden" name="${field?.name}"
+			value="${field?.value}" /> #{/field}
+		 
+		 
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'site.SiteName'} <label for="${field?.id}"
+					class="form-label-en">&{'Site Name'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+	 <div class="row">
+			<div class="col-md-2">
+				#{field 'site.Location'} <label for="${field?.id}"
+					class="form-label-en">&{'Location'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		
+	
+		
+		<div class="row">
+			<div class="form-button-en">
+				<button type="submit" class="btn btn-primary">&{'Save'}</button>
+				<a href="@{sites()}" class="btn btn-danger">&{'Cancel'}</a>
+			</div>
+		</div>
+	</fieldset>
+</form>
+#{include 'include/formValidation.html' /}

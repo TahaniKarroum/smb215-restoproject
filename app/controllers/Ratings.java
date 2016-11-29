@@ -11,6 +11,7 @@ import models.Category;
 import models.Client;
 import models.Employee;
 import models.Product;
+import models.RatingEmployee;
 import models.RatingProduct;
 import play.mvc.*;
 import siena.Model;
@@ -62,6 +63,29 @@ public class Ratings extends controllers.CRUD {
 		render(ratingproductlist);
 	}
 
+	
+	public static void ratingEmployeeForm(String ID) {
+		RatingEmployee ratingEmployee = RatingEmployee.getByID(ID);
+		if (ratingEmployee == null)
+			ratingEmployee = new RatingEmployee();
+		 
+		render(ratingEmployee);
+	}
+
+	public static void saveRatingEmployee(RatingEmployee rating) throws IOException {
+		rating.save();
+		manage();
+	}
+
+	public static void ratingEmployees() {
+		currentPage("ratings");
+		int itemsCount = RatingEmployee.all().count();
+		List<RatingEmployee> ratingproductlist = null;
+		if (itemsCount > 0) {
+			ratingproductlist = RatingEmployee.all().fetch();
+		}
+		render(ratingproductlist);
+	}
 	 
 	 
 

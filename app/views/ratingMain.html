@@ -40,28 +40,21 @@
 						</span> <span class="full-nav"><span class="fa fa-home"></span> &{'Ratings Home'}
 						</span>
 					</a></li>
-					<li class="${currentPage?.equals('sites') ? 'activeli':''}"><a
+					<li class="${currentPage?.equals('ratingProducts') ? 'activeli':''}"><a
 						href="@{ratingProducts()}"> <span class="small-nav" data-toggle="tooltip"
 							data-placement="right" title=" &{'Rate Products'}"> <span
 								class="fa fa-map-marker"></span>
-						</span> <span class="full-nav"><span class="fa fa-map-marker"></span> &{'Rate Porducts'}
+						</span> <span class="full-nav"><span class="fa fa-map-marker"></span> &{'Rate Products'}
 						</span>
 					</a></li>
-						<li class="${currentPage?.equals('items') ? 'activeli':''}"><a
-						href="@{items()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title=" &{'Items'}"> <span
+						<li class="${currentPage?.equals('ratingEmployee') ? 'activeli':''}"><a
+						href="@{ratingEmployees()}"> <span class="small-nav" data-toggle="tooltip"
+							data-placement="right" title=" &{'Rate Employee'}"> <span
 								class="fa fa-briefcase"></span>
-						</span> <span class="full-nav"><span class="fa fa-briefcase"></span> &{'Items'}
+						</span> <span class="full-nav"><span class="fa fa-briefcase"></span> &{'Rate Employee'}
 						</span>
 					</a></li>
-					<li class="${currentPage?.equals('reports') ? 'activeli':''}"><a
-						href="@{reports()}"> <span class="small-nav" data-toggle="tooltip"
-							data-placement="right" title="&{'reports'}"> <span class="fa fa-file-o"></span>
-						</span> <span class="full-nav"><span class="fa fa-file-o"></span> &{'reports'} </span>
-					</a></li>
-					 
-                   
-                   
+	
 					
 				</ul>
 			</div>
