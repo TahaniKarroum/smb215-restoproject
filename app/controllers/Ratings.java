@@ -48,8 +48,8 @@ public class Ratings extends controllers.CRUD {
 		render(ratingproduct);
 	}
 
-	public static void saveRatingProduct(RatingProduct ratingx) throws IOException {
-		ratingx.save();
+	public static void saveRatingProduct(RatingProduct ratingproduct) throws IOException {
+		ratingproduct.save();
 		manage();
 	}
 
@@ -72,8 +72,8 @@ public class Ratings extends controllers.CRUD {
 		render(ratingEmployee);
 	}
 
-	public static void saveRatingEmployee(RatingEmployee ratingx) throws IOException {
-		ratingx.save();
+	public static void saveRatingEmployee(RatingEmployee ratingEmployee) throws IOException {
+		ratingEmployee.save();
 		manage();
 	}
 

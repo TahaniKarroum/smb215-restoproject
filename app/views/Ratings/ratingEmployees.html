@@ -1,42 +1,42 @@
-#{extends 'assetMain.html' /} #{set title:'manage.html' /} #{include
+#{extends 'ratingMain.html' /} #{set title:'manage.html' /} #{include
 'include/formHead.html' /} 
 
 <div class="form-group">
-	<a href="@{siteForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New site'}</a>
-	<h3>&{'site'}</h3>
+	<a href="@{ratingEmployeeForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New ratingEmployee'}</a>
+	<h3>&{'ratingEmployee'}</h3>
 	<hr class="text-primary">
 </div>
 
-#{if (siteList==null || siteList?.size()==0) && isFilteringMode == true}
+#{if (ratingEmployeeList==null || ratingEmployeeList?.size()==0) && isFilteringMode == true}
 <div class="alert alert-warning alert-dismissible" role="alert">
   <strong>Warning!</strong> No Data Found.
 </div>
 #{/if}
 #{else}
 
-	<table id="listofsite" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
+	<table id="listofratingEmployee" class="table table-striped table-bordered dt-responsive nowrap" cellspacing="0" width="100%">
 	<thead>
 		<tr>
 			 
-			<th>&{'SiteName'}</th>
-			<th>&{'Location'}</th>
+			<th>&{'EmployeeID'}</th>
+			<th>&{'Rating'}</th>
 	 
 			 <th>&{'Actions'}</th>
 		</tr>
 	</thead>
 
 	<tbody>
-		#{list siteList, as:'site'}
+		#{list ratingEmployeeList, as:'ratingEmployee'}
 		<tr>
 		 
-			<td>${site.SiteName}</td>
-			<td>${site.Location}</td>
+			<td>${ratingEmployee.SiteName}</td>
+			<td>${ratingEmployee.Location}</td>
 		 
 			
 		 
 			 
 			<td>
-				<a href="@{siteForm(site?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
+				<a href="@{ratingEmployeeForm(ratingEmployee?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
 				 
 				<a href="#" class="confirmDelete" title="&{'Delete'}" ><span class="glyphicon glyphicon-trash text-danger mdbtn"></span></a>
 				 
@@ -51,6 +51,6 @@
 
 <script>
 $(document).ready(function() {
-    $('#listofsite').DataTable();
+    $('#listofratingEmployee').DataTable();
 } );
 </script>
