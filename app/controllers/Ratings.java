@@ -50,17 +50,17 @@ public class Ratings extends controllers.CRUD {
 
 	public static void saveRatingProduct(RatingProduct ratingproduct) throws IOException {
 		ratingproduct.save();
-		manage();
+		ratingProducts();
 	}
 
 	public static void ratingProducts() {
 		currentPage("ratings");
 		int itemsCount = RatingProduct.all().count();
-		List<RatingProduct> ratingproductlist = null;
+		List<RatingProduct> ratingProductlist = null;
 		if (itemsCount > 0) {
-			ratingproductlist = RatingProduct.all().fetch();
+			ratingProductlist = RatingProduct.all().fetch();
 		}
-		render(ratingproductlist);
+		render(ratingProductlist);
 	}
 
 	
@@ -74,17 +74,17 @@ public class Ratings extends controllers.CRUD {
 
 	public static void saveRatingEmployee(RatingEmployee ratingEmployee) throws IOException {
 		ratingEmployee.save();
-		manage();
+		ratingEmployees();
 	}
 
 	public static void ratingEmployees() {
 		currentPage("ratings");
 		int itemsCount = RatingEmployee.all().count();
-		List<RatingEmployee> ratingproductlist = null;
+		List<RatingEmployee> ratingEmployeelist = null;
 		if (itemsCount > 0) {
-			ratingproductlist = RatingEmployee.all().fetch();
+			ratingEmployeelist = RatingEmployee.all().fetch();
 		}
-		render(ratingproductlist);
+		render(ratingEmployeelist);
 	}
 	 
 	 
