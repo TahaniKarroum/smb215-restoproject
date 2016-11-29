@@ -13,9 +13,12 @@ import models.Employee;
 import models.Product;
 import models.RatingEmployee;
 import models.RatingProduct;
+import models.Site;
 import play.mvc.*;
 import siena.Model;
+import utils.Enums;
 import utils.Pagination;
+import utils.Enums.categoryType;
 
 public class Ratings extends controllers.CRUD {
 
@@ -45,7 +48,9 @@ public class Ratings extends controllers.CRUD {
 		if (ratingproduct == null)
 			ratingproduct = new RatingProduct();
 		 
-		render(ratingproduct);
+		List<Product> productList = Product.all().fetch();
+		
+		render(ratingproduct, productList);
 	}
 
 	public static void saveRatingProduct(RatingProduct ratingproduct) throws IOException {

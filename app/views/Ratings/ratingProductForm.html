@@ -1,5 +1,7 @@
 #{extends 'ratingMain.html' /} #{set title:'ratingProductForm.html' /} #{include
 'include/formHead.html' /} 
+<link rel="stylesheet" href="/public/stylesheets/rating.css" type="text/css" />
+<script src="/public/javascripts/rating.js"></script>
 
 <form class="form-horizontal RestoFormValidation" role="form"
 	action="@{saveRatingProduct()}" method="post">
@@ -11,23 +13,28 @@
 		 
 		 
 		
-		<div class="row">
+			<div class="row">
 			<div class="col-md-2">
-				#{field 'ratingproduct.ProductID'} <label for="${field?.id}"
-					class="form-label-en">&{'Product'} *</label>
+				#{field 'ratingproduct.ProductID'} <label class="form-label-en" for="">&{'Product'}*</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list productList, as:'prod'} -->
+						<option value="${prod?.ID}" ${field.value==prod?.ID?' selected':''}>${prod?.name}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
 				</div>
 			</div>
 			#{/field}
 		</div>
+ 
+		 
 		
-		<br>
-		
+	<br>
+
 	 <div class="row">
 			<div class="col-md-2">
 				#{field 'ratingproduct.Rating'} <label for="${field?.id}"
@@ -35,6 +42,14 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
+				<div id="star-rating">
+		    <input type="radio" name="example" class="rating" value="1" />
+		    <input type="radio" name="example" class="rating" value="2" />
+		    <input type="radio" name="example" class="rating" value="3" />
+		    <input type="radio" name="example" class="rating" value="4" />
+		    <input type="radio" name="example" class="rating" value="5" />
+		</div>
+				
 					<input id="${field?.id}" name="${field?.name}"
 						value="${field?.value}" autofocus type="text" placeholder=""
 						class="form-control required">
@@ -56,3 +71,8 @@
 	</fieldset>
 </form>
 #{include 'include/formValidation.html' /}
+<script>
+$(function(){                   // Start when document ready
+    $('#star-rating').rating(); // Call the rating plugin
+}); 
+</script>

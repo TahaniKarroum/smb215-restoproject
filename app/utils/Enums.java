@@ -78,4 +78,6 @@ public class Enums {
 	public enum VendorPaymentType_ID {
 		None, Short_term, Medium_term, long_term;
 	}
+	
+	
 }
