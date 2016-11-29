@@ -41,15 +41,15 @@ public class Ratings extends controllers.CRUD {
 	 
 
 	public static void ratingProductForm(String ID) {
-		RatingProduct ratingProduct = RatingProduct.getByID(ID);
-		if (ratingProduct == null)
-			ratingProduct = new RatingProduct();
+		RatingProduct ratingproduct = RatingProduct.getByID(ID);
+		if (ratingproduct == null)
+			ratingproduct = new RatingProduct();
 		 
-		render(ratingProduct);
+		render(ratingproduct);
 	}
 
-	public static void saveRatingProduct(RatingProduct rating) throws IOException {
-		rating.save();
+	public static void saveRatingProduct(RatingProduct ratingx) throws IOException {
+		ratingx.save();
 		manage();
 	}
 
@@ -72,8 +72,8 @@ public class Ratings extends controllers.CRUD {
 		render(ratingEmployee);
 	}
 
-	public static void saveRatingEmployee(RatingEmployee rating) throws IOException {
-		rating.save();
+	public static void saveRatingEmployee(RatingEmployee ratingx) throws IOException {
+		ratingx.save();
 		manage();
 	}
 

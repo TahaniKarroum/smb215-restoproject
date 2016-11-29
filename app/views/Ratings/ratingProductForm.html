@@ -2,18 +2,18 @@
 'include/formHead.html' /} 
 
 <form class="form-horizontal RestoFormValidation" role="form"
-	action="@{saveratingProduct()}" method="post">
+	action="@{saveRatingProduct()}" method="post">
 	<fieldset>
 		<legend>&{'ratingProductForm'}</legend>
 		<input type="hidden" name="id" value="${brand?.ID}">
-		#{field 'ratingProduct.ID'} <input type="hidden" name="${field?.name}"
+		#{field 'ratingproduct.ID'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
 		 
 		 
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'ratingProduct.ProductID'} <label for="${field?.id}"
+				#{field 'ratingproduct.ProductID'} <label for="${field?.id}"
 					class="form-label-en">&{'Product'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -30,7 +30,7 @@
 		
 	 <div class="row">
 			<div class="col-md-2">
-				#{field 'ratingProduct.Rating'} <label for="${field?.id}"
+				#{field 'ratingproduct.Rating'} <label for="${field?.id}"
 					class="form-label-en">&{'Rating'} *</label>
 			</div>
 			<div class="col-md-3">
