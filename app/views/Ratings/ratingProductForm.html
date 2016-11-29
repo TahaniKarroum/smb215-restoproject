@@ -1,20 +1,20 @@
-#{extends 'stockMain.html' /} #{set title:'siteForm.html' /} #{include
+#{extends 'ratingMain.html' /} #{set title:'ratingProductForm.html' /} #{include
 'include/formHead.html' /} 
 
 <form class="form-horizontal RestoFormValidation" role="form"
-	action="@{savesite()}" method="post">
+	action="@{saveratingProduct()}" method="post">
 	<fieldset>
-		<legend>&{'siteForm'}</legend>
+		<legend>&{'ratingProductForm'}</legend>
 		<input type="hidden" name="id" value="${brand?.ID}">
-		#{field 'site.ID'} <input type="hidden" name="${field?.name}"
+		#{field 'ratingProduct.ID'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
 		 
 		 
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'site.SiteName'} <label for="${field?.id}"
-					class="form-label-en">&{'Site Name'} *</label>
+				#{field 'ratingProduct.ProductID'} <label for="${field?.id}"
+					class="form-label-en">&{'Product'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -30,8 +30,8 @@
 		
 	 <div class="row">
 			<div class="col-md-2">
-				#{field 'site.Location'} <label for="${field?.id}"
-					class="form-label-en">&{'Location'} *</label>
+				#{field 'ratingProduct.Rating'} <label for="${field?.id}"
+					class="form-label-en">&{'Rating'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -50,7 +50,7 @@
 		<div class="row">
 			<div class="form-button-en">
 				<button type="submit" class="btn btn-primary">&{'Save'}</button>
-				<a href="@{sites()}" class="btn btn-danger">&{'Cancel'}</a>
+				<a href="@{ratingProducts()}" class="btn btn-danger">&{'Cancel'}</a>
 			</div>
 		</div>
 	</fieldset>

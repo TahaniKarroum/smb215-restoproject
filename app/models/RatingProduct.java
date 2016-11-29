@@ -38,7 +38,7 @@ public class RatingProduct extends Model {
 		}
 	}
 
-	public void saveReservation() {
+	public void save() {
 
 		if (ID == null || ID.equals("") == true) {
 			this.ID = null;
