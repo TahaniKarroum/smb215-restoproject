@@ -93,7 +93,7 @@ public class Ratings extends controllers.CRUD {
 	}
 	
 	
-public String getStars() {
+public static void  getStars() {
 		
 
 		String res = "<div id=\"star-rating\">";
@@ -105,7 +105,7 @@ public String getStars() {
 												res += "</div>";
 		 
 				
-		return res;		
+	render(res);	
 	}
 	
 	 
