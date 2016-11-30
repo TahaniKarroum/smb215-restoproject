@@ -16,31 +16,28 @@ import java.util.*;
 public class RatingProduct extends Model {
 	@Id(Generator.UUID)
 	public String ID;
-	
+
 	public String ProductID;
 	public String Rating;
-	
+
 	@Override
 	public String toString() {
 		return "RatingProduct [ID=" + ID + ", ProductID=" + ProductID + ", Rating=" + Rating + "]";
 	}
 
-	
 	public String getStars() {
-		
 
 		String res = "<div id=\"star-rating\">";
 		res += "  <input type=\"radio\" name=\"example\" class=\"rating rating1\" value=\"1\" />";
-				res += "    <input type=\"radio\" name=\"example\" class=\"rating rating2\" value=\"2\" />";
-						res += "    <input type=\"radio\" name=\"example\" class=\"rating rating3\" value=\"3\" />";
-								res += "   <input type=\"radio\" name=\"example\" class=\"rating rating4\" value=\"4\"   />";
-										res += "    <input type=\"radio\" name=\"example\" class=\"rating rating5\" value=\"5\" />";
-												res += "</div>";
-		 
-				
-		return res;		
+		res += "    <input type=\"radio\" name=\"example\" class=\"rating rating2\" value=\"2\" />";
+		res += "    <input type=\"radio\" name=\"example\" class=\"rating rating3\" value=\"3\" />";
+		res += "   <input type=\"radio\" name=\"example\" class=\"rating rating4\" value=\"4\"   />";
+		res += "    <input type=\"radio\" name=\"example\" class=\"rating rating5\" value=\"5\" />";
+		res += "</div>";
+
+		return res;
 	}
-	
+
 	public static Query<RatingProduct> all() {
 		return Model.all(RatingProduct.class);
 	}
@@ -53,8 +50,6 @@ public class RatingProduct extends Model {
 			return null;
 		}
 	}
-	
-	
 
 	public void save() {
 
