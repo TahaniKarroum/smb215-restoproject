@@ -30,7 +30,7 @@
 		<tr>
 		 
 			<td>${ratingProduct.ProductID}</td>
-			<td>${ratingProduct.Rating}</td>
+			<td>@getStars()</td>
 		 
 			<td>
 				<a href="@{ratingProductForm(ratingProduct?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
