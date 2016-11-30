@@ -36,6 +36,7 @@
 	<br>
 
 	 <div class="row">
+	
 			<div class="col-md-2">
 				#{field 'ratingproduct.Rating'} <label for="${field?.id}"
 					class="form-label-en">&{'Rating'} *</label>
@@ -43,15 +44,15 @@
 			<div class="col-md-3">
 				<div class="form-input-en">
 				<div id="star-rating">
-		    <input type="radio" name="example" class="rating" value="1" />
-		    <input type="radio" name="example" class="rating" value="2" />
-		    <input type="radio" name="example" class="rating" value="3" />
-		    <input type="radio" name="example" class="rating" value="4" />
-		    <input type="radio" name="example" class="rating" value="5" />
+		    <input type="radio" name="example" class="rating rating1" value="1" />
+		    <input type="radio" name="example" class="rating rating2" value="2" />
+		    <input type="radio" name="example" class="rating rating3" value="3" />
+		    <input type="radio" name="example" class="rating rating4" value="4"   />
+		    <input type="radio" name="example" class="rating rating5" value="5" />
 		</div>
 				
 					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
+						value="${field?.value}" autofocus type="hidden" placeholder=""
 						class="form-control required">
 				</div>
 			</div>
@@ -73,6 +74,15 @@
 #{include 'include/formValidation.html' /}
 <script>
 $(function(){                   // Start when document ready
-    $('#star-rating').rating(); // Call the rating plugin
+    // Call the rating plugin
+    #{if (ratingproductl)}
+    var Sekected = &{ratingproduct.Rating?.value};
+     $(".rating"+Sekected).attr('checked', 'checked');
+     #{/if}
+    
+    $('#star-rating').rating(function(vote, event){
+         console.log(vote, event);
+         $('#ratingproduct_Rating').val(vote);
+    });
 }); 
 </script>
