@@ -1,6 +1,7 @@
 #{extends 'ratingMain.html' /} #{set title:'manage.html' /} #{include
 'include/formHead.html' /} 
-
+<link rel="stylesheet" href="/public/stylesheets/rating.css" type="text/css" />
+<script src="/public/javascripts/rating.js"></script>
 <div class="form-group">
 	<a href="@{ratingProductForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New ratingProduct'}</a>
 	<h3>&{'ratingProduct'}</h3>
@@ -30,7 +31,7 @@
 		<tr>
 		 
 			<td>${ratingProduct.ProductID}</td>
-			<td>${ratingProduct.getStars()}</td>
+			<td>${out.print(ratingProduct.getStars())}</td>
 		 
 			<td>
 				<a href="@{ratingProductForm(ratingProduct?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
@@ -50,4 +51,18 @@
 $(document).ready(function() {
     $('#listofratingProduct').DataTable();
 } );
+</script>
+<script>
+$(function(){                   // Start when document ready
+    // Call the rating plugin
+    #{if (ratingproductl)}
+    var Sekected = &{ratingproduct.Rating?.value};
+     $(".rating"+Sekected).attr('checked', 'checked');
+     #{/if}
+    
+    $('#star-rating').rating(function(vote, event){
+         console.log(vote, event);
+         $('#ratingproduct_Rating').val(vote);
+    });
+}); 
 </script>
