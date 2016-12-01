@@ -48,21 +48,12 @@
 #{/else}
 
 <script>
-$(document).ready(function() {
-    $('#listofratingProduct').DataTable();
-} );
-</script>
-<script>
 $(function(){                   // Start when document ready
     // Call the rating plugin
-    #{if (ratingproductl)}
-    var Sekected = &{ratingproduct.Rating?.value};
-     $(".rating"+Sekected).attr('checked', 'checked');
-     #{/if}
+   
     
-    $('#star-rating').rating(function(vote, event){
-         console.log(vote, event);
-         $('#ratingproduct_Rating').val(vote);
+    $('.star-rating').rating(function(vote, event){
+      
     });
 }); 
 </script>
