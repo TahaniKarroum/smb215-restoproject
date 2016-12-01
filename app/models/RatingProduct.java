@@ -12,6 +12,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.apache.commons.lang.NumberUtils;
+
 @Entity
 public class RatingProduct extends Model {
 	@Id(Generator.UUID)
@@ -25,17 +27,25 @@ public class RatingProduct extends Model {
 		return "RatingProduct [ID=" + ID + ", ProductID=" + ProductID + ", Rating=" + Rating + "]";
 	}
 
+	@SuppressWarnings("deprecation")
 	public String getStars() {
 
 		String res = "<div class=\"star-rating\">";
 		int i=1;
 		for(i=1 ; i<=5; i++)
 		{
-			if(Rating != null)
-			if(Integer.parseInt(Rating) == i)
-			res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-		else
-			res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+			if(Rating != null )
+			
+				try {
+					if(Integer.parseInt(Rating) == i)
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" checked />";
+					else
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					} catch(Exception e)
+					{
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					}
+			
 			else
 				res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
 		}
