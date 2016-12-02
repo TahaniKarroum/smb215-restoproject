@@ -1,6 +1,7 @@
 #{extends 'ratingMain.html' /} #{set title:'manage.html' /} #{include
 'include/formHead.html' /} 
-
+<link rel="stylesheet" href="/public/stylesheets/rating.css" type="text/css" />
+<script src="/public/javascripts/rating.js"></script>
 <div class="form-group">
 	<a href="@{ratingEmployeeForm()}" class="btn btn-primary pull-right btn-sm"><span class="glyphicon glyphicon-plus-sign"></span> &{'New ratingEmployee'}</a>
 	<h3>&{'ratingEmployee'}</h3>
@@ -30,11 +31,8 @@
 		<tr>
 		 
 			<td>${ratingEmployee.EmployeeID}</td>
-			<td>${ratingEmployee.Rating}</td>
+			<td>${out.print(ratingEmployee.getStars())}</td>
 		 
-			
-		 
-			 
 			<td>
 				<a href="@{ratingEmployeeForm(ratingEmployee?.ID)}" title="&{'Edit'}"><span class="glyphicon glyphicon-edit text-success mdbtn"></span></a>
 				 
@@ -50,7 +48,12 @@
 #{/else}
 
 <script>
-$(document).ready(function() {
-    $('#listofratingEmployee').DataTable();
-} );
+$(function(){                   // Start when document ready
+    // Call the rating plugin
+   
+    
+    $('.star-rating').rating(function(vote, event){
+      
+    });
+}); 
 </script>

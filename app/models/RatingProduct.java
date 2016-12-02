@@ -27,7 +27,7 @@ public class RatingProduct extends Model {
 		return "RatingProduct [ID=" + ID + ", ProductID=" + ProductID + ", Rating=" + Rating + "]";
 	}
 
-	@SuppressWarnings("deprecation")
+
 	public String getStars() {
 
 		String res = "<div class=\"star-rating\">";

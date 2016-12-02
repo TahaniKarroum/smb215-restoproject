@@ -1,55 +1,88 @@
 #{extends 'ratingMain.html' /} #{set title:'ratingEmployeeForm.html' /} #{include
 'include/formHead.html' /} 
+<link rel="stylesheet" href="/public/stylesheets/rating.css" type="text/css" />
+<script src="/public/javascripts/rating.js"></script>
 
 <form class="form-horizontal RestoFormValidation" role="form"
-	action="@{saveRatingEmployee()}" method="post">
+	action="@{saveRatingProduct()}" method="post">
 	<fieldset>
-		<legend>&{'RatingEmployeeForm'}</legend>
+		<legend>&{'ratingEmployeeForm'}</legend>
 		<input type="hidden" name="id" value="${brand?.ID}">
-		#{field 'ratingEmployee.ID'} <input type="hidden" name="${field?.name}"
+		#{field 'ratingemployee.ID'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
-		<div class="row">
+		 
+		 
+		
+			<div class="row">
 			<div class="col-md-2">
-				#{field 'ratingEmployee.EmployeeID'} <label for="${field?.id}"
-					class="form-label-en">&{'Employee'} *</label>
+				#{field 'ratingemployee.ProductID'} <label class="form-label-en" for="">&{'Product'}*</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list employeeList, as:'emp'} -->
+						<option value="${emp?.ID}" ${field.value==emp?.ID?' selected':''}>${emp?.name}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
+				</div>
+			</div>
+			#{/field}
+		</div>
+ 
+		 
+		
+	<br>
+
+	 <div class="row">
+	
+			<div class="col-md-2">
+				#{field 'ratingemployee.Rating'} <label for="${field?.id}"
+					class="form-label-en">&{'Rating'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+				<div id="star-rating">
+		    <input type="radio" name="example" class="rating rating1" value="1" />
+		    <input type="radio" name="example" class="rating rating2" value="2" />
+		    <input type="radio" name="example" class="rating rating3" value="3" />
+		    <input type="radio" name="example" class="rating rating4" value="4"   />
+		    <input type="radio" name="example" class="rating rating5" value="5" />
+		</div>
+				
 					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
+						value="${field?.value}" autofocus type="hidden" placeholder=""
 						class="form-control required">
 				</div>
 			</div>
 			#{/field}
 		</div>
-		 
-		 <br>
 		
-		 
+		<br>
 		
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'ratingEmployee.Rating'} <label for="${field?.id}"
-					class="form-label-en">&{'Rate'} *</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
-				</div>
-			</div>
-			#{/field}
-		</div>
-		 
+	
 		
-		 <br>
 		<div class="row">
 			<div class="form-button-en">
 				<button type="submit" class="btn btn-primary">&{'Save'}</button>
-				<a href="@{manage()}" class="btn btn-danger">&{'Cancel'}</a>
+				<a href="@{ratingEmployees()}" class="btn btn-danger">&{'Cancel'}</a>
 			</div>
 		</div>
 	</fieldset>
 </form>
 #{include 'include/formValidation.html' /}
+<script>
+$(function(){                   // Start when document ready
+    // Call the rating plugin
+    #{if (ratingemployeel)}
+    var Sekected = &{ratingemployee.Rating?.value};
+     $(".rating"+Sekected).attr('checked', 'checked');
+     #{/if}
+    
+    $('#star-rating').rating(function(vote, event){
+         console.log(vote, event);
+         $('#ratingemployee_Rating').val(vote);
+    });
+}); 
+</script>

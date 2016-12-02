@@ -50,5 +50,32 @@ public class RatingEmployee extends Model {
 			Model.batch(RatingEmployee.class).update(this);
 		}
 	}
+	
+	
+	public String getStars() {
+
+		String res = "<div class=\"star-rating\">";
+		int i=1;
+		for(i=1 ; i<=5; i++)
+		{
+			if(Rating != null )
+			
+				try {
+					if(Integer.parseInt(Rating) == i)
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" checked />";
+					else
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					} catch(Exception e)
+					{
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					}
+			
+			else
+				res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+		}
+		res += "</div>";
+
+		return res;
+	}
 
 }
