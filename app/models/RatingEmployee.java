@@ -12,18 +12,46 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import org.apache.commons.lang.NumberUtils;
+
 @Entity
 public class RatingEmployee extends Model {
 	@Id(Generator.UUID)
 	public String ID;
-	
+
 	public String EmployeeID;
 	public String Rating;
-	
-	 
+
 	@Override
 	public String toString() {
 		return "RatingEmployee [ID=" + ID + ", EmployeeID=" + EmployeeID + ", Rating=" + Rating + "]";
+	}
+
+
+	public String getStars() {
+
+		String res = "<div class=\"star-rating\">";
+		int i=1;
+		for(i=1 ; i<=5; i++)
+		{
+			if(Rating != null )
+			
+				try {
+					if(Integer.parseInt(Rating) == i)
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" checked />";
+					else
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					} catch(Exception e)
+					{
+						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+					}
+			
+			else
+				res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
+		}
+		res += "</div>";
+
+		return res;
 	}
 
 	public static Query<RatingEmployee> all() {
@@ -49,33 +77,6 @@ public class RatingEmployee extends Model {
 
 			Model.batch(RatingEmployee.class).update(this);
 		}
-	}
-	
-	
-	public String getStars() {
-
-		String res = "<div class=\"star-rating\">";
-		int i=1;
-		for(i=1 ; i<=5; i++)
-		{
-			if(Rating != null )
-			
-				try {
-					if(Integer.parseInt(Rating) == i)
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" checked />";
-					else
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-					} catch(Exception e)
-					{
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-					}
-			
-			else
-				res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-		}
-		res += "</div>";
-
-		return res;
 	}
 
 }

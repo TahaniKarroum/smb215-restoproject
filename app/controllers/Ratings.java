@@ -69,16 +69,19 @@ public class Ratings extends controllers.CRUD {
 	}
 
 	
+	
 	public static void ratingEmployeeForm(String ID) {
-		RatingEmployee ratingEmployee = RatingEmployee.getByID(ID);
-		if (ratingEmployee == null)
-			ratingEmployee = new RatingEmployee();
+		RatingEmployee ratingemployee = RatingEmployee.getByID(ID);
+		if (ratingemployee == null)
+			ratingemployee = new RatingEmployee();
 		 
-		render(ratingEmployee);
+		List<Employee> employeeList = Employee.all().fetch();
+		
+		render(ratingemployee, employeeList);
 	}
 
-	public static void saveRatingEmployee(RatingEmployee ratingEmployee) throws IOException {
-		ratingEmployee.save();
+	public static void saveRatingEmployee(RatingEmployee ratingemployee) throws IOException {
+		ratingemployee.save();
 		ratingEmployees();
 	}
 
@@ -91,6 +94,8 @@ public class Ratings extends controllers.CRUD {
 		}
 		render(ratingEmployeelist);
 	}
+
+	 
 	 
 	 
 
