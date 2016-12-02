@@ -26,6 +26,13 @@ public class RatingEmployee extends Model {
 	public String toString() {
 		return "RatingEmployee [ID=" + ID + ", EmployeeID=" + EmployeeID + ", Rating=" + Rating + "]";
 	}
+	
+	public String getEmployeeName() {
+//		Employee Em = Employee.getByID(EmployeeID);
+//		if (Em == null)
+//			return "No Employee";
+		return "xxx";
+	}
 
 
 	public String getStars() {
@@ -77,13 +84,6 @@ public class RatingEmployee extends Model {
 
 			Model.batch(RatingEmployee.class).update(this);
 		}
-	}
-	
-	public String getEmployeeName() {
-		Employee Em = Employee.getByID(EmployeeID);
-		if (Em == null)
-			return "No Employee";
-		return Em.name;
-	}
+	} 
 
 }
