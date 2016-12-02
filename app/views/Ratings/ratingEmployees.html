@@ -30,7 +30,7 @@
 		#{list ratingEmployeelist, as:'ratingEmployee'}
 		<tr>
 		 
-			<td>${ratingEmployee.EmployeeID}</td>
+			<td>${ratingEmployee.getEmployeeName()}</td>
 			<td>${out.print(ratingEmployee.getStars())}</td>
 		 
 			<td>

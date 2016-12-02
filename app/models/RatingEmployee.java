@@ -78,5 +78,12 @@ public class RatingEmployee extends Model {
 			Model.batch(RatingEmployee.class).update(this);
 		}
 	}
+	
+	public String getEmployeeName() {
+		Employee Em = Employee.getByID(EmployeeID);
+		if (Em == null)
+			return "No Employee";
+		return Em.name;
+	}
 
 }
