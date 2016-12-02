@@ -71,29 +71,10 @@ public class RatingEmployee extends Model {
 
 	public String getStars2() {
 
-		String res = "<div class=\"star-rating\">";
-		int i=1;
-		for(i=1 ; i<=5; i++)
-		{
-			if(Rating != null )
-			
-				try {
-					if(Integer.parseInt(Rating) == i)
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" checked />";
-					else
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-					} catch(Exception e)
-					{
-						res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-					}
-			
-			else
-				res += "  <input type=\"radio\" name=\"example\" class=\"rating rating"+i+"\" value=\""+i+"\" />";
-		}
-		res += "</div>";
-
+		String res = "xxxxX";
 		return res;
 	}
+	
 	public void save() {
 
 		if (ID == null || ID.equals("") == true) {
