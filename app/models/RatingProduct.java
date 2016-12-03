@@ -26,6 +26,13 @@ public class RatingProduct extends Model {
 	public String toString() {
 		return "RatingProduct [ID=" + ID + ", ProductID=" + ProductID + ", Rating=" + Rating + "]";
 	}
+	
+	public String getProductName() {
+		Product product = Product.getByID(ProductID);
+		if (product == null)
+			return "No Product";
+		return product.name;
+	}
 
 
 	public String getStars() {

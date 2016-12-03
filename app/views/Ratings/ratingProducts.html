@@ -30,7 +30,7 @@
 		#{list ratingProductlist, as:'ratingProduct'}
 		<tr>
 		 
-			<td>${ratingProduct.ProductID}</td>
+			<td>${ratingProduct.getProductName()}</td>
 			<td>${out.print(ratingProduct.getStars())}</td>
 		 
 			<td>
