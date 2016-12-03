@@ -28,6 +28,12 @@ public class RatingEmployee extends Model {
 	}
 	
 	
+	public String getEmpName() {
+		Employee employee = Employee.getByID(EmployeeID);
+		if (employee == null)
+			return "No Employee";
+		return employee.name;
+	}
 
 
 	public String getStars() {
@@ -69,11 +75,7 @@ public class RatingEmployee extends Model {
 		}
 	}
 
-	public String getStars2() {
-
-		String res = "xxxxX";
-		return res;
-	}
+	 
 	
 	public void save() {
 
