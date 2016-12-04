@@ -1,16 +1,16 @@
-#{extends 'stockMain.html' /} #{set title:'reservationForm.html' /} #{include
+#{extends 'stockMain.html' /} #{set title:'deliveryForm.html' /} #{include
 'include/formHead.html' /} 
 
 <form class="form-horizontal RestoFormValidation" role="form"
-	action="@{saveReservation()}" method="post">
+	action="@{saveDelivery()}" method="post">
 	<fieldset>
-		<legend>&{'ReservationForm'}</legend>
+		<legend>&{'DeliveryForm'}</legend>
 		<input type="hidden" name="id" value="${brand?.ID}">
-		#{field 'reservation.res_id'} <input type="hidden" name="${field?.name}"
+		#{field 'delivery.res_id'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.res_numb_pers'} <label for="${field?.id}"
+				#{field 'delivery.res_numb_pers'} <label for="${field?.id}"
 					class="form-label-en">&{'Number Of persons'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -29,7 +29,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.first_name'} <label for="${field?.id}"
+				#{field 'delivery.first_name'} <label for="${field?.id}"
 					class="form-label-en">&{'First Name'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -46,7 +46,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.last_name'} <label for="${field?.id}"
+				#{field 'delivery.last_name'} <label for="${field?.id}"
 					class="form-label-en">&{'Last Name'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -63,7 +63,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.phone'} <label for="${field?.id}"
+				#{field 'delivery.phone'} <label for="${field?.id}"
 					class="form-label-en">&{'Phone'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -80,7 +80,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.state'} <label for="${field?.id}"
+				#{field 'delivery.state'} <label for="${field?.id}"
 					class="form-label-en">&{'State'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -97,7 +97,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.res_date_from'} <label for="${field?.id}"
+				#{field 'delivery.res_date_from'} <label for="${field?.id}"
 					class="form-label-en">&{'Date From'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -114,7 +114,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.res_date_to'} <label for="${field?.id}"
+				#{field 'delivery.res_date_to'} <label for="${field?.id}"
 					class="form-label-en">&{'Date To'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -131,7 +131,7 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'reservation.res_status'} <label for="${field?.id}"
+				#{field 'delivery.res_status'} <label for="${field?.id}"
 					class="form-label-en">&{'Status *<br/> (Pending|Accepted|Canceled)'}</label>
 			</div>
 			<div class="col-md-3">

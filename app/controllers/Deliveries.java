@@ -11,7 +11,7 @@ import models.Category;
 import models.Client;
 import models.Employee;
 import models.Product;
-import models.Reservation;
+import models.Delivery;
 import play.mvc.*;
 import siena.Model;
 import utils.Pagination;
@@ -22,7 +22,7 @@ public class Deliveries extends controllers.CRUD {
 	public static void addDefault() throws IOException, ParseException {
 		Application.checkEmployeeLogin();
 		Application.onEachController();
-		currentPage("reservation");
+		currentPage("delivery");
 	}
 
 	public static boolean currentPage(String currentPage) {
@@ -31,34 +31,34 @@ public class Deliveries extends controllers.CRUD {
 	}
 
 	public static boolean setArgsList() {
-		List<Reservation> brandsList = Reservation.all().fetch();
+		List<Delivery> brandsList = Delivery.all().fetch();
 		renderArgs.put("deliveries", brandsList);
 		return true;
 	}
 
-	public static void reservationForm(String ID) {
-		Reservation reservation = Reservation.getByID(ID);
-		if (reservation == null)
-			reservation = new Reservation();
+	public static void deliveryForm(String ID) {
+		Delivery delivery = Delivery.getByID(ID);
+		if (delivery == null)
+			delivery = new Delivery();
 		
 		//List<Account> allAccounts = Account.getAllAccounts().fetch();
 		List<Client> allClients = Client.all().fetch();
-		render(reservation, allClients);
+		render(delivery, allClients);
 	}
 
-	public static void saveReservation(Reservation reservation) throws IOException {
-		reservation.saveReservation();
+	public static void saveDelivery(Delivery delivery) throws IOException {
+		delivery.save();
 		manage();
 	}
 
 	public static void manage() {
-		currentPage("listofreservation");
-		int itemsCount = Reservation.all().count();
-		List<Reservation> reservationList = null;
+		currentPage("listofdelivery");
+		int itemsCount = Delivery.all().count();
+		List<Delivery> deliveryList = null;
 		if (itemsCount > 0) {
-			reservationList = Reservation.all().fetch();
+			deliveryList = Delivery.all().fetch();
 		}
-		render(reservationList);
+		render(deliveryList);
 	}
 
 	public static void searchByBrand() throws IOException {
