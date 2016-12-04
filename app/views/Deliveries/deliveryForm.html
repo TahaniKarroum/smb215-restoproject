@@ -70,7 +70,7 @@
 		<div class="row">
 	
 			<div class="col-md-2">
-				#{field 'ratingemployee.DeliveryRating'} <label for="${field?.id}"
+				#{field 'delivery.DeliveryRating'} <label for="${field?.id}"
 					class="form-label-en">&{'Rating'} *</label>
 			</div>
 			<div class="col-md-3">
@@ -125,14 +125,14 @@
 <script>
 $(function(){                   // Start when document ready
     // Call the rating plugin
-    #{if (delivery)}
-    var Sekected = &{delivery.DeliveryRating?.value};
+    #{if (delivery.DeliveryRating)}
+    var Sekected = ${delivery.DeliveryRating?.value};
      $(".rating"+Sekected).attr('checked', 'checked');
      #{/if}
     
     $('#star-rating').rating(function(vote, event){
          console.log(vote, event);
-         $('#ratingemployee_Rating').val(vote);
+         $('#delivery_DeliveryRating').val(vote);
     });
 }); 
 </script>
