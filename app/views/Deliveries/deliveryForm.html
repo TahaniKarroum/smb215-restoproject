@@ -1,5 +1,7 @@
 #{extends 'stockMain.html' /} #{set title:'deliveryForm.html' /} #{include
 'include/formHead.html' /} 
+<link rel="stylesheet" href="/public/stylesheets/rating.css" type="text/css" />
+<script src="/public/javascripts/rating.js"></script>
 
 <form class="form-horizontal RestoFormValidation" role="form"
 	action="@{saveDelivery()}" method="post">
@@ -66,14 +68,23 @@
 	 
 		
 		<div class="row">
+	
 			<div class="col-md-2">
-				#{field 'delivery.DeliveryRating'} <label for="${field?.id}"
+				#{field 'ratingemployee.DeliveryRating'} <label for="${field?.id}"
 					class="form-label-en">&{'Rating'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
+				<div id="star-rating">
+		    <input type="radio" name="example" class="rating rating1" value="1" />
+		    <input type="radio" name="example" class="rating rating2" value="2" />
+		    <input type="radio" name="example" class="rating rating3" value="3" />
+		    <input type="radio" name="example" class="rating rating4" value="4"   />
+		    <input type="radio" name="example" class="rating rating5" value="5" />
+		</div>
+				
 					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
+						value="${field?.value}" autofocus type="hidden" placeholder=""
 						class="form-control required">
 				</div>
 			</div>
@@ -111,3 +122,17 @@
 	</fieldset>
 </form>
 #{include 'include/formValidation.html' /}
+<script>
+$(function(){                   // Start when document ready
+    // Call the rating plugin
+    #{if (delivery)}
+    var Sekected = &{delivery.DeliveryRating?.value};
+     $(".rating"+Sekected).attr('checked', 'checked');
+     #{/if}
+    
+    $('#star-rating').rating(function(vote, event){
+         console.log(vote, event);
+         $('#ratingemployee_Rating').val(vote);
+    });
+}); 
+</script>
