@@ -8,29 +8,14 @@
 		<input type="hidden" name="id" value="${brand?.ID}">
 		#{field 'delivery.res_id'} <input type="hidden" name="${field?.name}"
 			value="${field?.value}" /> #{/field}
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'delivery.res_numb_pers'} <label for="${field?.id}"
-					class="form-label-en">&{'Number Of persons'} *</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
-				</div>
-			</div>
-			#{/field}
-		</div>
 		 
-		 <br>
 		
 		 
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'delivery.first_name'} <label for="${field?.id}"
-					class="form-label-en">&{'First Name'} *</label>
+				#{field 'delivery.ClientID'} <label for="${field?.id}"
+					class="form-label-en">&{'Client'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -46,8 +31,8 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'delivery.last_name'} <label for="${field?.id}"
-					class="form-label-en">&{'Last Name'} *</label>
+				#{field 'delivery.ClientLocation'} <label for="${field?.id}"
+					class="form-label-en">&{'Location'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -63,8 +48,27 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'delivery.phone'} <label for="${field?.id}"
-					class="form-label-en">&{'Phone'} *</label>
+				#{field 'delivery.Notes'} <label for="${field?.id}"
+					class="form-label-en">&{'Notes'} *</label>
+			</div>
+			<div class="col-md-3">
+				<div class="form-input-en">
+					<input id="${field?.id}" name="${field?.name}"
+						value="${field?.value}" autofocus type="text" placeholder=""
+						class="form-control required">
+				</div>
+			</div>
+			#{/field}
+		</div>
+		
+		<br>
+		 
+	 
+		
+		<div class="row">
+			<div class="col-md-2">
+				#{field 'delivery.DeliveryRating'} <label for="${field?.id}"
+					class="form-label-en">&{'Rating'} *</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
@@ -80,59 +84,8 @@
 		
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'delivery.state'} <label for="${field?.id}"
-					class="form-label-en">&{'State'} *</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
-				</div>
-			</div>
-			#{/field}
-		</div>
-		
-		<br>
-		
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'delivery.res_date_from'} <label for="${field?.id}"
-					class="form-label-en">&{'Date From'} *</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
-				</div>
-			</div>
-			#{/field}
-		</div>
-		
-		<br>
-		
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'delivery.res_date_to'} <label for="${field?.id}"
-					class="form-label-en">&{'Date To'} *</label>
-			</div>
-			<div class="col-md-3">
-				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
-				</div>
-			</div>
-			#{/field}
-		</div>
-		
-		<br>
-		
-		<div class="row">
-			<div class="col-md-2">
-				#{field 'delivery.res_status'} <label for="${field?.id}"
-					class="form-label-en">&{'Status *<br/> (Pending|Accepted|Canceled)'}</label>
+				#{field 'delivery.DeliveryStatus'} <label for="${field?.id}"
+					class="form-label-en">&{'Status *<br/> (Pending|Sent|Canceled)'}</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
