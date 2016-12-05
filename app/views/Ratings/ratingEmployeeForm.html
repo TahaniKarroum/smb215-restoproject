@@ -22,7 +22,7 @@
 					<select name="${field.name}" class="chosen-select-deselect required"
 						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
 						<option value=""></option>
-						<!-- 		#{list employeeList, as:'emp'} -->
+						<!-- 		#{list allClients, as:'emp'} -->
 						<option value="${emp?.ID}" ${field.value==emp?.ID?' selected':''}>${emp?.name}</option>
 						<!-- 		#{/list} -->
 					</select> <span class="input-append"></span>

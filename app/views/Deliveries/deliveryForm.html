@@ -14,22 +14,28 @@
 		
 		 
 		
+		 
 		<div class="row">
 			<div class="col-md-2">
-				#{field 'delivery.ClientID'} <label for="${field?.id}"
-					class="form-label-en">&{'Client'} *</label>
+				#{field 'delivery.ClientID'} <label class="form-label-en" for="">&{'Client'}*</label>
 			</div>
 			<div class="col-md-3">
 				<div class="form-input-en">
-					<input id="${field?.id}" name="${field?.name}"
-						value="${field?.value}" autofocus type="text" placeholder=""
-						class="form-control required">
+					<select name="${field.name}" class="chosen-select-deselect required"
+						id="${field?.id}" data-placeholder="&{'SelectAnOption'}">
+						<option value=""></option>
+						<!-- 		#{list clientList, as:'emp'} -->
+						<option value="${emp?.ID}" ${field.value==emp?.ID?' selected':''}>${emp?.name}</option>
+						<!-- 		#{/list} -->
+					</select> <span class="input-append"></span>
 				</div>
 			</div>
 			#{/field}
 		</div>
+ 
+		 
 		
-		<br>
+	<br>
 		
 		<div class="row">
 			<div class="col-md-2">
