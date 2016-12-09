@@ -46,7 +46,6 @@
                 <th>&{'Date'}</th>
                 <th>&{'Employee'}</th>
                 <th>&{'Message'}</th>
-                <th ><span class="hidden-xs">&{'View'}</span></th>
             </tr>
         </thead>
         <tbody>
@@ -57,10 +56,7 @@
                 <td>${log?.submitDate?.format('dd/MM/yyyy-hh:mm')}</td>
                 <td>${log?.getEmployee()?.name}</td>
                 <td>${log?.message}</td>
-                <td>
-                    #{if log?.link} <a href="${log.link}" title="&{'View'}" target="_blank"><span class="glyphicon glyphicon-eye-open"></span></a>#{/if}
-                    #{else} <a href="#" style="color:black;"><span class="glyphicon glyphicon-eye-open"></span></a> #{/else}
-                </td>
+              
             </tr>
             #{/list}
         </tbody>

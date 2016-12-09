@@ -76,7 +76,7 @@
 $(function(){                   // Start when document ready
     // Call the rating plugin
     #{if (ratingproduct)}
-    var Sekected = &{ratingproduct.Rating?.value};
+    var Sekected = ${ratingproduct.Rating?.value};
      $(".rating"+Sekected).attr('checked', 'checked');
      #{/if}
     
